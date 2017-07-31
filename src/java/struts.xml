@@ -1,0 +1,66 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>   
+    <constant name="struts.ui.theme" value="css_xhtml" />
+    <package name="default" extends="struts-default">    
+        
+        <!-- Action General. -->
+        <action name="login" class="mx.edu.utez.sidh.action.MainAction" method="login">
+            <result name="success">/views/Login.jsp</result>
+        </action> 
+        <action name="loginUsuario" class="mx.edu.utez.sidh.action.MainAction" method="loginUsuario">
+            <result name="login">/views/superadmin/InicioSuperAdmin.jsp</result>
+            <result name="success">/views/docente/InicioProfesor.jsp</result>
+            <result name="error">/views/Error.jsp</result>
+        </action> 
+        <action name="cerrarSesion" class="mx.edu.utez.sidh.action.MainAction" method="closeLogin">
+            <result name="success" type="redirect">login</result>
+        </action>         
+        <action name="logout" class="mx.edu.utez.sidh.action.MainAction" method="closeLogin">
+            <result name="success">/views/Login.jsp</result>
+        </action> 
+        
+        
+        
+        <!--Action de Usuario-->        
+        <action name="altausuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="altausuario">
+            <result name="success">/views/superadmin/AltaDocente.jsp</result>
+        </action>
+        
+         <action name="consultarUsuarios" class="mx.edu.utez.sidh.action.UsuarioAction" method="obtenerUsuarios">
+            <result name="success">/views/superadmin/ConsultarDocente.jsp</result>
+        </action>   
+        
+        <action name="eliminarUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="eliminarUsuario">
+            <result name="success" type="redirect">consultarUsuarios</result>
+        </action>   
+        
+        <action name="createUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="createUsuario">
+            <result name="success">/views/superadmin/AltaDocente.jsp</result>
+            <result name="error">/views/superadmin/InicioSuperAdmin.jsp</result>
+        </action>   
+        
+        
+        <!--Cosas de axel-->
+        <action name="xml" class="mx.edu.utez.sidh.action.DocumentoXml" method="generarDocumento">
+            <result name="success">/views/superadmin/ImportXML.jsp</result>
+        </action> 
+        
+        <action name="notificar" class="mx.edu.utez.sidh.action.NotificacionesAction" method="check">
+            <result name="success">/views/superadmin/Recordatorio.jsp</result>
+        </action> 
+
+        <action name="borrarDisp" class="mx.edu.utez.sidh.action.UsuarioAction" method="borraDisponibilidad">
+            <result name="success" type="redirect">consultarUsuarios</result>
+            <result name="error" type="redirect">consultarUsuarios</result>
+        </action> 
+        
+        <action name="RegistrarUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="altaUsuario">
+            <result name="success" type="redirect">login</result>
+        </action> 
+        
+       
+    </package>
+</struts>
