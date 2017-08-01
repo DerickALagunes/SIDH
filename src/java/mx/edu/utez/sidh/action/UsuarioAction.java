@@ -45,7 +45,6 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
 //            return ERROR;
 //        }
 //    }
-
     public String obtenerUsuarios() {
         listaUsuarios = DaoUsuario.getUsuarios();
         return SUCCESS;
@@ -53,7 +52,7 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
 
     public String eliminarUsuario() {
         System.out.println(usua.getId());
-         boolean eliminado = DaoUsuario.deleteUsuario(usua.getId());
+        boolean eliminado = DaoUsuario.deleteUsuario(usua.getId());
         if (eliminado) {
             return SUCCESS;
         } else {
@@ -78,29 +77,37 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     public void setSession(Map<String, Object> map) {
         this.sessionMap = map;
     }
-    
+
     /**
      * @author Derick
-     * @return 
+     * @return
      */
-    public String borraDisponibilidad(){
-        
+    public String borraDisponibilidad() {
+
         DaoDisponibilidad dao = new DaoDisponibilidad();
-        
+
         if (dao.borrarDisponibilidadDe(usua.getId())) {
             return "success";
-        }else{
+        } else {
             return "error";
         }
-        
+
     }
-    
-    
+
+    int id;
     String nombre;
     String paterno;
     String materno;
     String correo;
     String pass;
+
+    public int getId() {
+        return id;
+    }
+    
+    public void setId(int id){
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -141,16 +148,13 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     public void setPass(String pass) {
         this.pass = pass;
     }
-    
-    
-    
+
     /**
      * @author Derick
-     * @return 
+     * @return
      */
     public String altaUsuario() throws SQLException {
         Usuario nuevo = new Usuario();
-        
         nuevo.setNombre(nombre);
         nuevo.setApellidoPaterno(paterno);
         nuevo.setApellidoMaterno(materno);
@@ -158,12 +162,43 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
         nuevo.setContrasena(pass);
         nuevo.setEstado(true);
         nuevo.setTipoUsuario(1);
-        
+
         DaoUsuario dao = new DaoUsuario();
         dao.registrarUsuario(nuevo);
-        
-        
+
         return SUCCESS;
     }
+    
 
+    /**
+     * @author Anselmo
+     * @return
+     */
+    public String editarUsuario() {
+       Usuario usuario=new Usuario();
+        usuario= DaoUsuario.getUsuarioById(getUsua());
+        setUsua(usuario);
+        return SUCCESS;
+  
+    }
+
+    public String actualizarUsuario() throws SQLException {
+        Usuario nuevo = new Usuario();
+
+        nuevo.setId(id);
+        nuevo.setNombre(nombre);
+        nuevo.setApellidoPaterno(paterno);
+        nuevo.setApellidoMaterno(materno);
+        nuevo.setEmail(correo);
+        nuevo.setContrasena(pass);
+     
+
+        DaoUsuario dao = new DaoUsuario();
+        if(dao.editarUsuario(nuevo)){
+            
+        return SUCCESS;
+        }
+        return ERROR;
+
+    }
 }

@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class Conexion {
       public static Connection getConexion() throws SQLException {
-        String cadenaConexion = "jdbc:mysql://localhost/sidh?user=root&password=root";
+        String cadenaConexion = "jdbc:mysql://localhost/sidh?user=root&password=";
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {

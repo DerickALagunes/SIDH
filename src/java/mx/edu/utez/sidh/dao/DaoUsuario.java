@@ -59,7 +59,7 @@ public class DaoUsuario {
         }
         return obj;
     }
-    
+
     public static Usuario getUsuarioById(Usuario u) {
         Usuario obj = new Usuario();
         try {
@@ -270,8 +270,30 @@ public class DaoUsuario {
      * @author Nancy
      * @author x
      */
-    public boolean updateUsuario(Usuario usuario) {
-        return false;
+    public boolean editarUsuario(Usuario usuario) throws SQLException {
+        boolean editar = false;
+
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement("UPDATE usuario"
+                    + "  set nombre=?, apellido1=?, apellido2=?, email=?, contrasena=? where id=?");
+            ps.setString(1, usuario.getNombre());
+            ps.setString(2, usuario.getApellidoPaterno());
+            ps.setString(3, usuario.getApellidoMaterno());
+            ps.setString(4, usuario.getEmail());
+            ps.setString(5, usuario.getContrasena());
+            ps.setInt(6, usuario.getId());
+
+            editar = (ps.executeUpdate() > 0);
+            ps.close();
+            con.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error ocurrido en DaoUsuario.crearUsuario :" + e.getMessage());
+            throw e;
+        }
+
+        return editar;
     }
 
     /**

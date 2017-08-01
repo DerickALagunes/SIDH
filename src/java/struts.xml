@@ -61,6 +61,16 @@
             <result name="success" type="redirect">login</result>
         </action> 
         
+        <!--Cosas de Anselmo-->
+        
+        <action name="editarUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="editarUsuario">
+            <result name="success">/views/superadmin/ModificarDocente.jsp</result>
+        </action> 
+        <action name="actualizarUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="actualizarUsuario">
+            <result name="success" type="redirect">consultarUsuarios</result>
+        </action> 
+        
+        
        
     </package>
 </struts>

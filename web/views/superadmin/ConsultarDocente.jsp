@@ -251,7 +251,7 @@
                                                 </s:url>
 
 
-                                                <s:url id="editar" action="editarProducto">
+                                                <s:url id="editar" action="editarUsuario">
                                                     <s:param name="usua.id" value="id"/>                               
                                                 </s:url>
 
