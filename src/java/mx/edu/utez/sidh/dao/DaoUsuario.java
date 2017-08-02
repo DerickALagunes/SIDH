@@ -60,7 +60,7 @@ public class DaoUsuario {
         return obj;
     }
 
-    public static Usuario getUsuarioById(Usuario u) {
+    public Usuario getUsuarioById(Usuario u) {
         Usuario obj = new Usuario();
         try {
             Connection con = getConexion();
@@ -167,7 +167,6 @@ public class DaoUsuario {
                 disp.setH18(rs.getBoolean("h18"));
                 disp.setH19(rs.getBoolean("h19"));
                 disp.setH20(rs.getBoolean("h20"));
-                disp.setH21(rs.getBoolean("h21"));
                 disp.setNotas(rs.getString("notas"));
 
                 disponibilidades[iterador] = (disp);

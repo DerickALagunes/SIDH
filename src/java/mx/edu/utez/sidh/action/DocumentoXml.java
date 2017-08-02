@@ -270,7 +270,6 @@ public class DocumentoXml {
                 dispo+= disp.isH18() ? 1 : 0;
                 dispo+= disp.isH19() ? 1 : 0;
                 dispo+= disp.isH20() ? 1 : 0;
-                dispo+= disp.isH21() ? 1 : 0;
                 dispo+=",";
                 
             }  

@@ -176,7 +176,8 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
      */
     public String editarUsuario() {
        Usuario usuario=new Usuario();
-        usuario= DaoUsuario.getUsuarioById(getUsua());
+       DaoUsuario dao = new DaoUsuario();
+        usuario= dao.getUsuarioById(getUsua());
         setUsua(usuario);
         return SUCCESS;
   

@@ -26,7 +26,7 @@
                 width: 100%;
                 min-height: 100vh;
                 position: relative;
-                background-image: url("../images/fondo.jpg");
+                background-image: url("../../SIDH/images/fondo.jpg");
                 background-position: center center, center center;
                 background-size: auto, cover;
                 background-repeat: repeat, no-repeat;

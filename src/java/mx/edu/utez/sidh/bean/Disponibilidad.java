@@ -21,7 +21,6 @@ public class Disponibilidad {
     private boolean h18;
     private boolean h19;
     private boolean h20;
-    private boolean h21;
     private String notas;
     private Periodo periodo;
     private Usuario usuario;
@@ -35,7 +34,7 @@ public class Disponibilidad {
         this.usuario=usuario;
     }
 
-    public Disponibilidad(int id, String dia, boolean h7, boolean h8, boolean h9, boolean h10, boolean h11, boolean h12, boolean h13, boolean h14, boolean h15, boolean h16, boolean h17, boolean h18, boolean h19, boolean h20, boolean h21, String notas,Periodo periodo,Usuario usuario) {
+    public Disponibilidad(int id, String dia, boolean h7, boolean h8, boolean h9, boolean h10, boolean h11, boolean h12, boolean h13, boolean h14, boolean h15, boolean h16, boolean h17, boolean h18, boolean h19, boolean h20, String notas,Periodo periodo,Usuario usuario) {
         this.id = id;
         this.dia = dia;
         this.h7 = h7;
@@ -52,7 +51,6 @@ public class Disponibilidad {
         this.h18 = h18;
         this.h19 = h19;
         this.h20 = h20;
-        this.h21 = h21;
         this.notas = notas;
         this.periodo=periodo;
         this.usuario=usuario;
@@ -187,14 +185,6 @@ public class Disponibilidad {
 
     public void setH20(boolean h20) {
         this.h20 = h20;
-    }
-
-    public boolean isH21() {
-        return h21;
-    }
-
-    public void setH21(boolean h21) {
-        this.h21 = h21;
     }
 
     public String getNotas() {

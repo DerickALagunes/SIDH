@@ -70,6 +70,16 @@
             <result name="success" type="redirect">consultarUsuarios</result>
         </action> 
         
+                        <!--Action de Docente-->        
+        <action name="capturaDisponibilidad" class="mx.edu.utez.sidh.action.DisponibilidadAction" method="altaDisponibilidad">
+            <result name="success">/views/docente/AltaDisponibilidad.jsp</result>
+            <result name="registrado">/views/docente/YaRegistrado.jsp</result>
+        </action>
+        
+        <action name="registrarDisponibilidad" class="mx.edu.utez.sidh.action.DisponibilidadAction" method="registroDisponibilidad">
+            <result name="success">/views/docente/YaRegistrado.jsp</result>
+        </action>
+        
         
        
     </package>
