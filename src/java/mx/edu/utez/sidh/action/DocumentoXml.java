@@ -36,7 +36,6 @@ public class DocumentoXml {
         DaoUsuario dao = new DaoUsuario();
         ServletContext context = ServletActionContext.getServletContext();
         String path = context.getRealPath("../../web/exports/");
-        System.out.println(path);
         
         ArrayList<Usuario> docentes = dao.getUsuariosDisponibilidades();
         

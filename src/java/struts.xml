@@ -18,9 +18,6 @@
         <action name="cerrarSesion" class="mx.edu.utez.sidh.action.MainAction" method="closeLogin">
             <result name="success" type="redirect">login</result>
         </action>         
-        <action name="logout" class="mx.edu.utez.sidh.action.MainAction" method="closeLogin">
-            <result name="success">/views/Login.jsp</result>
-        </action> 
         
         
         
@@ -54,7 +51,6 @@
 
         <action name="borrarDisp" class="mx.edu.utez.sidh.action.UsuarioAction" method="borraDisponibilidad">
             <result name="success" type="redirect">consultarUsuarios</result>
-            <result name="error" type="redirect">consultarUsuarios</result>
         </action> 
         
         <action name="RegistrarUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="altaUsuario">

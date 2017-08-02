@@ -89,6 +89,7 @@ public class DaoUsuario {
 
     public static ArrayList<Usuario> getUsuarios() {
         ArrayList<Usuario> lista = new ArrayList();
+        DaoDisponibilidad dao = new DaoDisponibilidad();
         try {
             Connection con = getConexion();
             PreparedStatement ps = con.prepareStatement(" SELECT  id,nombre, apellido1, apellido2, email, contrasena "
@@ -102,6 +103,7 @@ public class DaoUsuario {
                 usuario.setApellidoMaterno(rs.getString(4));
                 usuario.setEmail(rs.getString(5));
                 usuario.setContrasena(rs.getString(6));
+                usuario.setEstado(dao.UsuarioTieneDisponibilidad(rs.getInt(1)));
                 lista.add(usuario);
             }
             rs.close();
@@ -123,13 +125,13 @@ public class DaoUsuario {
             Connection con = getConexion();
             PreparedStatement ps = con.prepareStatement(" "
                     + "SELECT u.id,u.nombre, u.apellido1, u.apellido2, u.email, u.contrasena,"
-                    + "d.id, d.dia, d.h7, d.h8, d.h9, d.h10, d.h11, d.h12, d.h13, d.h14, d.h15, d.h16, d.h17, d.h18, d.h19, d.h20, d.h21, d.notas, d.estado "
+                    + "d.id, d.dia, d.h7, d.h8, d.h9, d.h10, d.h11, d.h12, d.h13, d.h14, d.h15, d.h16, d.h17, d.h18, d.h19, d.h20, d.notas, d.estado "
                     + "FROM usuario as u "
                     + "JOIN usuario_tiene_disponibilidad as ud on ud.id_usuario = u.id "
                     + "JOIN disponibilidad as d on ud.id_disponibilidad = d.id "
                     + "JOIN disponibilidad_tiene_periodos as dp on dp.id_disponibilidad=d.id "
                     + "JOIN periodos as p on p.id = dp.id_periodo "
-                    + "where u.estado=1");
+                    + "where u.estado=1 AND p.id IN(Select MAX(id) from periodos)");
             ResultSet rs = ps.executeQuery();
 
             int iterador = 0;

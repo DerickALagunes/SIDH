@@ -179,7 +179,7 @@
         <div id="container">
             <div class="container">
                 <div class="row">
-                    
+
                     <div id="column-left" class="col-sm-3 ">
                         <div class="box category">
                             <div class="box-heading"><h3><i class="fa fa-home"></i>Menu</h3></div>
@@ -245,7 +245,7 @@
                                                 <td><s:property value="nombre" ></s:property></td>
                                                 <td><s:property value="apellidoPaterno" ></s:property><s:property value="apellidoMaterno" ></s:property></td>
                                                 <td><s:property value="email" ></s:property></td>
-                                                
+
                                                 <s:url id="disponibilidad" action="borrarDisp">
                                                     <s:param name="usua.id" value="id"/>                               
                                                 </s:url>
@@ -261,7 +261,15 @@
 
                                                 <td><s:a href="%{editar}"><i class="fa fa-pencil" style="color:blue"></i></s:a></td>
                                                 <td><s:a href="%{eliminar}"><i class="fa fa-times" style="color:red"></i></s:a> </td>
-                                                <td><s:a href="%{disponibilidad}"><i class="fa fa-times" style="color:red"></i></s:a> </td>
+
+                                                    <td>
+                                                    <s:if test="estado == true">
+                                                        <s:a href="%{disponibilidad}"><i class="fa fa-times" style="color:red"></i></s:a>
+                                                    </s:if><s:else>                                                        
+                                                        <p>Registro pendiente</p>
+                                                    </s:else>
+                                                    
+                                                    </td>
 
 
 

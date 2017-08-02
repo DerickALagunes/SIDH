@@ -63,8 +63,8 @@ public class DaoDisponibilidad {
             Connection con = getConexion();
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO disponibilidad(dia, h7, h8, h9, h10, h11, h12, "
-                    + "h13, h14, h15, h16, h17, h18, h19, h20, h21, "
-                    + "notas, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+                    + "h13, h14, h15, h16, h17, h18, h19, h20, "
+                    + "notas, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, disponibilidad.getDia());
             ps.setBoolean(2, disponibilidad.isH7());
             ps.setBoolean(3, disponibilidad.isH8());
@@ -80,8 +80,8 @@ public class DaoDisponibilidad {
             ps.setBoolean(13, disponibilidad.isH18());
             ps.setBoolean(14, disponibilidad.isH19());
             ps.setBoolean(15, disponibilidad.isH20());
-            ps.setString(17, disponibilidad.getNotas());
-            ps.setBoolean(18, true);
+            ps.setString(16, disponibilidad.getNotas());
+            ps.setBoolean(17, true);
 
             registrado = (ps.executeUpdate() > 0);
             ResultSet id = ps.getGeneratedKeys();
@@ -174,7 +174,9 @@ public class DaoDisponibilidad {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                flag = true;
+                if (rs.getInt(1)!=0) {
+                    flag = true;
+                }                         
             }
 
             rs.close();

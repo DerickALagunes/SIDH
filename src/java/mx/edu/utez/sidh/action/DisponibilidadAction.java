@@ -73,7 +73,10 @@ public class DisponibilidadAction extends ActionSupport implements ServletReques
     public String altaDisponibilidad() {
 
         DaoDisponibilidad dao = new DaoDisponibilidad();
-        if (dao.UsuarioTieneDisponibilidad(user)) {
+        
+        int id = (Integer) sessionMap.get("idUser");
+        
+        if (dao.UsuarioTieneDisponibilidad(id)) {
             return "registrado";
         }else{
             return SUCCESS;
@@ -144,7 +147,7 @@ public class DisponibilidadAction extends ActionSupport implements ServletReques
                     break;
             }
 
-            //dao.createDisponibilidad(disp, usr);
+            dao.createDisponibilidad(disp, usr);
         }
 
         return SUCCESS;
