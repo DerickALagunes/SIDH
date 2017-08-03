@@ -93,9 +93,6 @@ public class DisponibilidadAction extends ActionSupport implements ServletReques
      */
     public String registroDisponibilidad() throws SQLException {
 
-        System.out.println(dispo);
-        System.out.println(notas);
-        System.out.println(user);
         DaoDisponibilidad dao = new DaoDisponibilidad();
 
         Usuario usr = new Usuario();

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import mx.edu.utez.sidh.bean.Disponibilidad;
 import mx.edu.utez.sidh.bean.Usuario;
 import mx.edu.utez.sidh.dao.DaoDisponibilidad;
 import mx.edu.utez.sidh.dao.DaoUsuario;
@@ -23,6 +24,17 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     HttpServletRequest servletRequest;
     Map<String, Object> sessionMap;
     private Usuario usua;
+    String dis;
+
+    public String getDis() {
+        return dis;
+    }
+
+    public void setDis(String dis) {
+        this.dis = dis;
+    }
+    
+    
 
     public Usuario getUsua() {
         return usua;
@@ -104,8 +116,8 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     public int getId() {
         return id;
     }
-    
-    public void setId(int id){
+
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -168,19 +180,56 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
 
         return SUCCESS;
     }
-    
 
     /**
      * @author Anselmo
      * @return
      */
     public String editarUsuario() {
-       Usuario usuario=new Usuario();
-       DaoUsuario dao = new DaoUsuario();
-        usuario= dao.getUsuarioById(getUsua());
+        Usuario usuario;
+        DaoUsuario dao = new DaoUsuario();
+        usuario = dao.getUsuarioById(getUsua());
         setUsua(usuario);
         return SUCCESS;
-  
+
+    }
+
+    /**
+     * Método para imprimir el formato
+     *
+     * @return
+     * @author Derick
+     */
+    public String printDispo() {
+        Usuario usuario;
+        DaoUsuario dao = new DaoUsuario();
+        usuario = dao.getUsuarioConDisponibilidadActualById(getUsua());
+        setUsua(usuario);
+        
+        String dias="";
+
+        
+        for (Disponibilidad dispo : usua.getDisponibilidad()) {
+            dias += dispo.isH7() ? "1":"0" ;
+            dias += dispo.isH8() ? "1":"0" ;
+            dias += dispo.isH9() ? "1":"0" ;
+            dias += dispo.isH10() ? "1":"0" ;
+            dias += dispo.isH11() ? "1":"0" ;
+            dias += dispo.isH12() ? "1":"0" ;
+            dias += dispo.isH13() ? "1":"0" ;
+            dias += dispo.isH14() ? "1":"0" ;
+            dias += dispo.isH15() ? "1":"0" ;
+            dias += dispo.isH16() ? "1":"0" ;
+            dias += dispo.isH17() ? "1":"0" ;
+            dias += dispo.isH18() ? "1":"0" ;
+            dias += dispo.isH19() ? "1":"0" ;
+            dias += dispo.isH20() ? "1":"0" ;
+            dias += ",";
+        }
+        
+        dis=dias;
+        
+        return SUCCESS;
     }
 
     public String actualizarUsuario() throws SQLException {
@@ -192,12 +241,11 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
         nuevo.setApellidoMaterno(materno);
         nuevo.setEmail(correo);
         nuevo.setContrasena(pass);
-     
 
         DaoUsuario dao = new DaoUsuario();
-        if(dao.editarUsuario(nuevo)){
-            
-        return SUCCESS;
+        if (dao.editarUsuario(nuevo)) {
+
+            return SUCCESS;
         }
         return ERROR;
 

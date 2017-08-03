@@ -13,6 +13,6 @@
         <meta http-equiv="Refresh" content="0;URL=login.action">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Preparando...</h1>
     </body>
 </html>

@@ -87,6 +87,72 @@ public class DaoUsuario {
         return obj;
     }
 
+    public Usuario getUsuarioConDisponibilidadActualById(Usuario u) {
+        Usuario usuario = new Usuario();
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement(""
+                    + "SELECT u.id,u.nombre, u.apellido1, u.apellido2, u.email, u.contrasena,"
+                    + "d.id, d.dia, d.h7, d.h8, d.h9, d.h10, d.h11, d.h12, d.h13, d.h14, d.h15, d.h16, d.h17, d.h18, d.h19, d.h20, d.notas, d.estado "
+                    + "FROM usuario as u "
+                    + "JOIN usuario_tiene_disponibilidad as ud on ud.id_usuario = u.id "
+                    + "JOIN disponibilidad as d on ud.id_disponibilidad = d.id "
+                    + "JOIN disponibilidad_tiene_periodos as dp on dp.id_disponibilidad=d.id "
+                    + "JOIN periodos as p on p.id = dp.id_periodo "
+                    + "where u.id=? AND p.id IN(Select MAX(id) from periodos)");
+            ps.setInt(1, u.getId());
+            ResultSet rs = ps.executeQuery();
+
+            int iterador = 0;
+            Disponibilidad[] disponibilidades = new Disponibilidad[6];
+
+            while (rs.next()) {
+
+                //si es un nuevo usuario
+                if (iterador == 0) {
+                    usuario.setId(rs.getInt(1));
+                    usuario.setNombre(rs.getString(2));
+                    usuario.setApellidoPaterno(rs.getString(3));
+                    usuario.setApellidoMaterno(rs.getString(4));
+                    usuario.setEmail(rs.getString(5));
+                    usuario.setContrasena(rs.getString(6));
+                }
+
+                Disponibilidad disp = new Disponibilidad();
+
+                disp.setId(rs.getInt(7));
+                disp.setDia(rs.getString("dia"));
+                disp.setH7(rs.getBoolean("h7"));
+                disp.setH8(rs.getBoolean("h8"));
+                disp.setH9(rs.getBoolean("h9"));
+                disp.setH10(rs.getBoolean("h10"));
+                disp.setH11(rs.getBoolean("h11"));
+                disp.setH12(rs.getBoolean("h12"));
+                disp.setH13(rs.getBoolean("h13"));
+                disp.setH14(rs.getBoolean("h14"));
+                disp.setH15(rs.getBoolean("h15"));
+                disp.setH16(rs.getBoolean("h16"));
+                disp.setH17(rs.getBoolean("h17"));
+                disp.setH18(rs.getBoolean("h18"));
+                disp.setH19(rs.getBoolean("h19"));
+                disp.setH20(rs.getBoolean("h20"));
+                disp.setNotas(rs.getString("notas"));
+
+                disponibilidades[iterador] = (disp);
+                iterador++;
+                if (iterador == 6) {
+                    usuario.setDisponibilidad(disponibilidades);
+                }
+            }
+            rs.close();
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.err.println("" + e.getMessage());
+        }
+        return usuario;
+    }
+
     public static ArrayList<Usuario> getUsuarios() {
         ArrayList<Usuario> lista = new ArrayList();
         DaoDisponibilidad dao = new DaoDisponibilidad();

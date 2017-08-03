@@ -236,6 +236,7 @@
                                             <th style="width:5%">Modificar</th>
                                             <th style="width:5%">Eliminar</th>
                                             <th style="width:5%">EliminarDisp</th>
+                                            <th style="width:5%">ImprimirDisp</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -249,7 +250,10 @@
                                                 <s:url id="disponibilidad" action="borrarDisp">
                                                     <s:param name="usua.id" value="id"/>                               
                                                 </s:url>
-
+                                                
+                                                <s:url id="print" action="printDispo">
+                                                    <s:param name="usua.id" value="id"/>                               
+                                                </s:url>
 
                                                 <s:url id="editar" action="editarUsuario">
                                                     <s:param name="usua.id" value="id"/>                               
@@ -265,7 +269,9 @@
                                                     <td>
                                                     <s:if test="estado == true">
                                                         <s:a href="%{disponibilidad}"><i class="fa fa-times" style="color:red"></i></s:a>
+                                                        <td><s:a href="%{print}"><i class="fa fa-times" style="color:red"></i></s:a> </td>
                                                     </s:if><s:else>                                                        
+                                                        <p>Registro pendiente</p>
                                                         <p>Registro pendiente</p>
                                                     </s:else>
                                                     
