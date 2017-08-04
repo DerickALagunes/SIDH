@@ -6,6 +6,20 @@
     <constant name="struts.ui.theme" value="css_xhtml" />
     <package name="default" extends="struts-default">    
         
+        <interceptors>
+            <interceptor name="filtroSesion" class="filtro.InterceptorSesion"/>
+            <interceptor-stack name="colaSesion">
+                <interceptor-ref name="filtroSesion"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+        
+        <default-interceptor-ref name="colaSesion"/>
+        
+        <global-results>
+            <result name="noLogin">/views/Login.jsp</result>
+        </global-results>
+        
         <!-- Action General. -->
         <action name="login" class="mx.edu.utez.sidh.action.MainAction" method="login">
             <result name="success">/views/Login.jsp</result>

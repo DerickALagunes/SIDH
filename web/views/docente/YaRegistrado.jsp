@@ -20,6 +20,7 @@
     </head>
     <body class="common-home">
         <!-- swipe menu -->
+        <jsp:include page="/layaout/validaSesionDocente.jsp"/>
 
         <div id="page">
             <div class="shadow"></div>

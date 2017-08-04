@@ -5,6 +5,7 @@
  */
 package mx.edu.utez.sidh.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
 import mx.edu.utez.sidh.bean.Usuario;
@@ -45,7 +46,7 @@ public class MainAction extends ActionSupport implements SessionAware {
         user = new Usuario();
         return SUCCESS;
     }
-    
+
     String correo;
     String pass;
 
@@ -64,26 +65,24 @@ public class MainAction extends ActionSupport implements SessionAware {
     public void setPass(String pass) {
         this.pass = pass;
     }
-    
-    
 
     public String loginUsuario() throws Exception {
         Usuario usr = new Usuario(0, null, null, null, correo, pass, null, null);
         Usuario obj = DaoUsuario.getUsuario(usr);
         if (obj.isEstado()) {
-           if(obj.getTipoUsuario()==1){
-            sessionMap.put("login", "true");
-            sessionMap.put("userType", "Super");
-            sessionMap.put("userName", obj.getNombre());
-            sessionMap.put("idUser", obj.getId());
-            return LOGIN;
-           }else{
-              sessionMap.put("login", "true");
-            sessionMap.put("userType", "Super");
-            sessionMap.put("userName", obj.getNombre());
-            sessionMap.put("idUser", obj.getId());
-            return SUCCESS;          
-           }
+            if (obj.getTipoUsuario() == 1) {
+                sessionMap.put("login", "true");
+                sessionMap.put("userType", "Super");
+                sessionMap.put("userName", obj.getNombre());
+                sessionMap.put("idUser", obj.getId());
+                return LOGIN;
+            } else {
+                sessionMap.put("login", "true");
+                sessionMap.put("userType", "Doc");
+                sessionMap.put("userName", obj.getNombre());
+                sessionMap.put("idUser", obj.getId());
+                return SUCCESS;
+            }
         } else {
             return ERROR;
         }
@@ -94,8 +93,11 @@ public class MainAction extends ActionSupport implements SessionAware {
         sessionMap.remove("userName");
         sessionMap.remove("idUser");
         sessionMap.clear();
+        
         return SUCCESS;
     }
+
+
 
     public MainAction() {
         user = new Usuario();

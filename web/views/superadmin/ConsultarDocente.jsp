@@ -89,6 +89,7 @@
     </head>
     <body class="common-home">
         <!-- swipe menu -->
+        <jsp:include page="/layaout/validaSesion.jsp"/>
 
         <div id="page">
             <div class="shadow"></div>
@@ -127,7 +128,7 @@
                                         <div id="cart" class="cart">
                                             <button type="button" data-loading-text="Loading...">
                                                 <span class="fa fa-user"></span>
-                                                <a class="cart-total3"  href="<s:url value='/logout.action'/>">Salir</a>
+                                                <a class="cart-total3"  href="<s:url value='/cerrarSesion.action'/>">Salir</a>
                                             </button>
                                         </div>
                                     </div>
