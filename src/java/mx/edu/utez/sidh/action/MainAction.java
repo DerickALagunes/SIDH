@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.edu.utez.sidh.action;
 
-import com.opensymphony.xwork2.ActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
 import mx.edu.utez.sidh.bean.Usuario;
@@ -67,16 +62,18 @@ public class MainAction extends ActionSupport implements SessionAware {
     }
 
     public String loginUsuario() throws Exception {
-        Usuario usr = new Usuario(0, null, null, null, correo, pass, null, null);
+        Usuario usr = new Usuario(0, null, null, null, correo, pass, null);
         Usuario obj = DaoUsuario.getUsuario(usr);
         if (obj.isEstado()) {
             if (obj.getTipoUsuario() == 1) {
+                System.out.println("es admin");
                 sessionMap.put("login", "true");
                 sessionMap.put("userType", "Super");
                 sessionMap.put("userName", obj.getNombre());
                 sessionMap.put("idUser", obj.getId());
                 return LOGIN;
             } else {
+                System.out.println("es docnete");
                 sessionMap.put("login", "true");
                 sessionMap.put("userType", "Doc");
                 sessionMap.put("userName", obj.getNombre());
@@ -84,6 +81,7 @@ public class MainAction extends ActionSupport implements SessionAware {
                 return SUCCESS;
             }
         } else {
+            System.out.println("khe");
             return ERROR;
         }
     }

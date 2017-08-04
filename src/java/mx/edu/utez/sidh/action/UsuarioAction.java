@@ -25,6 +25,17 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     Map<String, Object> sessionMap;
     private Usuario usua;
     String dis;
+    String notas;
+
+    public String getNotas() {
+        return notas;
+    }
+
+    public void setNotas(String notas) {
+        this.notas = notas;
+    }
+            
+            
 
     public String getDis() {
         return dis;
@@ -228,6 +239,7 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
         }
         
         dis=dias;
+        notas=usuario.getDisponibilidad()[0].getNotas();
         
         return SUCCESS;
     }

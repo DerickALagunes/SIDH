@@ -11,7 +11,6 @@ public class Usuario {
     private String apellidoMaterno;
     private String email;
     private String contrasena;
-    private Permiso permiso;
     private boolean estado;    
     private int tipoUsuario;
     private Disponibilidad[] disponibilidad;
@@ -33,22 +32,14 @@ public class Usuario {
         this.estado = estado;
     }
 
-    public Permiso getPermiso() {
-        return permiso;
-    }
 
-    public void setPermiso(Permiso permiso) {
-        this.permiso = permiso;
-    }
-
-    public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String contrasena, Permiso permiso, Disponibilidad[] disponibilidad) {
+    public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String contrasena, Disponibilidad[] disponibilidad) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.email = email;
         this.contrasena = contrasena;
-        this.permiso = permiso;
         this.disponibilidad=disponibilidad;
     }
 

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.edu.utez.sdih.filtro;
+package mx.edu.utez.sidh.filtro;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 import java.util.Map;
@@ -27,16 +28,15 @@ public class InterceptorSesion implements Interceptor{
 
     @Override
     public String intercept(ActionInvocation actionInvocado) throws Exception {
+        
        Map session=actionInvocado.getInvocationContext().getSession();
-        System.out.println("Estamos revisando si tiene sesión");
-        if(session.containsKey("login")){
-            System.out.println("Lo ejecutaremos");
-            String resultado=actionInvocado.invoke();
-            System.out.println("Ya se ejecuto! y nos salimos");
-            return resultado;
+       //must be true
+       String s = (String) session.get("login");
+        
+        if(s==null){
+            return Action.LOGIN;
         }else{
-            System.out.println("No esta logueado lo mandamos al login");
-            return "noLogin";
+            return actionInvocado.invoke();
         }
     }
     

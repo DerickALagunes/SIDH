@@ -7,7 +7,7 @@
     <package name="default" extends="struts-default">    
         
         <interceptors>
-            <interceptor name="filtroSesion" class="filtro.InterceptorSesion"/>
+            <interceptor name="filtroSesion" class="mx.edu.utez.sidh.filtro.InterceptorSesion"/>
             <interceptor-stack name="colaSesion">
                 <interceptor-ref name="filtroSesion"/>
                 <interceptor-ref name="defaultStack"/>
@@ -22,9 +22,13 @@
         
         <!-- Action General. -->
         <action name="login" class="mx.edu.utez.sidh.action.MainAction" method="login">
+            <interceptor-ref name="defaultStack" />
             <result name="success">/views/Login.jsp</result>
         </action> 
+        
+        
         <action name="loginUsuario" class="mx.edu.utez.sidh.action.MainAction" method="loginUsuario">
+            <interceptor-ref name="defaultStack" />
             <result name="login">/views/superadmin/InicioSuperAdmin.jsp</result>
             <result name="success">/views/docente/InicioProfesor.jsp</result>
             <result name="error">/views/Error.jsp</result>

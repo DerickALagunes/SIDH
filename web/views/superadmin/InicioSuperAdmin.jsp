@@ -1,93 +1,17 @@
 <%-- 
     Document   : InicioSuperAdmin
     Created on : 26-jul-2017, 0:44:51
-    Author     : ricar
+    Author     : ricar, Derick
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/ut2.png" type="image/x-icon" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" >
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/material-design.css" >
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/stylesheet.css" >
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" >
-        <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js" type="text/javascript"></script>
-
-        <style>
-            .dropbtn {
-                background-color: #4CAF50;
-                color: white;
-                padding: 16px;
-                font-size: 16px;
-                border: none;
-                cursor: pointer;
-            }
-
-            .dropbtn:hover, .dropbtn:focus {
-                background-color: #3e8e41;
-            }
-
-            .dropdown {
-                float: right;
-                position: relative;
-                display: inline-block;
-
-            }
-
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                overflow: auto;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                right: 0;
-                z-index: 1;
-            }
-
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-
-            .dropdown a:hover {background-color: #f1f1f1}
-
-            .show {display:block;}
-        </style>
-
-        <script>
-            /* When the user clicks on the button, 
-             toggle between hiding and showing the dropdown content */
-            function myFunction() {
-                document.getElementById("myDropdown").classList.toggle("show");
-            }
-
-            // Close the dropdown if the user clicks outside of it
-            window.onclick = function (event) {
-                if (!event.target.matches('.dropbtn')) {
-
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            }
-        </script>
-
+        <jsp:include page="/layaout/imports.jsp"/>
     </head>
     <body class="common-home">
-        <!-- swipe menu -->
         <jsp:include page="/layaout/validaSesion.jsp"/>
 
         <div id="page">
@@ -239,7 +163,7 @@
                                         <div class="camera_target">
                                             <div class="cameraCont">
                                                 <div class="cameraSlide cameraSlide_0 cameracurrent" style="visibility: visible; display: block; z-index: 999;">
-                                                    <img src="images/jeff.jpg" class="imgLoaded" data-alignment="" data-portrait="" width="870" height="345" style="visibility: visible; height: 345px; margin-left: 0px; margin-top: 0px; position: absolute; width: 870px;">
+                                                    <img src="${pageContext.request.contextPath}/images/jeff.jpg" class="imgLoaded" data-alignment="" data-portrait="" width="870" height="345" style="visibility: visible; height: 345px; margin-left: 0px; margin-top: 0px; position: absolute; width: 870px;">
                                                     <div class="camerarelative" style="width: 870px; height: 345px;"></div>
                                                 </div>
                                             </div>

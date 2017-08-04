@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import mx.edu.utez.sidh.bean.Disponibilidad;
 import mx.edu.utez.sidh.bean.Usuario;
 import static mx.edu.utez.sidh.utils.Conexion.getConexion;
@@ -17,33 +16,6 @@ import static mx.edu.utez.sidh.utils.Conexion.getConexion;
  * @author x
  */
 public class DaoDisponibilidad {
-
-    /**
-     * Método R(Listar), obtiene todos los disponibilidades de la Base de Datos
-     *
-     * @return Lista
-     * @author Nancy
-     * @author x
-     */
-    public ArrayList<Disponibilidad> getDisponibilidades() {
-        ArrayList<Disponibilidad> lista = new ArrayList();
-
-        return lista;
-    }
-
-    /**
-     * Método para buscar un disponibilidad en especifico de la Base de Datos
-     *
-     * @return disponibilidad
-     * @author Nancy
-     * @author x
-     */
-    public Disponibilidad getDisponibilidad(int id) {
-        Disponibilidad disponibilidad = new Disponibilidad();
-
-        return disponibilidad;
-
-    }
 
     /**
      * Método create, recibe un objeto Disponibilidad y lo registra en la Base
@@ -128,20 +100,8 @@ public class DaoDisponibilidad {
     }
 
     /**
-     * Método update, recibe un objeto Disponibilidad y lo actualiza en la Base
-     * de Datos
-     *
-     * @param disponibilidad
-     * @return boolean
-     * @author Nancy
-     * @author x
-     */
-    public boolean updateDisponibilidad(Disponibilidad disponibilidad) {
-        return false;
-    }
-
-    /**
-     *
+     * Método para borrar el registro de disponibilidad actual de un usuario
+     * 
      * @param idUser
      * @return
      * @author derick
@@ -165,6 +125,13 @@ public class DaoDisponibilidad {
         return flag;
     }
     
+    /**
+     * Método para saber si un usuario ya tiene disp en el periodo actual
+     * 
+     * @author Derick
+     * @param idUser
+     * @return 
+     */
     public Boolean UsuarioTieneDisponibilidad(int idUser) {
         boolean flag = false;
         try {

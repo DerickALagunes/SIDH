@@ -17,13 +17,7 @@ import static mx.edu.utez.sidh.utils.Conexion.getConexion;
  */
 public class DaoUsuario {
 
-    /**
-     * Método R(Listar), obtiene todos los usuarios de la Base de Datos
-     *
-     * @return Lista
-     * @author Nancy
-     * @author x
-     */
+
     /**
      * Método para buscar un usuario en especifico de la Base de Datos
      *
@@ -60,6 +54,11 @@ public class DaoUsuario {
         return obj;
     }
 
+    /**
+     * Método para obtener un usurio segun su id
+     * @param u
+     * @return 
+     */
     public Usuario getUsuarioById(Usuario u) {
         Usuario obj = new Usuario();
         try {
@@ -255,8 +254,9 @@ public class DaoUsuario {
     }
 
     /**
-     *
-     * @return @author Derick
+     *Método que obtiene la lista de usuarios que NO tienen disponibilidades
+     * @return ArrayList
+     * @author Derick
      */
     public ArrayList<Usuario> getUsuariosSinDisponibilidades() {
         DaoPeriodo dao = new DaoPeriodo();
@@ -336,6 +336,7 @@ public class DaoUsuario {
      * @return boolean
      * @author Nancy
      * @author x
+     * @throws java.sql.SQLException
      */
     public boolean editarUsuario(Usuario usuario) throws SQLException {
         boolean editar = false;
@@ -359,14 +360,13 @@ public class DaoUsuario {
             System.out.println("Error ocurrido en DaoUsuario.crearUsuario :" + e.getMessage());
             throw e;
         }
-
         return editar;
     }
 
     /**
      * Método delete, recibe un objeto Usuario y lo borra de la Base de Datos
      *
-     * @param usuario
+     * @param id
      * @return boolean
      * @author Nancy
      * @author x

@@ -8,12 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/ut2.png" type="image/x-icon" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" >
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/material-design.css" >
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/stylesheet.css" >
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" >
-        <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <jsp:include page="/layaout/imports.jsp"/>
 
         <style>
             td {
@@ -23,6 +18,19 @@
             }
             .selectors th {
                 text-align: center;
+            }
+            @media print {
+                body * {
+                    visibility: hidden;
+                }
+                .print, .print * {
+                    visibility: visible;
+                }
+                .print {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
             }
         </style>
 
@@ -172,7 +180,7 @@
                     </div>
 
 
-                    <div id="content" class="col-sm-9">
+                    <div id="content" class="col-sm-9 print">
 
                         <form name="registrarDisponibilidad" id="registrarDisponibilidad" class="form-horizontal" action="registrarDisponibilidad" method="POST" role="form">
 
@@ -198,134 +206,134 @@
 
                                         <tr>
                                             <td>07:00 - 08:00</td>
-                                            <td  id="Lh7" val="0"></td>
-                                            <td  id="Mh7" val="0"></td>
-                                            <td  id="Xh7" val="0"></td>
-                                            <td  id="Jh7" val="0"></td>
-                                            <td  id="Vh7" val="0"></td>
-                                            <td  id="Sh7" val="0"></td>
+                                            <td class="lunes" id="Lh7" val="0"></td>
+                                            <td class="martes" id="Mh7" val="0"></td>
+                                            <td class="miercoles"  id="Xh7" val="0"></td>
+                                            <td class="jueves"  id="Jh7" val="0"></td>
+                                            <td class="viernes"  id="Vh7" val="0"></td>
+                                            <td class="sabado"  id="Sh7" val="0"></td>
                                         </tr>
                                         <tr>
                                             <td>08:00 - 09:00</td>
-                                            <td  id="Lh8" val="0"></td>
-                                            <td  id="Mh8" val="0"></td>
-                                            <td  id="Xh8" val="0"></td>
-                                            <td  id="Jh8" val="0"></td>
-                                            <td  id="Vh8" val="0"></td>
-                                            <td  id="Sh8" val="0"></td>
+                                            <td class="lunes" id="Lh8" val="0"></td>
+                                            <td class="martes" id="Mh8" val="0"></td>
+                                            <td class="miercoles"  id="Xh8" val="0"></td>
+                                            <td class="jueves"  id="Jh8" val="0"></td>
+                                            <td class="viernes"  id="Vh8" val="0"></td>
+                                            <td class="sabado"  id="Sh8" val="0"></td>
 
                                         </tr>
                                         <tr>
                                             <td>09:00 - 10:00</td>                                                                                                   
-                                            <td  id="Lh9" val="0"></td>
-                                            <td  id="Mh9" val="0"></td>
-                                            <td  id="Xh9" val="0"></td>
-                                            <td  id="Jh9" val="0"></td>
-                                            <td  id="Vh9" val="0"></td>
-                                            <td  id="Sh9" val="0"></td>
+                                            <td class="lunes" id="Lh9" val="0"></td>
+                                            <td class="martes" id="Mh9" val="0"></td>
+                                            <td class="miercoles"  id="Xh9" val="0"></td>
+                                            <td class="jueves"  id="Jh9" val="0"></td>
+                                            <td class="viernes"  id="Vh9" val="0"></td>
+                                            <td class="sabado"  id="Sh9" val="0"></td>
 
                                         </tr>
                                         <tr>
                                             <td>10:00 - 11:00</td>
-                                            <td  id="Lh10" val="0"></td>
-                                            <td  id="Mh10" val="0"></td>
-                                            <td  id="Xh10" val="0"></td>
-                                            <td  id="Jh10" val="0"></td>
-                                            <td  id="Vh10" val="0"></td>
-                                            <td  id="Sh10" val="0"></td>
+                                            <td class="lunes" id="Lh10" val="0"></td>
+                                            <td class="martes" id="Mh10" val="0"></td>
+                                            <td class="miercoles"  id="Xh10" val="0"></td>
+                                            <td class="jueves"  id="Jh10" val="0"></td>
+                                            <td class="viernes"  id="Vh10" val="0"></td>
+                                            <td class="sabado"  id="Sh10" val="0"></td>
                                         </tr>
                                         <tr>
                                             <td >11:00 - 12:00</td>                                                                                                   
-                                            <td  id="Lh11" val="0"></td>
-                                            <td  id="Mh11" val="0"></td>
-                                            <td  id="Xh11" val="0"></td>
-                                            <td  id="Jh11" val="0"></td>
-                                            <td  id="Vh11" val="0"></td>
-                                            <td  id="Sh11" val="0"></td>
+                                            <td class="lunes" id="Lh11" val="0"></td>
+                                            <td class="martes" id="Mh11" val="0"></td>
+                                            <td class="miercoles"  id="Xh11" val="0"></td>
+                                            <td class="jueves"  id="Jh11" val="0"></td>
+                                            <td class="viernes"  id="Vh11" val="0"></td>
+                                            <td class="sabado"  id="Sh11" val="0"></td>
                                         </tr>
                                         <tr>
                                             <td>12:00 - 13:00</td>
-                                            <td  id="Lh12" val="0"></td>
-                                            <td  id="Mh12" val="0"></td>
-                                            <td  id="Xh12" val="0"></td>
-                                            <td  id="Jh12" val="0"></td>
-                                            <td  id="Vh12" val="0"></td>
-                                            <td  id="Sh12" val="0"></td>
+                                            <td class="lunes" id="Lh12" val="0"></td>
+                                            <td class="martes" id="Mh12" val="0"></td>
+                                            <td class="miercoles"  id="Xh12" val="0"></td>
+                                            <td class="jueves"  id="Jh12" val="0"></td>
+                                            <td class="viernes"  id="Vh12" val="0"></td>
+                                            <td class="sabado"  id="Sh12" val="0"></td>
                                         </tr>
                                         <tr>
                                             <td>13:00 - 14:00</td>
-                                            <td  id="Lh13" val="0"></td>
-                                            <td  id="Mh13" val="0"></td>
-                                            <td  id="Xh13" val="0"></td>
-                                            <td  id="Jh13" val="0"></td>
-                                            <td  id="Vh13" val="0"></td>
-                                            <td  id="Sh13" val="0"></td>
+                                            <td class="lunes" id="Lh13" val="0"></td>
+                                            <td class="martes" id="Mh13" val="0"></td>
+                                            <td class="miercoles"  id="Xh13" val="0"></td>
+                                            <td class="jueves"  id="Jh13" val="0"></td>
+                                            <td class="viernes"  id="Vh13" val="0"></td>
+                                            <td class="sabado"  id="Sh13" val="0"></td>
                                         </tr>
                                         <tr>
                                             <td>14:00 - 15:00</td>
-                                            <td  id="Lh14" val="0"></td>
-                                            <td  id="Mh14" val="0"></td>
-                                            <td  id="Xh14" val="0"></td>
-                                            <td  id="Jh14" val="0"></td>
-                                            <td  id="Vh14" val="0"></td>
-                                            <td  id="Sh14" val="0"></td>
+                                            <td class="lunes" id="Lh14" val="0"></td>
+                                            <td class="martes" id="Mh14" val="0"></td>
+                                            <td class="miercoles"  id="Xh14" val="0"></td>
+                                            <td class="jueves"  id="Jh14" val="0"></td>
+                                            <td class="viernes"  id="Vh14" val="0"></td>
+                                            <td class="sabado"  id="Sh14" val="0"></td>
                                         </tr>
 
                                         <tr>
                                             <td>15:00 - 16:00</td>
-                                            <td  id="Lh15" val="0"></td>
-                                            <td  id="Mh15" val="0"></td>
-                                            <td  id="Xh15" val="0"></td>
-                                            <td  id="Jh15" val="0"></td>
-                                            <td  id="Vh15" val="0"></td>
-                                            <td  id="Sh15" val="0"></td>
+                                            <td class="lunes" id="Lh15" val="0"></td>
+                                            <td class="martes" id="Mh15" val="0"></td>
+                                            <td class="miercoles"  id="Xh15" val="0"></td>
+                                            <td class="jueves"  id="Jh15" val="0"></td>
+                                            <td class="viernes"  id="Vh15" val="0"></td>
+                                            <td class="sabado"  id="Sh15" val="0"></td>
                                         </tr>
                                         <tr>
                                             <td>16:00 - 17:00</td>
-                                            <td  id="Lh16" val="0"></td>
-                                            <td  id="Mh16" val="0"></td>
-                                            <td  id="Xh16" val="0"></td>
-                                            <td  id="Jh16" val="0"></td>
-                                            <td  id="Vh16" val="0"></td>
-                                            <td  id="Sh16" val="0"></td>
+                                            <td class="lunes" id="Lh16" val="0"></td>
+                                            <td class="martes" id="Mh16" val="0"></td>
+                                            <td class="miercoles"  id="Xh16" val="0"></td>
+                                            <td class="jueves"  id="Jh16" val="0"></td>
+                                            <td class="viernes"  id="Vh16" val="0"></td>
+                                            <td class="sabado"  id="Sh16" val="0"></td>
 
                                         </tr>
                                         <tr>
                                             <td>17:00 - 18:00</td>                                                                                                   
-                                            <td  id="Lh17" val="0"></td>
-                                            <td  id="Mh17" val="0"></td>
-                                            <td  id="Xh17" val="0"></td>
-                                            <td  id="Jh17" val="0"></td>
-                                            <td  id="Vh17" val="0"></td>
-                                            <td  id="Sh17" val="0"></td>
+                                            <td class="lunes" id="Lh17" val="0"></td>
+                                            <td class="martes" id="Mh17" val="0"></td>
+                                            <td class="miercoles"  id="Xh17" val="0"></td>
+                                            <td class="jueves"  id="Jh17" val="0"></td>
+                                            <td class="viernes"  id="Vh17" val="0"></td>
+                                            <td class="sabado"  id="Sh17" val="0"></td>
 
                                         </tr>
                                         <tr>
                                             <td>18:00 - 19:00</td>
-                                            <td  id="Lh18" val="0"></td>
-                                            <td  id="Mh18" val="0"></td>
-                                            <td  id="Xh18" val="0"></td>
-                                            <td  id="Jh18" val="0"></td>
-                                            <td  id="Vh18" val="0"></td>
-                                            <td  id="Sh18" val="0"></td>
+                                            <td class="lunes" id="Lh18" val="0"></td>
+                                            <td class="martes" id="Mh18" val="0"></td>
+                                            <td class="miercoles"  id="Xh18" val="0"></td>
+                                            <td class="jueves"  id="Jh18" val="0"></td>
+                                            <td class="viernes"  id="Vh18" val="0"></td>
+                                            <td class="sabado"  id="Sh18" val="0"></td>
                                         </tr>
                                         <tr>
                                             <td >19:00 - 20:00</td>                                                                                                   
-                                            <td id="Lh19" val="0"></td>
-                                            <td  id="Mh19" val="0"></td>
-                                            <td  id="Xh19" val="0"></td>
-                                            <td  id="Jh19" val="0"></td>
-                                            <td  id="Vh19" val="0"></td>
-                                            <td  id="Sh19" val="0"></td>
+                                            <td class="lunes" id="Lh19" val="0"></td>
+                                            <td class="martes" id="Mh19" val="0"></td>
+                                            <td class="miercoles"  id="Xh19" val="0"></td>
+                                            <td class="jueves"  id="Jh19" val="0"></td>
+                                            <td class="viernes"  id="Vh19" val="0"></td>
+                                            <td class="sabado"  id="Sh19" val="0"></td>
                                         </tr>
                                         <tr>
                                             <td>20:00 - 21:00</td>
-                                            <td  id="Lh20" val="0"></td>
-                                            <td  id="Mh20" val="0"></td>
-                                            <td  id="Xh20" val="0"></td>
-                                            <td  id="Jh20" val="0"></td>
-                                            <td  id="Vh20" val="0"></td>
-                                            <td  id="Sh20" val="0"></td>
+                                            <td class="lunes" id="Lh20" val="0"></td>
+                                            <td class="martes" id="Mh20" val="0"></td>
+                                            <td class="miercoles"  id="Xh20" val="0"></td>
+                                            <td class="jueves"  id="Jh20" val="0"></td>
+                                            <td class="viernes"  id="Vh20" val="0"></td>
+                                            <td class="sabado"  id="Sh20" val="0"></td>
                                         </tr>
 
                                     </tbody>
@@ -338,8 +346,9 @@
                                 <textarea class="form-control" rows="5" id="notas" name="notas"></textarea>
                             </div>
 
-                            <button type="button" id="btnResgistra" class="btn btn-primary">Registrar</button>
-                            <input type="hidden" name="dis" id="dis" value="<s:property value="dis"/>"/>
+                            <button type="button" id="btnResgistra" class="btn btn-primary" onClick="window.print()">Registrar</button>
+                            <input type="hidden" id="arreglo" value="<s:property value="dis" />"/>
+                            <input type="hidden" id="notes" value="<s:property value="notas" />"/>
                             <input type="hidden" name="user" id="user" value="${sessionScope.idUser}"/>
 
 
@@ -355,22 +364,31 @@
 
 
 <script>
-
     $(document).ready(function () {
-        $(this).find('td[val]').each(function () {
-            if ($(this).attr('val')==0) {
-                $(this).html("<img  align=center  src='${pageContext.request.contextPath}/images/no.png' />");
-            }else{
-                $(this).html("<img  align=center  src='${pageContext.request.contextPath}/images/ok.png' />")
-            }
+
+        var dias = $("#arreglo").val().split(",");
+
+        var semana = {
+            'lunes': dias[0].split(""),
+            'martes': dias[1].split(""),
+            'miercoles': dias[2].split(""),
+            'jueves': dias[3].split(""),
+            'viernes': dias[4].split(""),
+            'sabado': dias[5].split("")
+        };
+
+        $.each(semana, function (dia, hora) {
+            $(document).find('.' + dia).each(function (index) {
+                if (hora[index] == '1') {
+                    $(this).html("<img  align=center  src='${pageContext.request.contextPath}/images/ok.png' />");
+                } else {
+                    $(this).html("<img  align=center  src='${pageContext.request.contextPath}/images/no.png' />");
+                }
+            });
         });
-        
-        
-        var dispo = $('#dis').val + '';
-        var dias = dispo.split(',');
-        console.log(dispo);
-        
-        
+
+        $('#notas').val($('#notes').val());
+
     });
 
 </script>
