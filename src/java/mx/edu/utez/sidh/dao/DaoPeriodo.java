@@ -1,6 +1,7 @@
 package mx.edu.utez.sidh.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -64,8 +65,29 @@ public class DaoPeriodo {
      * @author Nancy
      * @author x
      */
-    public boolean updatePeriodo(Periodo periodo) {
-        return false;
+    public boolean updatePeriodo(Periodo periodo) throws SQLException {
+        boolean editar = false;
+
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement("UPDATE periodos"
+                    + "  set periodo=?, inicio=?, fin=?, disponibilidad=?, where id=?");
+            ps.setString(1, periodo.getPeriodo());
+            ps.setDate(2, (Date) periodo.getInicio());
+            ps.setDate(3, (Date) periodo.getFin());
+            ps.setInt(4, periodo.getDisponibilidad().getId());
+            ps.setInt(5, periodo.getId());
+
+            editar = (ps.executeUpdate() > 0);
+            ps.close();
+            con.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error ocurrido en DaoPeriodo.updatePeriodo :" + e.getMessage());
+            throw e;
+        }
+
+        return editar;
     }
 
     /**
@@ -76,8 +98,21 @@ public class DaoPeriodo {
      * @author Nancy
      * @author x
      */
-    public boolean deletePeriodo(Periodo periodo) {
-        return false;
+    public static boolean deletePeriodo(int id) {
+        boolean eliminado = false;
+
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement("UPDATE periodos SET estatus=0 WHERE id=?");
+            ps.setInt(1, id);
+            eliminado = (ps.executeUpdate() > 0);
+
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error ocurrido en DaoPeriodo.deletePeriodo :" + e.getMessage());
+        }
+        return eliminado;
     }
 
     /**
