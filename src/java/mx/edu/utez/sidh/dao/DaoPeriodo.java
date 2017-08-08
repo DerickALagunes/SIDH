@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import mx.edu.utez.sidh.bean.Periodo;
 import static mx.edu.utez.sidh.utils.Conexion.getConexion;
@@ -27,9 +28,57 @@ public class DaoPeriodo {
     public ArrayList<Periodo> getPeriodos() {
         ArrayList<Periodo> lista = new ArrayList();
 
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement("Select * from periodos ");
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                Periodo periodo = new Periodo();
+                periodo.setId(res.getInt(1));
+                periodo.setPeriodo(res.getString(2));
+                periodo.setInicio(res.getDate(3));
+                periodo.setFin(res.getDate(4));
+                // obj.setDepartamento(DepartamentoDao.consultarDepartamento(res.getInt(9)));           
+            }
+            res.close();
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.err.println("DaoPeriodo.getPeriodos \n" + e.getMessage());
+        }
         return lista;
     }
 
+    
+    public static ArrayList<Periodo> getPeriodosActivos() {
+        ArrayList<Periodo> lista = new ArrayList();
+        System.out.println("ENTRE");
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement("Select * from periodos WHERE estado=1");
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                        System.out.println("ENTRE 2");
+
+                Periodo periodo = new Periodo();
+                periodo.setId(res.getInt(1));
+                periodo.setPeriodo(res.getString(2));
+                periodo.setInicio(res.getDate(3));
+                periodo.setFin(res.getDate(4));
+                lista.add(periodo);
+                // obj.setDepartamento(DepartamentoDao.consultarDepartamento(res.getInt(9)));           
+            }
+            
+                    System.out.println("ENTRE3");
+
+            res.close();
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.err.println("DaoPeriodo.getPeriodosActivos \n" + e.getMessage());
+        }
+        return lista;
+    }
     /**
      * Método para buscar un periodo en especifico de la Base de Datos
      *
@@ -37,9 +86,26 @@ public class DaoPeriodo {
      * @author Nancy
      * @author x
      */
-    public Periodo getPeriodo(int id) {
+   public static Periodo getPeriodo(int id) {
         Periodo periodo = new Periodo();
-
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement("Select * from periodos WHERE id=?");
+            ps.setInt(1, id);
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                periodo.setId(res.getInt(1));
+                periodo.setPeriodo(res.getString(2));
+                periodo.setInicio(res.getDate(3));
+                periodo.setFin(res.getDate(4));
+                // obj.setDepartamento(DepartamentoDao.consultarDepartamento(res.getInt(9)));           
+            }
+            res.close();
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.err.println("DaoPeriodo.getPeriodo \n" + e.getMessage());
+        }
         return periodo;
 
     }
@@ -52,9 +118,79 @@ public class DaoPeriodo {
      * @author Nancy
      * @author x
      */
-    public boolean createPeriodo(Periodo periodo) {
-        return false;
+     public static boolean createPeriodo(String periodo, Timestamp inicio ,  Timestamp fin) {
+        boolean registrado = false;
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement("INSERT INTO periodos(periodo,inicio,fin) "
+                    + "VALUES(?,?,?)");
+
+            ps.setString(1, periodo);
+            ps.setTimestamp(2, inicio);
+            ps.setTimestamp(3,  fin);
+            ps.execute();
+            registrado = true;
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.err.println("DaoPeriodo.createPeriodo \n" + e.getMessage());
+        }
+        return registrado;
     }
+
+    /**
+     * Método update, recibe un objeto Periodo y lo actualiza en la Base de
+     * Datos
+     *
+     * @param periodo
+     * @return boolean
+     * @author Nancy
+     * @author x
+     */
+     public static boolean updatePeriodo( int id, String periodo, Timestamp inicio ,  Timestamp fin) {
+        boolean actualizado = false;
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement("UPDATE periodos SET periodo=?, inicio=?, fin=? WHERE id=?");
+            ps.setString(1, periodo);
+            ps.setTimestamp(2, inicio);
+            ps.setTimestamp(3,fin);
+            ps.setInt(4, id);
+            ps.execute();
+            actualizado = true;
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.err.println("DaoPeriodo.updatePeriodo \n" + e.getMessage());
+        }
+        return actualizado;
+    }
+
+    /**
+     * Método delete, recibe un objeto Periodo y lo borra de la Base de Datos
+     *
+     * @param periodo
+     * @return boolean
+     * @author Nancy
+     * @author x
+     */
+   public static boolean deletePeriodo(Periodo periodo) {
+        boolean eliminado = false;
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement("Update periodos set estado=0 WHERE id=?");
+            ps.setInt(1, periodo.getId());            
+            ps.execute();
+            eliminado = true;
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.err.println("DaoPeriodo.deletePeriodo \n" + e.getMessage());
+        }
+        return eliminado;
+    }
+
+
 
     /**
      * Método update, recibe un objeto Periodo y lo actualiza en la Base de

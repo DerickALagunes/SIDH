@@ -52,6 +52,10 @@
             <result name="success" type="redirect">consultarUsuarios</result>
         </action>   
         
+        <action name="asignarAdmin" class="mx.edu.utez.sidh.action.UsuarioAction" method="asignarAdmin">
+            <result name="success" type="redirect">consultarUsuarios</result>
+        </action>   
+        
         <action name="createUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="createUsuario">
             <result name="success">/views/superadmin/AltaDocente.jsp</result>
             <result name="error">/views/superadmin/InicioSuperAdmin.jsp</result>
@@ -98,7 +102,33 @@
             <result name="success">/views/docente/YaRegistrado.jsp</result>
         </action>
         
+        <!--Action de Periodos-->        
+        <action name="altaperiodos" class="mx.edu.utez.sidh.action.PeriodosAction" method="altaperiodos">
+            <result name="success">/views/superadmin/AltaPeriodos.jsp</result>
+        </action>
         
+        <action name="registroperiodos" class="mx.edu.utez.sidh.action.PeriodosAction" method="registroperiodos">
+            <result name="success">/views/superadmin/AltaPeriodos.jsp</result>
+        </action>
+        
+        <action name="consultarPeriodos" class="mx.edu.utez.sidh.action.PeriodosAction" method="obtenerPeriodos">
+            <result name="success">/views/superadmin/ConsultarPeriodos.jsp</result>
+        </action>  
+        
+        <action name="eliminarPeriodo" class="mx.edu.utez.sidh.action.PeriodosAction" method="eliminarPeriodo">
+            <result name="success" type="redirect">consultarPeriodos</result>
+            <result name="error">/views/superadmin/InicioSuperAdmin.jsp</result>
+        </action>   
+        
+        <action name="prepararPeriodo" class="mx.edu.utez.sidh.action.PeriodosAction" method="prepararPeriodo">
+            <result name="success">/views/superadmin/ModificarPeriodos.jsp</result>
+            <result name="error">/views/superadmin/InicioSuperAdmin.jsp</result>
+        </action>   
+
+        <action name="modificarPeriodo" class="mx.edu.utez.sidh.action.PeriodosAction" method="modificarPeriodo">
+            <result name="success">/views/superadmin/ModificarPeriodos.jsp</result>
+            <result name="error">/views/superadmin/InicioSuperAdmin.jsp</result>
+        </action>
        
     </package>
 </struts>

@@ -387,5 +387,44 @@ public class DaoUsuario {
         }
         return eliminado;
     }
+    
+    public static boolean asignarAdmin(int id) {
+        boolean cambiado = false;
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps;
+            if (tipoUsuario(id) == 1) {
+                ps = con.prepareStatement("UPDATE usuario SET tipoUsuario=0 WHERE id=?");
+            } else {
+                ps = con.prepareStatement("UPDATE usuario SET tipoUsuario=1 WHERE id=?");
+            }
+            ps.setInt(1, id);
+            cambiado = ps.executeUpdate() > 0;
+
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error ocurrido en DaoUsuario.asignarAdmin :" + e.getMessage());
+        }
+        return cambiado;
+    }
+    
+    private static int tipoUsuario(int id) {
+        int tipo = 0;
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement("select tipoUsuario from usuario WHERE id=?");
+            ps.setInt(1, id);            
+            ResultSet rs = ps.executeQuery();            
+            rs.next();
+            tipo = rs.getInt(1);
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error ocurrido en DaoUsuario.tipoUsuario :" + e.getMessage());
+        }
+        return tipo;
+    }
+    
 
 }

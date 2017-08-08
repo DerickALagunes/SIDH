@@ -262,4 +262,13 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
         return ERROR;
 
     }
+    
+        public String asignarAdmin(){
+         boolean asignado = DaoUsuario.asignarAdmin(usua.getId());
+        if (asignado) {
+            return SUCCESS;
+        } else {
+            return ERROR;
+        }
+    }
 }

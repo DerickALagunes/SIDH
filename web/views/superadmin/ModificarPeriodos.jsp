@@ -1,21 +1,65 @@
 <%-- 
-    Document   : EstablecerPeriodo
-    Created on : 31/07/2017, 10:08:07 AM
-    Author     : derick
+    Document   : AltaPeriodos
+    Created on : 02-ago-2017, 0:40:55
+    Author     : ricar
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
-<html>
+<html ng-app="SIDH">
     <head>
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/ut2.png" type="image/x-icon" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" >
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/material-design.css" >
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/stylesheet.css" >
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" >
+
+
         <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/moment-with-locales.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/interact.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/angular.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/angular-bootstrap-calendar-tpls.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/datetime-picker.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/rzslider.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/loading-bar.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/angular-animate.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/i18n/angular-locale_es-mx.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/angular-route.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/angular-touch.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/angular-pretty-checkable.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/angularJS/app.js" type="text/javascript"></script>
+
+        <script>
+            function validarn(e) { // 1
+                key = e.keyCode;
+                tecla = String.fromCharCode(key).toLowerCase();
+                if (key == 32) {
+
+                }
+                if ((key >= 97 && key <= 122) || (key >= 65 && key <= 90) || (tecla == "ñ" || tecla == "Ñ") || (key == 32)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        </script>
 
 
+        <script>
+            function valor() {
+                var inpu = document.getElementById('fecIni').value;
+                var inpu2 = document.getElementById('fecFin').value;
+
+                document.getElementById('invisible').value = inpu;
+                document.getElementById('invisible2').value = inpu2;
+                $('#registrarPeriodo').submit();
+                console.log("MIRA!")
+
+            }
+        </script>
         <style>
             .dropbtn {
                 background-color: #4CAF50;
@@ -87,7 +131,6 @@
     </head>
     <body class="common-home">
         <!-- swipe menu -->
-        <jsp:include page="/layaout/validaSesion.jsp"/>
 
         <div id="page">
             <div class="shadow"></div>
@@ -184,7 +227,7 @@
                                 <i class="fa fa-users"></i>
                             </li>
                             <li>
-                                <a href="#">Horas Libres </a>
+                                <a href="<s:url value='/usuario/altaperiodos.action'/>">Alta Periodos</a>
                             </li>
                             <li>
                                 <a href="#">Horarios General </a>
@@ -224,10 +267,10 @@
                                             <i class="fa fa-users"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horas Libres </a>
+                                            <a href="<s:url value='/usuario/altaperiodos.action'/>">Alta Periodos</a>
                                         </li>
                                         <li>
-                                            <a href="#">Horarios General </a>
+                                            <a  href="<s:url value='/usuario/consultarPeriodos.action'/>">Consulta Periodos</a>
                                         </li>
                                         <li>
                                             <a href="Formulario.html">Formularios </a>
@@ -254,76 +297,76 @@
                             <li><a href="#">Registrar</a></li>
                             <li><a href="#">Guardar</a></li>
                         </ul>
-                        <h1>Docente</h1>      
-
-
-                        <s:form action="createUsuario" method="post" >
-                            <fieldset id="account">
-                                <legend>Datos Personales</legend>
-
-                                <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="input-firstname">Nombre/s</label>
-                                    <div class="col-sm-10">
-                                        <s:textfield name="usua.nombre" id="user.nombre" label="Nombre" placeholder="Nombre..." type="text" />
-
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="input-lastname">Apellido Paterno</label>
-                                    <div class="col-sm-10">
-                                        <s:textfield name="usua.apellidoPaterno" id="user.apellidoPaterno" label="Apellido Paterno" placeholder="Apellido Paterno..." type="text" />
-                                    </div>
-                                </div>
-
-                                <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="input-lastname">Apellido Materno</label>
-                                    <div class="col-sm-10">
-                                        <s:textfield name="usua.apellidoMaterno" id="user.apellidoMaterno" label="Apellido Materno" placeholder="Apellido Materno..." type="text" />
-                                    </div>
-                                </div>  
-
-                                <!--     </fieldset>
-                                     <fieldset>
-                                         <legend>Usuario</legend>-->
-
-                                <s:div cssClass="form-group required">
-                                    <s:label cssClass="col-sm-2 control-label" for="ingresa-email">Correo</s:label>
-                                        <div class="col-sm-10">
-                                        <s:textfield name="usua.email" id="user.email" label="email" placeholder="Correo..." type="text" cssClass="form-control"/>
-                                    </div>
-                                </s:div>
+                        <h1>Periodo</h1>      
 
 
 
-                                <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="ingresa-contraseña">Contraseña</label>
-                                    <div class="col-sm-10">
-                                        <s:textfield name="usua.contrasena" id="user.contrasena" label="Contraseña" placeholder="Contraseña..." type="password"  />
-                                    </div>
-                                </div>
-
-                                <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="ingresa-contraseña">Confirmar Constraseña</label>
-                                    <div class="col-sm-10">
-                                        <s:textfield  id="user.contrasena" label="Contraseña" placeholder="Contraseña..." type="password" />
-                                    </div>
-                                </div>
 
 
-                            </fieldset>
-
-                            <s:submit value="Registrar" />
-
-                            <div class="buttons">
-                                <div class="pull-right"><span class="mg-add">Estas a punto de registrarte estas seguro?<a href="#" class="agree"><b>Politicas de Provacidad</b></a></span>
-                                    <input type="checkbox" name="agree" value="1">
-                                    &nbsp;
-                                    <input type="submit" value="Registrar" class="btn btn-primary">
+                        <div class="form-group ">
+                            <label class="col-sm-2 control-label" for="input-lastname">Periodo Actual:</label>
+                            <div class="col-sm-10">
+                                <div class="input-group date">
+                                    <input required type="text" class="form-control" value="<s:property value="completa"/>"  readonly  />
+                                    <span class="input-group-btn ">
+                                        <button type="button" class="btn " ng-click="activar = true" style="color: #19caaf"><i class="fa fa-pencil-square-o" style="color: white"></i></button>
+                                    </span>
                                 </div>
                             </div>
-                        </s:form>
+                        </div>  
+
+                        
+
+
+                        <form action="modificarPeriodo" method="post"  id="registrarPeriodo" ng-show="activar == true">
+
+                            <input  name="id" value="<s:property value="peri.id"/>" />
+
+
+                            <legend>Actualizar el Periodo</legend>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label">Periodo</label>
+                                <div class="col-sm-10">
+                                    <select name="periodo" class="form-control" required="true" >
+                                        <option value="">---Selecciona una opción---</option>
+                                        <option value="1">Enero- Abril</option>
+                                        <option value="2">Mayo- Agosto</option>
+                                        <option value="3">Septiembre- Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <label class="col-sm-2 control-label" for="input-lastname">Fecha Inicio</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group date">
+                                        <input type="hidden" id="invisible" name="inicio" />
+                                        <input required type="text" id="fecIni" onkeypress="valor();" ng-model="fecha"   class="form-control" placeholder="Seleccione Fecha del periodo..." ng-focus="abrirInicio = true" datetime-picker="yyyy-MM-dd" enable-time="false" is-open="abrirInicio" />
+                                        <span class="input-group-btn ">
+                                            <button type="button" class="btn " ng-click="abrirInicio = true" style="color: #19caaf"><i class="fa fa-calendar" style="color: white"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>  
+
+
+                            <div class="form-group ">
+                                <label class="col-sm-2 control-label" for="input-lastname">Fecha Fin</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group date">
+                                        <input type="hidden" id="invisible2" name="fin" />
+                                        <input required type="text" id="fecFin" onkeypress="valor();" ng-model="fecha2" class="form-control"  placeholder="Seleccione Fecha Fin del periodo..." ng-focus="abrirFin = true" datetime-picker="yyyy-MM-dd" enable-time="false" is-open="abrirFin" />
+                                        <span class="input-group-btn ">
+                                            <button type="button" class="btn " ng-click="abrirFin = true" style="color: #19caaf"><i class="fa fa-calendar" style="color: white"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div> 
+
+
+                            <button onclick="valor()" class="btn btn-sm btn-success">Guardar cambios <i class="fa fa-floppy-o"></i> </button>
+                            <button class="btn btn-sm btn-success" style="background-color: darkred" >Cancelar <i class="fa fa-times"></i> </button>
+                        </form>
                     </div>
 
 
@@ -333,5 +376,12 @@
         </div>
     </body>
 </html>
+
+
+
+
+
+
+
 
 
