@@ -108,20 +108,20 @@ public class DisponibilidadAction extends ActionSupport implements ServletReques
 
             char[] horas = dia.toCharArray();
 
-            disp.setH7((horas[0] != '0'));
-            disp.setH8((horas[1] != '0'));
-            disp.setH9((horas[2] != '0'));
-            disp.setH10((horas[3] != '0'));
-            disp.setH11((horas[4] != '0'));
-            disp.setH12((horas[5] != '0'));
-            disp.setH13((horas[6] != '0'));
-            disp.setH14((horas[7] != '0'));
-            disp.setH15((horas[8] != '0'));
-            disp.setH16((horas[9] != '0'));
-            disp.setH17((horas[10] != '0'));
-            disp.setH18((horas[11] != '0'));
-            disp.setH19((horas[12] != '0'));
-            disp.setH20((horas[13] != '0'));
+            disp.setH7((horas[0]));
+            disp.setH8((horas[1]));
+            disp.setH9((horas[2]));
+            disp.setH10((horas[3]));
+            disp.setH11((horas[4]));
+            disp.setH12((horas[5]));
+            disp.setH13((horas[6]));
+            disp.setH14((horas[7]));
+            disp.setH15((horas[8]));
+            disp.setH16((horas[9]));
+            disp.setH17((horas[10]));
+            disp.setH18((horas[11]));
+            disp.setH19((horas[12]));
+            disp.setH20((horas[13]));
 
             switch (contador) {
                 case 1:

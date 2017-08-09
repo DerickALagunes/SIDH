@@ -38,20 +38,20 @@ public class DaoDisponibilidad {
                     + "h13, h14, h15, h16, h17, h18, h19, h20, "
                     + "notas, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, disponibilidad.getDia());
-            ps.setBoolean(2, disponibilidad.isH7());
-            ps.setBoolean(3, disponibilidad.isH8());
-            ps.setBoolean(4, disponibilidad.isH9());
-            ps.setBoolean(5, disponibilidad.isH10());
-            ps.setBoolean(6, disponibilidad.isH11());
-            ps.setBoolean(7, disponibilidad.isH12());
-            ps.setBoolean(8, disponibilidad.isH13());
-            ps.setBoolean(9, disponibilidad.isH14());
-            ps.setBoolean(10, disponibilidad.isH15());
-            ps.setBoolean(11, disponibilidad.isH16());
-            ps.setBoolean(12, disponibilidad.isH17());
-            ps.setBoolean(13, disponibilidad.isH18());
-            ps.setBoolean(14, disponibilidad.isH19());
-            ps.setBoolean(15, disponibilidad.isH20());
+            ps.setString(2, String.valueOf(disponibilidad.getH7()));
+            ps.setString(3, String.valueOf(disponibilidad.getH8()));
+            ps.setString(4, String.valueOf(disponibilidad.getH9()));
+            ps.setString(5, String.valueOf(disponibilidad.getH10()));
+            ps.setString(6, String.valueOf(disponibilidad.getH11()));
+            ps.setString(7, String.valueOf(disponibilidad.getH12()));
+            ps.setString(8, String.valueOf(disponibilidad.getH13()));
+            ps.setString(9, String.valueOf(disponibilidad.getH14()));
+            ps.setString(10, String.valueOf(disponibilidad.getH15()));
+            ps.setString(11, String.valueOf(disponibilidad.getH16()));
+            ps.setString(12, String.valueOf(disponibilidad.getH17()));
+            ps.setString(13, String.valueOf(disponibilidad.getH18()));
+            ps.setString(14, String.valueOf(disponibilidad.getH19()));
+            ps.setString(15, String.valueOf(disponibilidad.getH20()));
             ps.setString(16, disponibilidad.getNotas());
             ps.setBoolean(17, true);
 

@@ -31,9 +31,10 @@
             <interceptor-ref name="defaultStack" />
             <result name="login">/views/superadmin/InicioSuperAdmin.jsp</result>
             <result name="success">/views/docente/InicioProfesor.jsp</result>
-            <result name="error">/views/Error.jsp</result>
+            <result name="error">/views/Login.jsp?error=true</result>
         </action> 
-        <action name="cerrarSesion" class="mx.edu.utez.sidh.action.MainAction" method="closeLogin">
+        <action name="logout" class="mx.edu.utez.sidh.action.MainAction" method="closeLogin">
+            <interceptor-ref name="defaultStack" />
             <result name="success" type="redirect">login</result>
         </action>         
         
@@ -49,11 +50,13 @@
         </action>   
         
         <action name="eliminarUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="eliminarUsuario">
-            <result name="success" type="redirect">consultarUsuarios</result>
+            <result name="success" type="redirect">consultarUsuarios?borrarDocente=true</result>
         </action>   
         
         <action name="asignarAdmin" class="mx.edu.utez.sidh.action.UsuarioAction" method="asignarAdmin">
-            <result name="success" type="redirect">consultarUsuarios</result>
+            <result name="success" type="redirect">consultarUsuarios?change=true</result>
+            <result name="error" type="redirect">consultarUsuarios?change=false</result>
+            <result name="super" type="redirect">consultarUsuarios?self=true</result>
         </action>   
         
         <action name="createUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="createUsuario">
@@ -67,16 +70,24 @@
             <result name="success">/views/superadmin/ImportXML.jsp</result>
         </action> 
         
-        <action name="notificar" class="mx.edu.utez.sidh.action.NotificacionesAction" method="check">
+        <action name="notificar" class="mx.edu.utez.sidh.action.NotificacionesAction" method="inicio">
             <result name="success">/views/superadmin/Recordatorio.jsp</result>
         </action> 
+        
+        <action name="enviarnotificar" class="mx.edu.utez.sidh.action.NotificacionesAction" method="check">
+            <result name="success">/views/superadmin/Recordatorio.jsp?error=false</result>
+            <result name="error">/views/superadmin/Recordatorio.jsp?error=true</result>
+        </action>
 
         <action name="borrarDisp" class="mx.edu.utez.sidh.action.UsuarioAction" method="borraDisponibilidad">
-            <result name="success" type="redirect">consultarUsuarios</result>
+            <result name="success" type="redirect">consultarUsuarios?borrar=true</result>
         </action> 
         
-        <action name="RegistrarUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="altaUsuario">
-            <result name="success" type="redirect">login</result>
+        <action name="RegistrarUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="nuevoUsuario">
+            <interceptor-ref name="defaultStack" />
+            <result name="success">/views/Login.jsp?error=false</result>
+            <result name="error">/views/Registro.jsp?error=true</result>
+            <result name="login">/views/Registro.jsp?error=true</result>
         </action> 
         
         <action name="printDispo" class="mx.edu.utez.sidh.action.UsuarioAction" method="printDispo">
@@ -89,17 +100,17 @@
             <result name="success">/views/superadmin/ModificarDocente.jsp</result>
         </action> 
         <action name="actualizarUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="actualizarUsuario">
-            <result name="success" type="redirect">consultarUsuarios</result>
+            <result name="success" type="redirect">consultarUsuarios?editarDocente=true</result>
         </action> 
         
                         <!--Action de Docente-->        
         <action name="capturaDisponibilidad" class="mx.edu.utez.sidh.action.DisponibilidadAction" method="altaDisponibilidad">
             <result name="success">/views/docente/AltaDisponibilidad.jsp</result>
-            <result name="registrado">/views/docente/YaRegistrado.jsp</result>
+            <result name="registrado">/views/docente/YaRegistrado.jsp?error=true</result>
         </action>
         
         <action name="registrarDisponibilidad" class="mx.edu.utez.sidh.action.DisponibilidadAction" method="registroDisponibilidad">
-            <result name="success">/views/docente/YaRegistrado.jsp</result>
+            <result name="success">/views/docente/YaRegistrado.jsp?error=false</result>
         </action>
         
         <!--Action de Periodos-->        

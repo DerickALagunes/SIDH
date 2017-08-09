@@ -3,11 +3,8 @@
     Created on : 26-jul-2017, 13:06:13
     Author     : ricar
 --%>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
     <head>

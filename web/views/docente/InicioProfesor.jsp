@@ -59,30 +59,6 @@
 
             .show {display:block;}
         </style>
-
-        <script>
-            /* When the user clicks on the button, 
-             toggle between hiding and showing the dropdown content */
-            function myFunction() {
-                document.getElementById("myDropdown").classList.toggle("show");
-            }
-
-            // Close the dropdown if the user clicks outside of it
-            window.onclick = function (event) {
-                if (!event.target.matches('.dropbtn')) {
-
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            }
-        </script>
-
     </head>
     <body class="common-home">
         <!-- swipe menu -->
@@ -123,9 +99,9 @@
                                     </ul>
                                     <div class="box-cart">                                  
                                         <div id="cart" class="cart">
-                                            <button type="button" data-loading-text="Loading...">
+                                            <button type="button">
                                                 <span class="fa fa-user"></span>
-                                                <a class="cart-total3"  href="<s:url value='/logout.action'/>">Salir</a>
+                                                <a class="cart-total3"  href="<s:url value='/logout.action'/>">-Salir</a>
                                             </button>
                                         </div>
                                     </div>
@@ -137,45 +113,6 @@
                 </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div id="menu-gadget" class="menu-gadget">
-                        <div id="menu-icon">Menu</div>
-                        <ul class="menu">
-                            <li>
-                                <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                <i class="fa fa-user-secret "></i>
-                            </li>
-                            <li>
-                                <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
-                                <i class="fa fa-users"></i>
-                            </li>
-                            <li>
-                                <a href="#">Horas Libres </a>
-                            </li>
-                            <li>
-                                <a href="#">Horarios General </a>
-                            </li>
-                            <li>
-                                <a href="Formulario.html">Formularios </a>
-                                <i class="fa fa-list"></i>
-                            </li>
-                            <li>
-                                <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                <i class="fa fa-table"></i>
-                            </li>
-                            <li>
-                                <a href="/xml.action">Exportar info </a>
-                                <i class="fa fa-table"></i>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="header_modules"></div>
 
         <div id="container">
@@ -184,39 +121,17 @@
 
                     <div id="column-left" class="col-sm-3 ">
                         <div class="box category">
-                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menu</h3></div>
+                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menú</h3></div>
                             <div class="box-content">
                                 <div class="box-category">
                                     <ul class="menu">
                                         <li>
-                                            <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                            <i class="fa fa-user-secret "></i>
+                                            <a href="<s:url value='/docente/capturaDisponibilidad.action'/>">Disponibilidad</a>
+                                            <i class="fa fa-calendar"></i>
                                         </li>
                                         <li>
-                                            <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
-                                            <i class="fa fa-users"></i>
-                                        </li>
-                                        <li>
-                                            <a href="#">Horas Libres </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Horarios General </a>
-                                        </li>
-                                        <li>
-                                            <a href="Formulario.html">Formularios </a>
-                                            <i class="fa fa-list"></i>
-                                        </li>
-                                        <li>
-                                            <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                            <i class="fa fa-table"></i>
-                                        </li>
-                                        <li>
-                                            <a href="<s:url value='/usuario/xml.action'/>">Exportar info </a>
-                                            <i class="fa fa-table"></i>
-                                        </li>
-                                        <li>
-                                            <a href="<s:url value='/usuario/notificar.action'/>">Recordatorio </a>
-                                            <i class="fa fa-table"></i>
+                                            <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Historial</a>
+                                            <i class="fa fa-history"></i>
                                         </li>
 
                                     </ul>
@@ -231,20 +146,14 @@
 
                     <div id="content" class="col-sm-9">
                         <div class="fluid_container">
-                            <div class="camera_container">
-                                <div id="camera_wrap_0" class="camera_wrap" style="display: block; height: 345px;">
-                                    <div class="camera_fakehover">
-                                        <div class="camera_target">
-                                            <div class="cameraCont">
-                                                <div class="cameraSlide cameraSlide_0 cameracurrent" style="visibility: visible; display: block; z-index: 999;">
-                                                    <img src="images/jeff.jpg" class="imgLoaded" data-alignment="" data-portrait="" width="870" height="345" style="visibility: visible; height: 345px; margin-left: 0px; margin-top: 0px; position: absolute; width: 870px;">
-                                                    <div class="camerarelative" style="width: 870px; height: 345px;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <h1>Bienvenido Docente</h1>
+                            <hr>
+                            <br />
+                            <h3>Utilice el menú para:</h3>
+                            <ul>
+                                <li><h4>Seleccionar su disponibilidad para el siguiente periodo</h4></li>
+                                <li><h4>Ver el historial de sus disponibilidades</h4></li>
+                            </ul>
                         </div>
                     </div>
 

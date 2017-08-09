@@ -66,14 +66,12 @@ public class MainAction extends ActionSupport implements SessionAware {
         Usuario obj = DaoUsuario.getUsuario(usr);
         if (obj.isEstado()) {
             if (obj.getTipoUsuario() == 1) {
-                System.out.println("es admin");
                 sessionMap.put("login", "true");
                 sessionMap.put("userType", "Super");
                 sessionMap.put("userName", obj.getNombre());
                 sessionMap.put("idUser", obj.getId());
                 return LOGIN;
             } else {
-                System.out.println("es docnete");
                 sessionMap.put("login", "true");
                 sessionMap.put("userType", "Doc");
                 sessionMap.put("userName", obj.getNombre());
@@ -81,7 +79,6 @@ public class MainAction extends ActionSupport implements SessionAware {
                 return SUCCESS;
             }
         } else {
-            System.out.println("khe");
             return ERROR;
         }
     }

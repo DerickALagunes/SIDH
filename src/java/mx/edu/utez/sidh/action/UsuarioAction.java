@@ -1,5 +1,6 @@
 package mx.edu.utez.sidh.action;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,8 +35,6 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     public void setNotas(String notas) {
         this.notas = notas;
     }
-            
-            
 
     public String getDis() {
         return dis;
@@ -44,8 +43,6 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     public void setDis(String dis) {
         this.dis = dis;
     }
-    
-    
 
     public Usuario getUsua() {
         return usua;
@@ -74,7 +71,6 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     }
 
     public String eliminarUsuario() {
-        System.out.println(usua.getId());
         boolean eliminado = DaoUsuario.deleteUsuario(usua.getId());
         if (eliminado) {
             return SUCCESS;
@@ -175,21 +171,25 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     /**
      * @author Derick
      * @return
+     * @throws java.sql.SQLException
      */
-    public String altaUsuario() throws SQLException {
+    public String nuevoUsuario() throws SQLException {
         Usuario nuevo = new Usuario();
         nuevo.setNombre(nombre);
         nuevo.setApellidoPaterno(paterno);
-        nuevo.setApellidoMaterno(materno);
+        nuevo.setApellidoMaterno("");
         nuevo.setEmail(correo);
         nuevo.setContrasena(pass);
         nuevo.setEstado(true);
-        nuevo.setTipoUsuario(1);
+        nuevo.setTipoUsuario(0);
 
         DaoUsuario dao = new DaoUsuario();
-        dao.registrarUsuario(nuevo);
+        if (dao.registrarUsuario(nuevo)) {
+            return SUCCESS;
+        } else {
+            return ERROR;
+        }
 
-        return SUCCESS;
     }
 
     /**
@@ -216,31 +216,32 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
         DaoUsuario dao = new DaoUsuario();
         usuario = dao.getUsuarioConDisponibilidadActualById(getUsua());
         setUsua(usuario);
-        
-        String dias="";
 
-        
+        String dias = "";
+
         for (Disponibilidad dispo : usua.getDisponibilidad()) {
-            dias += dispo.isH7() ? "1":"0" ;
-            dias += dispo.isH8() ? "1":"0" ;
-            dias += dispo.isH9() ? "1":"0" ;
-            dias += dispo.isH10() ? "1":"0" ;
-            dias += dispo.isH11() ? "1":"0" ;
-            dias += dispo.isH12() ? "1":"0" ;
-            dias += dispo.isH13() ? "1":"0" ;
-            dias += dispo.isH14() ? "1":"0" ;
-            dias += dispo.isH15() ? "1":"0" ;
-            dias += dispo.isH16() ? "1":"0" ;
-            dias += dispo.isH17() ? "1":"0" ;
-            dias += dispo.isH18() ? "1":"0" ;
-            dias += dispo.isH19() ? "1":"0" ;
-            dias += dispo.isH20() ? "1":"0" ;
+            
+            
+            dias += dispo.getH7();            
+            dias += dispo.getH8();
+            dias += dispo.getH9();
+            dias += dispo.getH10();
+            dias += dispo.getH11();
+            dias += dispo.getH12();
+            dias += dispo.getH13();
+            dias += dispo.getH14();
+            dias += dispo.getH15();
+            dias += dispo.getH16();
+            dias += dispo.getH17();
+            dias += dispo.getH18();
+            dias += dispo.getH19();
+            dias += dispo.getH20();
             dias += ",";
         }
-        
-        dis=dias;
-        notas=usuario.getDisponibilidad()[0].getNotas();
-        
+
+        dis = dias;
+        notas = usuario.getDisponibilidad()[0].getNotas();
+
         return SUCCESS;
     }
 
@@ -262,9 +263,17 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
         return ERROR;
 
     }
-    
-        public String asignarAdmin(){
-         boolean asignado = DaoUsuario.asignarAdmin(usua.getId());
+
+    public String asignarAdmin() {
+        
+        Map session = ActionContext.getContext().getSession();
+        int id = (Integer) session.get("idUser");
+        
+        if (id == usua.getId()) {
+            return "super";
+        }
+        
+        boolean asignado = DaoUsuario.asignarAdmin(usua.getId());
         if (asignado) {
             return SUCCESS;
         } else {

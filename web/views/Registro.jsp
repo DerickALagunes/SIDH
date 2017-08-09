@@ -21,6 +21,8 @@
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href=".${pageContext.request.contextPath}/css/flatly.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/app.css" rel="stylesheet" type="text/css" />
+        <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
 
         <style>
             .center-c {
@@ -65,7 +67,7 @@
     <body>
 
         <div class="center-c">
-            <div class="col-lg-3 col-xs-12 center-b text-center">
+            <div class="col-lg-6 col-xs-12 center-b text-center">
                 <div class="panel panel-default bg-50">
                     <div class="panel-body">
                         <img class="img-responsive center-block" width="320" src="${pageContext.request.contextPath}/images/utez.png" alt="Logo" />
@@ -76,28 +78,41 @@
 
                             <form action="RegistrarUsuario" method="post" >
                                 <div class="form-group form-group-lg">
-                                    <div class="col-lg-10 col-lg-offset-1">
+                                    <div class="col-lg-6">
                                         <label class="pull-left">Nombre</label>
                                         <input type="text"     class="form-control bg-50-blanco" style="color: white;" placeholder="Nombre" required name="nombre" id="nombre"/>
-                                        <label class="pull-left">Apellido Paterno</label>
-                                        <input type="text"     class="form-control bg-50-blanco" style="color: white;" placeholder="Apellido1" required name="paterno" id="paterno"/>
-                                        <label class="pull-left">Apellido Materno</label>
-                                        <input type="text"     class="form-control bg-50-blanco" style="color: white;" placeholder="Apellido2" name="materno" id="materno"/>
                                         <label class="pull-left">Email</label>
-                                        <input type="email"    class="form-control bg-50-blanco" style="color: white;" placeholder="Correo"     required name="correo" id="correo"/>
+                                        <input type="email"    class="form-control bg-50-blanco" style="color: white;" placeholder="Correo electrónico" required name="correo" id="correo"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="pull-left">Apellidos</label>
+                                        <input type="text"     class="form-control bg-50-blanco" style="color: white;" placeholder="Apellidos" required name="paterno" id="paterno"/>                                        
                                         <label class="pull-left">Contraseña</label>
                                         <input type="password" class="form-control bg-50-blanco" style="color: white;" placeholder="Contraseña" required name="pass" id="password" />
-                                    </div>
+                                    </div>       
                                 </div>
-
-                                <input type="submit" class="btn-primary btn-lg" value="Registrar" />
+                                
+                                <input style="margin-top: 25px" type="submit" class="btn-primary btn-lg" value="Registrar" />
                                 
                             </form>
-
                     </div>
                 </div>
             </div>
         </div>
 
+    <script>
+            if ('<%= request.getParameter("error")%>' == 'true') {
+                swal({
+                    title: "El Correo electrónico ya esta registrado",
+                    text: "Ponte en contacto con el administrador para recuperar tu cuenta",
+                    type: "error",
+                    confirmButtonColor: "#c92626",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+        </script>
+                        
     </body>
 </html>

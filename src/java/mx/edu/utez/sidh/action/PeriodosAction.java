@@ -66,7 +66,6 @@ public class PeriodosAction extends ActionSupport implements ServletRequestAware
 
     public String obtenerPeriodos() {
         listaPeriodos = DaoPeriodo.getPeriodosActivos();
-        System.out.println(listaPeriodos.size());
         return SUCCESS;
     }
 

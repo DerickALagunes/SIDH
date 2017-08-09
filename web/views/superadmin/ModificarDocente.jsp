@@ -53,81 +53,28 @@
 
             .show {display:block;}
         </style>
-
-        <script>
-            /* When the user clicks on the button, 
-             toggle between hiding and showing the dropdown content */
-            function myFunction() {
-                document.getElementById("myDropdown").classList.toggle("show");
-            }
-
-            // Close the dropdown if the user clicks outside of it
-            window.onclick = function (event) {
-                if (!event.target.matches('.dropbtn')) {
-
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            }
-        </script>
-
-
     </head>
     <body class="common-home">
-        <!-- swipe menu -->
         <jsp:include page="/layaout/validaSesion.jsp"/>
 
         <div id="page">
             <div class="shadow"></div>
-            <div class="toprow-1">
-                <a class="swipe-control" href="#"><i class="fa fa-align-justify"></i></a>
-            </div>
 
             <header class="header">
                 <div class="container">
-                    <div class="box-right">
-                        <ul class="social-list">
-                            <li>
-                                <a href="//www.facebook.com/"><span class="fa fa-facebook"></span></a>
-                            </li>
-                            <li>
-                                <a href="//www.twitter.com/"><span class="fa fa-twitter"></span></a>
-                            </li>
-                            <li>
-                                <a href="//plus.google.com/+"><span class="fa fa-google-plus"></span></a>
-                            </li>
-                            <li>
-                                <a href="//www.youtube.com/"><span class="fa fa-youtube"></span></a>
-                            </li>
-                        </ul>
-                    </div>
+                    <br/>
                 </div>
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-4 col-xs-6">
                             <div id="logo" class="logo">
-                                <a href="#"><img src="${pageContext.request.contextPath}/images/utez.png" title="Electronics online store" alt="Electronics online store" class="img-responsive"></a>
+                                <a href="#"><img src="${pageContext.request.contextPath}/images/utez.png" class="img-responsive"></a>
                             </div>
                         </div>
                         <div class="col-sm-5 col-xs-6">
-                            <div id="search" class="search">
-                                <input type="text" name="search" value="" placeholder="Buscar">
-                                <button type="button" class="button-search">Buscar</button>
-                                <div class="clear"></div>
-                            </div>
+                            <h1>SIDH</h1>
+                            <h3>Sistema de Disponibilidad de Horarios</h3>
                         </div>
-
-                        <!--    <div class="col-sm-3" style="font-size: 19px;line-height: 24px; margin-top:12px">
-                        <a href="Login.html"><i class="fa fa-user"></i>
-                        <span >Iniciar Sesión</span>
-                      </a>
-                    </div> POSIBLE LOGIN-->
                     </div>
                 </div>
 
@@ -140,19 +87,15 @@
                                 <div id="top-links" class="nav">
                                     <ul class="list-inline">
                                         <li class="first">
-                                            <a href="Index.html"><i class="fa fa-home"></i><span class="hidden-sm">Inicio</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="#" id="wishlist-total" title="Wish List (0)"><i class="fa fa-calendar"></i> <span class="hidden-sm">28/06/2017</span></a>
+                                            <a href="#"><span>${sessionScope.userName}</span></a>
                                         </li>
                                     </ul>
-                                    <div class="box-cart">
+                                    <div class="box-cart">                                  
                                         <div id="cart" class="cart">
-                                            <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
-                                                <span class="fa fa-user"  href="Login.html"></span>
-                                                <a class="cart-total3 hidden-xs"  href="<s:url value='/login.action'/>">${sessionScope.userName}</a>
+                                            <button type="button">
+                                                <span class="fa fa-user"></span>
+                                                <a class="cart-total3"  href="<s:url value='/logout.action'/>">Salir</a>
                                             </button>
-
                                         </div>
                                     </div>
                                 </div>
@@ -163,73 +106,33 @@
                 </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div id="menu-gadget" class="menu-gadget">
-                        <div id="menu-icon">Menu</div>
-                        <ul class="menu">
-                            <li>
-                                <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                <i class="fa fa-user-secret "></i>
-                            </li>
-                            <li>
-                                <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
-                                <i class="fa fa-users"></i>
-                            </li>
-                            <li>
-                                <a href="#">Horas Libres </a>
-                            </li>
-                            <li>
-                                <a href="#">Horarios General </a>
-                            </li>
-                            <li>
-                                <a href="Formulario.html">Formularios </a>
-                                <i class="fa fa-list"></i>
-                            </li>
-                            <li>
-                                <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                <i class="fa fa-table"></i>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="header_modules"></div>
 
         <div id="container">
             <div class="container">
                 <div class="row">
+
                     <div id="column-left" class="col-sm-3 ">
                         <div class="box category">
-                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menu</h3></div>
+                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menú</h3></div>
                             <div class="box-content">
                                 <div class="box-category">
                                     <ul class="menu">
                                         <li>
-                                            <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                            <i class="fa fa-user-secret "></i>
+                                            <a href="<s:url value='/consultarPeriodos.action'/>">Periodos</a>
+                                            <i class="fa fa-calendar"></i>
                                         </li>
                                         <li>
-                                            <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
+                                            <a  href="<s:url value='/consultarUsuarios.action'/>">Docentes</a>
                                             <i class="fa fa-users"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horas Libres </a>
+                                            <a href="<s:url value='/xml.action'/>">Exportar información</a>
+                                            <i class="fa fa-download"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horarios General </a>
-                                        </li>
-                                        <li>
-                                            <a href="Formulario.html">Formularios </a>
-                                            <i class="fa fa-list"></i>
-                                        </li>
-                                        <li>
-                                            <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                            <i class="fa fa-table"></i>
+                                            <a href="<s:url value='/notificar.action'/>">Recordatorio</a>
+                                            <i class="fa fa-mail-forward"></i>
                                         </li>
 
                                     </ul>
@@ -243,81 +146,61 @@
 
 
                     <div id="content" class="col-sm-9">
-                        <ul class="breadcrumb">
-                            <li><a href="#"><i class="fa fa-home"></i></a></li>
-                            <li><a href="#">Registrar</a></li>
-                            <li><a href="#">Guardar</a></li>
-                        </ul>
-                        <h1>Docente</h1>      
+                        <h1>Gestión de Docente</h1>      
 
+                        <form action="actualizarUsuario" method="post">
 
-                        <s:form action="actualizarUsuario" method="post" >
-                            <fieldset id="account">
-                                <legend>Datos Personales</legend>
+                            <legend>Datos Personales</legend>
 
-                                <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="input-firstname">Nombre/s</label>
-                                    <div class="col-sm-10">
-                                        <input type="hidden"  name="id" required name="id" id="id" value="<s:property value="usua.id"/>" />
-                                        <input type="text"   placeholder="Nombre" required name="nombre" id="nombre" value="<s:property value="usua.nombre"/>"/>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="input-lastname">Apellido Paterno</label>
-                                    <div class="col-sm-10">
-                                        <input type="text"     placeholder="paterno" required name="paterno" id="paterno" value="<s:property value="usua.apellidoPaterno"/>"/>
-                                    </div>
-                                </div>
-
-                                <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="input-lastname">Apellido Materno</label>
-                                    <div class="col-sm-10">
-                                        <input type="text"    placeholder="materno" required name="materno" id="materno" value="<s:property value="usua.apellidoMaterno"/>"/>
-                                    </div>
-                                </div>  
-
-                                <!--     </fieldset>
-                                     <fieldset>
-                                         <legend>Usuario</legend>-->
-
-                                <s:div cssClass="form-group required">
-                                    <s:label cssClass="col-sm-2 control-label" for="ingresa-email">Correo</s:label>
-                                        <div class="col-sm-10">
-                                        <input type="text"    placeholder="correo" required name="correo" id="correo" value="<s:property value="usua.email"/>"/>
-                                    </div>
-                                </s:div>
-
-
-
-                                <div class="form-group required">
-                                    <label class="col-sm-2 control-label" for="ingresa-contraseña">Contraseña</label>
-                                    <div class="col-sm-10">
-                                        <input type="text"  placeholder="pass" required name="pass" id="pass" value="<s:property value="usua.contrasena"/>"/>
-                                    </div>
-                                </div>
-
-
-
-
-                            </fieldset>
-
-                            <s:submit value="Editar" />
-
-                            <div class="buttons">
-                                <div class="pull-right"><span class="mg-add">Estas a punto de registrarte estas seguro?<a href="#" class="agree"><b>Politicas de Provacidad</b></a></span>
-                                    <input type="checkbox" name="agree" value="1">
-                                    &nbsp;
-                                    <input type="submit" value="Editar" class="btn btn-primary">
+                            <div class="form-group required col-sm-12">
+                                <label class="col-sm-2 control-label" for="input-firstname">Nombre/s</label>
+                                <div class="col-sm-10">
+                                    <input type="hidden"  name="id" required name="id" id="id" value="<s:property value="usua.id"/>" />
+                                    <input type="text"   placeholder="Nombres" required name="nombre" id="nombre" value="<s:property value="usua.nombre"/>"/>
                                 </div>
                             </div>
-                        </s:form>
+
+
+                            <div class="form-group required col-sm-12">
+                                <label class="col-sm-2 control-label" for="input-lastname">Apellido Paterno</label>
+                                <div class="col-sm-10">
+                                    <input type="text"     placeholder="Apellido paterno" required name="paterno" id="paterno" value="<s:property value="usua.apellidoPaterno"/>"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group required col-sm-12">
+                                <label class="col-sm-2 control-label" for="input-lastname">Apellido Materno</label>
+                                <div class="col-sm-10">
+                                    <input type="text"    placeholder="Apellido materno" required name="materno" id="materno" value="<s:property value="usua.apellidoMaterno"/>"/>
+                                </div>
+                            </div>  
+
+                            <div class="form-group required col-sm-12">
+                                <label class="col-sm-2 control-label" for="ingresa-email">Correo</label>
+                                <div class="col-sm-10">
+                                    <input type="email"    placeholder="Correo electrónico" required name="correo" id="correo" value="<s:property value="usua.email"/>"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group required col-sm-12">
+                                <label class="col-sm-2 control-label" for="ingresa-contraseña">Contraseña</label>
+                                <div class="col-sm-10">
+                                    <input type="password"  placeholder="contraseña" required name="pass" id="pass" value="<s:property value="usua.contrasena"/>"/>
+                                </div>
+                            </div>
+
+
+                            <center>
+                                <input type="submit" value="Editar" class="btn btn-primary">
+                            </center>
+
+
+                        </form>
                     </div>
-
-
-
                 </div>
+
+
+
             </div>
         </div>
     </body>

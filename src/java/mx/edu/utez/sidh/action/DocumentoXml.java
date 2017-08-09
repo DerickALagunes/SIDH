@@ -255,20 +255,20 @@ public class DocumentoXml {
             for (Disponibilidad disp : docente.getDisponibilidad()) {
                 
                 dispo+=".";
-                dispo+= disp.isH7() ? 1 : 0;
-                dispo+= disp.isH8() ? 1 : 0;
-                dispo+= disp.isH9() ? 1 : 0;
-                dispo+= disp.isH10() ? 1 : 0;
-                dispo+= disp.isH11() ? 1 : 0;
-                dispo+= disp.isH12() ? 1 : 0;
-                dispo+= disp.isH13() ? 1 : 0;
-                dispo+= disp.isH14() ? 1 : 0;
-                dispo+= disp.isH15() ? 1 : 0;
-                dispo+= disp.isH16() ? 1 : 0;
-                dispo+= disp.isH17() ? 1 : 0;
-                dispo+= disp.isH18() ? 1 : 0;
-                dispo+= disp.isH19() ? 1 : 0;
-                dispo+= disp.isH20() ? 1 : 0;
+                dispo+= disp.getH7();
+                dispo+= disp.getH8();
+                dispo+= disp.getH9();
+                dispo+= disp.getH10();
+                dispo+= disp.getH11();
+                dispo+= disp.getH12();
+                dispo+= disp.getH13();
+                dispo+= disp.getH14();
+                dispo+= disp.getH15();
+                dispo+= disp.getH16();
+                dispo+= disp.getH17();
+                dispo+= disp.getH18();
+                dispo+= disp.getH19();
+                dispo+= disp.getH20();
                 dispo+=",";
                 
             }  

@@ -26,10 +26,18 @@
                 .print, .print * {
                     visibility: visible;
                 }
+                .bot{
+                    visibility: hidden;
+                }
                 .print {
                     position: absolute;
                     left: 0;
                     top: 0;
+                }
+                .ajuste{
+                    width: 50%;
+                    vertical-align:middle;
+                    text-align: center;
                 }
             }
         </style>
@@ -41,51 +49,25 @@
 
         <div id="page">
             <div class="shadow"></div>
-            <div class="toprow-1">
-                <a class="swipe-control" href="#"><i class="fa fa-align-justify"></i></a>
-            </div>
 
             <header class="header">
                 <div class="container">
-                    <div class="box-right">
-                        <ul class="social-list">
-                            <li>
-                                <a href="//www.facebook.com/"><span class="fa fa-facebook"></span></a>
-                            </li>
-                            <li>
-                                <a href="//www.twitter.com/"><span class="fa fa-twitter"></span></a>
-                            </li>
-                            <li>
-                                <a href="//plus.google.com/+"><span class="fa fa-google-plus"></span></a>
-                            </li>
-                            <li>
-                                <a href="//www.youtube.com/"><span class="fa fa-youtube"></span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                    <br />
+                </div>                
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-4 col-xs-6">
                             <div id="logo" class="logo">
-                                <a href="#"><img src="${pageContext.request.contextPath}/images/utez.png" title="Electronics online store" alt="Electronics online store" class="img-responsive"></a>
+                                <a href="#"><img src="${pageContext.request.contextPath}/images/utez.png" class="img-responsive"></a>
                             </div>
                         </div>
                         <div class="col-sm-5 col-xs-6">
-                            <div id="search" class="search">
-                                <input type="text" name="search" value="" placeholder="Buscar">
-                                <button type="button" class="button-search">Buscar</button>
-                                <div class="clear"></div>
-                            </div>
+                            <h1>SIDH</h1>
+                            <h3>Sistema de Disponibilidad de Horarios</h3>
                         </div>
-
-                        <!--    <div class="col-sm-3" style="font-size: 19px;line-height: 24px; margin-top:12px">
-                        <a href="Login.html"><i class="fa fa-user"></i>
-                        <span >Iniciar Sesión</span>
-                      </a>
-                    </div> POSIBLE LOGIN-->
                     </div>
                 </div>
+
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-3"></div>
@@ -94,19 +76,15 @@
                                 <div id="top-links" class="nav">
                                     <ul class="list-inline">
                                         <li class="first">
-                                            <a href="Index.html"><i class="fa fa-home"></i><span class="hidden-sm">Inicio</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="#" id="wishlist-total" title="Wish List (0)"><i class="fa fa-calendar"></i> <span class="hidden-sm">28/06/2017</span></a>
+                                            <a href="#"><span>${sessionScope.userName}</span></a>
                                         </li>
                                     </ul>
-                                    <div class="box-cart">
+                                    <div class="box-cart">                                  
                                         <div id="cart" class="cart">
-                                            <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
-                                                <span class="fa fa-user"  href="Login.html"></span>
-                                                <a class="cart-total3 hidden-xs"  href="<s:url value='/login.action'/>">${sessionScope.userName}</a>
+                                            <button type="button">
+                                                <span class="fa fa-user"></span>
+                                                <a class="cart-total3"  href="<s:url value='/logout.action'/>">-Salir</a>
                                             </button>
-
                                         </div>
                                     </div>
                                 </div>
@@ -123,17 +101,24 @@
                     <div id="menu-gadget" class="menu-gadget">
                         <div id="menu-icon">Menú</div>
                         <ul class="menu">
-                            <li>
-                                <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                <i class="fa fa-user-secret "></i>
-                            </li>
-                            <li>
-                                <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
-                                <i class="fa fa-users"></i>
-                            </li>
+                                        <li>
+                                            <a href="<s:url value='/consultarPeriodos.action'/>">Periodos</a>
+                                            <i class="fa fa-calendar"></i>
+                                        </li>
+                                        <li>
+                                            <a  href="<s:url value='/consultarUsuarios.action'/>">Docentes</a>
+                                            <i class="fa fa-users"></i>
+                                        </li>
+                                        <li>
+                                            <a href="<s:url value='/xml.action'/>">Exportar información</a>
+                                            <i class="fa fa-download"></i>
+                                        </li>
+                                        <li>
+                                            <a href="<s:url value='/notificar.action'/>">Recordatorio</a>
+                                            <i class="fa fa-mail-forward"></i>
+                                        </li>
 
-
-                        </ul>
+                                    </ul>
                     </div>
                 </div>
             </div>
@@ -151,26 +136,20 @@
                                 <div class="box-category">
                                     <ul class="menu">
                                         <li>
-                                            <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                            <i class="fa fa-user-secret "></i>
+                                            <a href="<s:url value='/consultarPeriodos.action'/>">Periodos</a>
+                                            <i class="fa fa-calendar"></i>
                                         </li>
                                         <li>
-                                            <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
+                                            <a  href="<s:url value='/consultarUsuarios.action'/>">Docentes</a>
                                             <i class="fa fa-users"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horas Libres </a>
+                                            <a href="<s:url value='/xml.action'/>">Exportar información</a>
+                                            <i class="fa fa-download"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horarios General </a>
-                                        </li>
-                                        <li>
-                                            <a href="Formulario.html">Formularios </a>
-                                            <i class="fa fa-list"></i>
-                                        </li>
-                                        <li>
-                                            <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                            <i class="fa fa-table"></i>
+                                            <a href="<s:url value='/notificar.action'/>">Recordatorio</a>
+                                            <i class="fa fa-mail-forward"></i>
                                         </li>
 
                                     </ul>
@@ -183,183 +162,210 @@
                     <div id="content" class="col-sm-9 print">
 
                         <form name="registrarDisponibilidad" id="registrarDisponibilidad" class="form-horizontal" action="registrarDisponibilidad" method="POST" role="form">
+                            <br />                                
 
-                            <div class="box-body table-responsive">
-                                <ul class="breadcrumb">
-                                    <li><a href="#"><i class="fa fa-calendar"></i></a></li>
-                                    <li><a href="#">Seleccionar Disponibilidad</a></li>
-                                </ul>
-                                <p>Selecciona las horas y los días disponibles.</p>
-                                <table class=" table-bordered table-hover" style="width: 100%;" id="dispos">                             
-                                    <thead class="fondo-verde texto-blanco">
-                                        <tr class="selectors">
-                                            <th style="width: 90px">Horas/Días</th>
-                                            <th style="width: 90px">Lunes</th>
-                                            <th style="width: 90px">Martes</th>
-                                            <th style="width: 90px">Miércoles</th>
-                                            <th style="width: 90px">Jueves</th>
-                                            <th style="width: 90px">Viernes</th>
-                                            <th style="width: 90px">Sábado</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <tr>
-                                            <td>07:00 - 08:00</td>
-                                            <td class="lunes" id="Lh7" val="0"></td>
-                                            <td class="martes" id="Mh7" val="0"></td>
-                                            <td class="miercoles"  id="Xh7" val="0"></td>
-                                            <td class="jueves"  id="Jh7" val="0"></td>
-                                            <td class="viernes"  id="Vh7" val="0"></td>
-                                            <td class="sabado"  id="Sh7" val="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>08:00 - 09:00</td>
-                                            <td class="lunes" id="Lh8" val="0"></td>
-                                            <td class="martes" id="Mh8" val="0"></td>
-                                            <td class="miercoles"  id="Xh8" val="0"></td>
-                                            <td class="jueves"  id="Jh8" val="0"></td>
-                                            <td class="viernes"  id="Vh8" val="0"></td>
-                                            <td class="sabado"  id="Sh8" val="0"></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>09:00 - 10:00</td>                                                                                                   
-                                            <td class="lunes" id="Lh9" val="0"></td>
-                                            <td class="martes" id="Mh9" val="0"></td>
-                                            <td class="miercoles"  id="Xh9" val="0"></td>
-                                            <td class="jueves"  id="Jh9" val="0"></td>
-                                            <td class="viernes"  id="Vh9" val="0"></td>
-                                            <td class="sabado"  id="Sh9" val="0"></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>10:00 - 11:00</td>
-                                            <td class="lunes" id="Lh10" val="0"></td>
-                                            <td class="martes" id="Mh10" val="0"></td>
-                                            <td class="miercoles"  id="Xh10" val="0"></td>
-                                            <td class="jueves"  id="Jh10" val="0"></td>
-                                            <td class="viernes"  id="Vh10" val="0"></td>
-                                            <td class="sabado"  id="Sh10" val="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td >11:00 - 12:00</td>                                                                                                   
-                                            <td class="lunes" id="Lh11" val="0"></td>
-                                            <td class="martes" id="Mh11" val="0"></td>
-                                            <td class="miercoles"  id="Xh11" val="0"></td>
-                                            <td class="jueves"  id="Jh11" val="0"></td>
-                                            <td class="viernes"  id="Vh11" val="0"></td>
-                                            <td class="sabado"  id="Sh11" val="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>12:00 - 13:00</td>
-                                            <td class="lunes" id="Lh12" val="0"></td>
-                                            <td class="martes" id="Mh12" val="0"></td>
-                                            <td class="miercoles"  id="Xh12" val="0"></td>
-                                            <td class="jueves"  id="Jh12" val="0"></td>
-                                            <td class="viernes"  id="Vh12" val="0"></td>
-                                            <td class="sabado"  id="Sh12" val="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>13:00 - 14:00</td>
-                                            <td class="lunes" id="Lh13" val="0"></td>
-                                            <td class="martes" id="Mh13" val="0"></td>
-                                            <td class="miercoles"  id="Xh13" val="0"></td>
-                                            <td class="jueves"  id="Jh13" val="0"></td>
-                                            <td class="viernes"  id="Vh13" val="0"></td>
-                                            <td class="sabado"  id="Sh13" val="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>14:00 - 15:00</td>
-                                            <td class="lunes" id="Lh14" val="0"></td>
-                                            <td class="martes" id="Mh14" val="0"></td>
-                                            <td class="miercoles"  id="Xh14" val="0"></td>
-                                            <td class="jueves"  id="Jh14" val="0"></td>
-                                            <td class="viernes"  id="Vh14" val="0"></td>
-                                            <td class="sabado"  id="Sh14" val="0"></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>15:00 - 16:00</td>
-                                            <td class="lunes" id="Lh15" val="0"></td>
-                                            <td class="martes" id="Mh15" val="0"></td>
-                                            <td class="miercoles"  id="Xh15" val="0"></td>
-                                            <td class="jueves"  id="Jh15" val="0"></td>
-                                            <td class="viernes"  id="Vh15" val="0"></td>
-                                            <td class="sabado"  id="Sh15" val="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>16:00 - 17:00</td>
-                                            <td class="lunes" id="Lh16" val="0"></td>
-                                            <td class="martes" id="Mh16" val="0"></td>
-                                            <td class="miercoles"  id="Xh16" val="0"></td>
-                                            <td class="jueves"  id="Jh16" val="0"></td>
-                                            <td class="viernes"  id="Vh16" val="0"></td>
-                                            <td class="sabado"  id="Sh16" val="0"></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>17:00 - 18:00</td>                                                                                                   
-                                            <td class="lunes" id="Lh17" val="0"></td>
-                                            <td class="martes" id="Mh17" val="0"></td>
-                                            <td class="miercoles"  id="Xh17" val="0"></td>
-                                            <td class="jueves"  id="Jh17" val="0"></td>
-                                            <td class="viernes"  id="Vh17" val="0"></td>
-                                            <td class="sabado"  id="Sh17" val="0"></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>18:00 - 19:00</td>
-                                            <td class="lunes" id="Lh18" val="0"></td>
-                                            <td class="martes" id="Mh18" val="0"></td>
-                                            <td class="miercoles"  id="Xh18" val="0"></td>
-                                            <td class="jueves"  id="Jh18" val="0"></td>
-                                            <td class="viernes"  id="Vh18" val="0"></td>
-                                            <td class="sabado"  id="Sh18" val="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td >19:00 - 20:00</td>                                                                                                   
-                                            <td class="lunes" id="Lh19" val="0"></td>
-                                            <td class="martes" id="Mh19" val="0"></td>
-                                            <td class="miercoles"  id="Xh19" val="0"></td>
-                                            <td class="jueves"  id="Jh19" val="0"></td>
-                                            <td class="viernes"  id="Vh19" val="0"></td>
-                                            <td class="sabado"  id="Sh19" val="0"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>20:00 - 21:00</td>
-                                            <td class="lunes" id="Lh20" val="0"></td>
-                                            <td class="martes" id="Mh20" val="0"></td>
-                                            <td class="miercoles"  id="Xh20" val="0"></td>
-                                            <td class="jueves"  id="Jh20" val="0"></td>
-                                            <td class="viernes"  id="Vh20" val="0"></td>
-                                            <td class="sabado"  id="Sh20" val="0"></td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
+                            <div class="col-xs-4">
+                                <img  align=center  src='${pageContext.request.contextPath}/images/DATIC.png' />
+                            </div>
+                            <div class="col-xs-4">
 
                             </div>
+                            <div class="col-xs-4">
+                                <img  align="right" width="50%" src='${pageContext.request.contextPath}/images/logo.png' />
+                            </div>
 
-                            <div class="form-group">
-                                <label for="notas">Notas:</label>
+                            <div class="col-xs-12 ajuste">
+                                <img  align="middle" src='${pageContext.request.contextPath}/images/tabla.png' />
+                            </div>
+
+                            <div class="col-xs-12">
+                                <h4 style="margin-top: 25px;"><u>Por favor lea las indicaciones:</u></h4>
+                                <p style="font-size: medium">Marque con una “<img  align=center  src='${pageContext.request.contextPath}/images/ok.png' />” las horas disponibles o
+                                    con una  “<img  align=center  src='${pageContext.request.contextPath}/images/no.png' />” las horas que sería
+                                    preferible no utilizar (pero que en dado caso también dispone). Los espacios en blanco serán considerados como
+                                    <b>NO disponibles en su horario.</b>
+                                </p>
+                                <br />
+                                <br />
+                                <p>De 7:00 a 16:00 horas <b>TSU</b></p>
+                                <p>De 15:00 a 21:00 horas <b>Ingeniería</b></p>
+                                <div class="box-body table-responsive">
+                                    <table class=" table-bordered table-hover" style="width: 100%;border-collapse: collapse" id="dispos">                             
+                                        <thead class="fondo-verde texto-blanco">
+                                            <tr class="selectors" style="border:1.5pt solid black">
+                                                <th style="width: 90px;border-bottom: 1.5pt solid black">Horas/Días</th>
+                                                <th style="width: 90px;border-bottom: 1.5pt solid black">Lunes</th>
+                                                <th style="width: 90px;border-bottom: 1.5pt solid black">Martes</th>
+                                                <th style="width: 90px;border-bottom: 1.5pt solid black">Miércoles</th>
+                                                <th style="width: 90px;border-bottom: 1.5pt solid black">Jueves</th>
+                                                <th style="width: 90px;border-bottom: 1.5pt solid black">Viernes</th>
+                                                <th style="width: 90px;border-bottom: 1.5pt solid black">Sábado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;border-top: 1.5pt solid black">
+                                                <td><b>07:00 - 08:00</b></td>
+                                                <td class="lunes" id="Lh7" val="1"></td>
+                                                <td class="martes" id="Mh7" val="1"></td>
+                                                <td class="miercoles" id="Xh7" val="1"></td>
+                                                <td class="jueves" id="Jh7" val="1"></td>
+                                                <td style="border-right: 1.5pt solid black;" class="viernes" id="Vh7" val="1"></td>
+                                                <td class="sabado" hidden="" id="Sh7" val="0"></td>
+                                            </tr>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
+                                                <td><b>08:00 - 09:00</b></td>
+                                                <td class="lunes" id="Lh8" val="1"></td>
+                                                <td class="martes" id="Mh8" val="1"></td>
+                                                <td class="miercoles" id="Xh8" val="1"></td>
+                                                <td class="jueves" id="Jh8" val="1"></td>
+                                                <td class="viernes" id="Vh8" val="1"></td>
+                                                <td style="border-top: 1.5pt solid black;border-left: 1.5pt solid black;" class="sabado" id="Sh8" val="1"></td>
+
+                                            </tr>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
+                                                <td><b>09:00 - 10:00</b></td>                                                                                                   
+                                                <td class="lunes" id="Lh9" val="1"></td>
+                                                <td class="martes" id="Mh9" val="1"></td>
+                                                <td class="miercoles" id="Xh9" val="1"></td>
+                                                <td class="jueves" id="Jh9" val="1"></td>
+                                                <td class="viernes" id="Vh9" val="1"></td>
+                                                <td style="border-left: 1.5pt solid black;" class="sabado" id="Sh9" val="1"></td>
+
+                                            </tr>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
+                                                <td><b>10:00 - 11:00</b></td>
+                                                <td class="lunes" id="Lh10" val="1"></td>
+                                                <td class="martes" id="Mh10" val="1"></td>
+                                                <td class="miercoles" id="Xh10" val="1"></td>
+                                                <td class="jueves" id="Jh10" val="1"></td>
+                                                <td class="viernes" id="Vh10" val="1"></td>
+                                                <td style="border-left: 1.5pt solid black;" class="sabado" id="Sh10" val="1"></td>
+                                            </tr>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
+                                                <td ><b>11:00 - 12:00</b></td>                                                                                                   
+                                                <td class="lunes" id="Lh11" val="1"></td>
+                                                <td class="martes" id="Mh11" val="1"></td>
+                                                <td class="miercoles" id="Xh11" val="1"></td>
+                                                <td class="jueves" id="Jh11" val="1"></td>
+                                                <td class="viernes" id="Vh11" val="1"></td>
+                                                <td style="border-left: 1.5pt solid black;" class="sabado" id="Sh11" val="1"></td>
+                                            </tr>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
+                                                <td><b>12:00 - 13:00</b></td>
+                                                <td class="lunes" id="Lh12" val="1"></td>
+                                                <td class="martes" id="Mh12" val="1"></td>
+                                                <td class="miercoles" id="Xh12" val="1"></td>
+                                                <td class="jueves" id="Jh12" val="1"></td>
+                                                <td class="viernes" id="Vh12" val="1"></td>
+                                                <td style="border-left: 1.5pt solid black;" class="sabado" id="Sh12" val="1"></td>
+                                            </tr>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
+                                                <td><b>13:00 - 14:00</b></td>
+                                                <td class="lunes" id="Lh13" val="1"></td>
+                                                <td class="martes" id="Mh13" val="1"></td>
+                                                <td class="miercoles" id="Xh13" val="1"></td>
+                                                <td class="jueves" id="Jh13" val="1"></td>
+                                                <td class="viernes" id="Vh13" val="1"></td>
+                                                <td style="border-left: 1.5pt solid black;" class="sabado" id="Sh13" val="1"></td>
+                                            </tr>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
+                                                <td><b>14:00 - 15:00</b></td>
+                                                <td class="lunes" id="Lh14" val="1"></td>
+                                                <td class="martes" id="Mh14" val="1"></td>
+                                                <td class="miercoles" id="Xh14" val="1"></td>
+                                                <td class="jueves" id="Jh14" val="1"></td>
+                                                <td class="viernes" id="Vh14" val="1"></td>
+                                                <td style="border-left: 1.5pt solid black;" class="sabado" id="Sh14" val="1"></td>
+                                            </tr>
+
+                                            <tr  style="border-bottom: 1.5pt solid black">
+                                                <td style="border-left: 1.5pt solid black;border-top: 1.5pt solid black"><b>15:00 - 16:00</b></td>
+                                                <td style="border-top: 1.5pt solid black;" class="lunes" id="Lh15" val="1"></td>
+                                                <td style="border-top: 1.5pt solid black;" class="martes" id="Mh15" val="1"></td>
+                                                <td style="border-top: 1.5pt solid black;" class="miercoles" id="Xh15" val="1"></td>
+                                                <td style="border-top: 1.5pt solid black;" class="jueves" id="Jh15" val="1"></td>
+                                                <td style="border-top: 1.5pt solid black;" class="viernes" id="Vh15" val="1"></td>
+                                                <td style="border-bottom: 1.5pt solid black;border-left: 1.5pt solid black;border-right: 1.5pt solid black" class="sabado" id="Sh15" val="1"></td>
+                                            </tr>
+                                            <tr  style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
+                                                <td><b>16:00 - 17:00</b></td>
+                                                <td class="lunes" id="Lh16" val="1"></td>
+                                                <td class="martes" id="Mh16" val="1"></td>
+                                                <td class="miercoles" id="Xh16" val="1"></td>
+                                                <td class="jueves" id="Jh16" val="1"></td>
+                                                <td style="border-right: 1.5pt solid black;" class="viernes" id="Vh16" val="1"></td>
+                                                <td class="sabado" hidden="" id="Sh16" val="0"></td>
+
+                                            </tr>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
+                                                <td><b>17:00 - 18:00</b></td>                                                                                                   
+                                                <td class="lunes" id="Lh17" val="1"></td>
+                                                <td class="martes" id="Mh17" val="1"></td>
+                                                <td class="miercoles" id="Xh17" val="1"></td>
+                                                <td class="jueves" id="Jh17" val="1"></td>
+                                                <td style="border-right: 1.5pt solid black;" class="viernes" id="Vh17" val="1"></td>
+                                                <td class="sabado" hidden="" id="Sh17" val="0"></td>
+
+                                            </tr>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
+                                                <td><b>18:00 - 19:00</b></td>
+                                                <td class="lunes" id="Lh18" val="1"></td>
+                                                <td class="martes" id="Mh18" val="1"></td>
+                                                <td class="miercoles" id="Xh18" val="1"></td>
+                                                <td class="jueves" id="Jh18" val="1"></td>
+                                                <td style="border-right: 1.5pt solid black;" class="viernes" id="Vh18" val="1"></td>
+                                                <td class="sabado" hidden="" id="Sh18" val="0"></td>
+                                            </tr>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
+                                                <td ><b>19:00 - 20:00</b></td>                                                                                                   
+                                                <td class="lunes" id="Lh19" val="1"></td>
+                                                <td class="martes" id="Mh19" val="1"></td>
+                                                <td class="miercoles" id="Xh19" val="1"></td>
+                                                <td class="jueves" id="Jh19" val="1"></td>
+                                                <td style="border-right: 1.5pt solid black;" class="viernes" id="Vh19" val="1"></td>
+                                                <td class="sabado" hidden="" id="Sh19" val="0"></td>
+                                            </tr>
+                                            <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;border-bottom: 1.5pt solid black">
+                                                <td><b>20:00 - 21:00</b></td>
+                                                <td class="lunes" id="Lh20" val="1"></td>
+                                                <td class="martes" id="Mh20" val="1"></td>
+                                                <td class="miercoles" id="Xh20" val="1"></td>
+                                                <td class="jueves" id="Jh20" val="1"></td>
+                                                <td style="border-right: 1.5pt solid black;" class="viernes" id="Vh20" val="1"></td>
+                                                <td class="sabado" hidden="" id="Sh20" val="0"></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <label for="notas">Observaciones:</label>
                                 <textarea class="form-control" rows="5" id="notas" name="notas"></textarea>
-                            </div>
+                                <br/>
+                                <p><b>Nota.</b> La disponibilidad marcada o número de materias indicadas no significa 
+                                    la carga horaria o contratación dentro del cuatrimestre señalado.  Cualquier modificación 
+                                    en su disponibilidad deberá ser comunicada por escrito a la DATIC a la brevedad posible.
+                                </p>
 
-                            <button type="button" id="btnResgistra" class="btn btn-primary" onClick="window.print()">Registrar</button>
-                            <input type="hidden" id="arreglo" value="<s:property value="dis" />"/>
-                            <input type="hidden" id="notes" value="<s:property value="notas" />"/>
-                            <input type="hidden" name="user" id="user" value="${sessionScope.idUser}"/>
 
+                                <center>
+                                    <button style="margin-top: 25px;text-align: center" type="button" id="btnResgistra" class="btn btn-primary bot" onClick="window.print()">Imprimir</button>
+                                </center>
+                                <input type="hidden" id="arreglo" value="<s:property value="dis" />"/>
+                                <input type="hidden" id="notes" value="<s:property value="notas" />"/>
+                                <input type="hidden" name="user" id="user" value="${sessionScope.idUser}"/>
+                                <br/>
 
                         </form>
 
                     </div>
+
                 </div>
             </div>
-
         </div>
+
     </div>
+</div>
 </div>
 
 
@@ -381,8 +387,10 @@
             $(document).find('.' + dia).each(function (index) {
                 if (hora[index] == '1') {
                     $(this).html("<img  align=center  src='${pageContext.request.contextPath}/images/ok.png' />");
-                } else {
+                } else if (hora[index] == '0') {
                     $(this).html("<img  align=center  src='${pageContext.request.contextPath}/images/no.png' />");
+                } else {
+                    $(this).html("");
                 }
             });
         });

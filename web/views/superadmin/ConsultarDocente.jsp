@@ -7,7 +7,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,6 +16,8 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/stylesheet.css" >
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" >
         <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
 
 
         <style>
@@ -63,32 +64,8 @@
             .show {display:block;}
         </style>
 
-        <script>
-            /* When the user clicks on the button, 
-             toggle between hiding and showing the dropdown content */
-            function myFunction() {
-                document.getElementById("myDropdown").classList.toggle("show");
-            }
-
-            // Close the dropdown if the user clicks outside of it
-            window.onclick = function (event) {
-                if (!event.target.matches('.dropbtn')) {
-
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            }
-        </script>
-
     </head>
     <body class="common-home">
-        <!-- swipe menu -->
         <jsp:include page="/layaout/validaSesion.jsp"/>
 
         <div id="page">
@@ -96,7 +73,7 @@
 
             <header class="header">
                 <div class="container">
-                    <br/>                    
+                    <br/>
                 </div>
                 <div class="container">
                     <div class="row">
@@ -124,11 +101,11 @@
                                             <a href="#"><span>${sessionScope.userName}</span></a>
                                         </li>
                                     </ul>
-                                    <div class="box-cart">
+                                    <div class="box-cart">                                  
                                         <div id="cart" class="cart">
-                                            <button type="button" data-loading-text="Loading...">
+                                            <button type="button">
                                                 <span class="fa fa-user"></span>
-                                                <a class="cart-total3"  href="<s:url value='/cerrarSesion.action'/>">Salir</a>
+                                                <a class="cart-total3"  href="<s:url value='/logout.action'/>">Salir</a>
                                             </button>
                                         </div>
                                     </div>
@@ -140,41 +117,6 @@
                 </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div id="menu-gadget" class="menu-gadget">
-                        <div id="menu-icon">Menú</div>
-                        <ul class="menu">
-                            <li>
-                                <a href="/usuario/altausuario.action">Alta Docentes</a>
-                                <i class="fa fa-user-secret  "></i>
-                            </li>
-                            <li>
-                                <a href="/usuario/consultarUsuarios.action">Consulta Docentes</a>
-                                <i class="fa fa-users"></i>
-                            </li>
-                            <li>
-                                <a href="#">Horas Libres </a>
-                            </li>
-                            <li>
-                                <a href="#">Horarios General </a>
-                            </li>
-                            <li>
-                                <a href="Formulario.html">Formularios </a>
-                                <i class="fa fa-list"></i>
-                            </li>
-                            <li>
-                                <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                <i class="fa fa-table"></i>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="header_modules"></div>
 
         <div id="container">
@@ -183,31 +125,25 @@
 
                     <div id="column-left" class="col-sm-3 ">
                         <div class="box category">
-                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menu</h3></div>
+                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menú</h3></div>
                             <div class="box-content">
                                 <div class="box-category">
                                     <ul class="menu">
                                         <li>
-                                            <a href="/usuario/altausuario.action">Alta Docentes</a>
-                                            <i class="fa fa-file-text  "></i>
+                                            <a href="<s:url value='/consultarPeriodos.action'/>">Periodos</a>
+                                            <i class="fa fa-calendar"></i>
                                         </li>
                                         <li>
-                                            <a href="/usuario/getUsuarios.action">Consulta Docentes</a>
+                                            <a  href="<s:url value='/consultarUsuarios.action'/>">Docentes</a>
                                             <i class="fa fa-users"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horas Libres </a>
+                                            <a href="<s:url value='/xml.action'/>">Exportar información</a>
+                                            <i class="fa fa-download"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horarios General </a>
-                                        </li>
-                                        <li>
-                                            <a href="Formulario.html">Formularios </a>
-                                            <i class="fa fa-list"></i>
-                                        </li>
-                                        <li>
-                                            <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                            <i class="fa fa-table"></i>
+                                            <a href="<s:url value='/notificar.action'/>">Recordatorio</a>
+                                            <i class="fa fa-mail-forward"></i>
                                         </li>
 
                                     </ul>
@@ -216,28 +152,27 @@
                         </div>
                     </div>
 
+
+
+
                     <div id="content" class="col-sm-9">
-                        <ul class="breadcrumb">
-                            <li><a href="#"><i class="fa fa-home"></i></a></li>
-                            <li><a href="#">Registrar</a></li>
-                            <li><a href="#">Guardar</a></li>
-                        </ul>
-                        <h1>Docente</h1>   
+                        <h1>Gestión de Docente</h1>   
                         <div class="box box-success">
                             <div class="box-header with-border">
-                                <h3 class="box-title">Lista de Profesores</h3>
+                                <h3 class="box-title">Lista de Docentes</h3>
                             </div>
                             <s:if test="listaUsuarios.size() >0"> 
                                 <table id="example" class="display">
                                     <thead class="fondo-verde texto-blanco">
                                         <tr>
-                                            <th style="width:20%">Nombre</th>
-                                            <th style="width:20%">Apellidos</th>
-                                            <th style="width:30%">Email</th>
-                                            <th style="width:5%">Modificar</th>
-                                            <th style="width:5%">Eliminar</th>
-                                            <th style="width:5%">EliminarDisp</th>
-                                            <th style="width:5%">ImprimirDisp</th>
+                                            <th style="width:11%;text-align: center">Nombre</th>
+                                            <th style="width:15%;text-align: center">Apellidos</th>
+                                            <th style="width:10%;text-align: center">Email</th>
+                                            <th style="width:10%;text-align: center">Modificar Docente</th>
+                                            <th style="width:10%;text-align: center">Eliminar Docente</th>                                            
+                                            <th style="width:10%;text-align: center">Cambiar Permiso</th>                                            
+                                            <th style="width:10%;text-align: center">Imprimir Disponibilidad</th>
+                                            <th style="width:10%;text-align: center">Eliminar Disponibilidad</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -245,13 +180,13 @@
 
                                             <tr>
                                                 <td><s:property value="nombre" ></s:property></td>
-                                                <td><s:property value="apellidoPaterno" ></s:property><s:property value="apellidoMaterno" ></s:property></td>
+                                                <td><s:property value="apellidoPaterno" ></s:property> <s:property value="apellidoMaterno" ></s:property></td>
                                                 <td><s:property value="email" ></s:property></td>
 
                                                 <s:url id="disponibilidad" action="borrarDisp">
                                                     <s:param name="usua.id" value="id"/>                               
                                                 </s:url>
-                                                
+
                                                 <s:url id="print" action="printDispo">
                                                     <s:param name="usua.id" value="id"/>                               
                                                 </s:url>
@@ -264,43 +199,153 @@
                                                     <s:param name="usua.id" value="id"/>
                                                 </s:url>
 
-                                                <td><s:a href="%{editar}"><i class="fa fa-pencil" style="color:blue"></i></s:a></td>
-                                                <td><s:a href="%{eliminar}"><i class="fa fa-times" style="color:red"></i></s:a> </td>
+                                                <s:url id="asignar" action="asignarAdmin" >
+                                                    <s:param name="usua.id" value="id"/>
+                                                </s:url>
 
-                                                    <td>
-                                                    <s:if test="estado == true">
-                                                        <s:a href="%{disponibilidad}"><i class="fa fa-times" style="color:red"></i></s:a>
-                                                        <td><s:a href="%{print}"><i class="fa fa-times" style="color:red"></i></s:a> </td>
-                                                    </s:if><s:else>                                                        
-                                                        <p>Registro pendiente</p>
-                                                        <p>Registro pendiente</p>
+
+
+
+
+                                                <td style="text-align: center">
+                                                    <s:a href="%{editar}">
+                                                        <div>
+                                                            <i class="fa fa-pencil fa-lg" style="color:blue"></i>
+                                                        </div>
+                                                    </s:a>
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <s:a href="%{eliminar}">
+                                                        <div>
+                                                            <i class="fa fa-times fa-lg" style="color:red"></i>
+                                                        </div>
+                                                    </s:a> 
+                                                </td>
+
+
+
+                                                <td style="text-align: center">
+                                                    <s:if test="tipoUsuario == 1">
+                                                        <s:a href="%{asignar}"> 
+                                                            <div>
+                                                                <i class="fa fa-user fa-lg" style="color:darkgreen"></i>
+                                                            </div>
+                                                        </s:a>
+                                                    </s:if>
+                                                    <s:else>
+                                                        <s:a href="%{asignar}">
+                                                            <div>
+                                                                <i class="fa fa-user fa-lg" style="color:grey"></i>
+                                                            </div>
+                                                        </s:a> 
                                                     </s:else>
-                                                    
-                                                    </td>
+                                                </td>
 
+                                                <td style="text-align: center">
+                                                    <s:if test="estado == true">
+                                                        <s:a href="%{print}">
+                                                            <div>
+                                                                <i class="fa fa-print fa-lg" style="color:blue"></i>
+                                                            </div>
+                                                        </s:a>
+                                                    </s:if>
+                                                    <s:else>                                                        
+                                                        <p style="text-align: center">Registro pendiente</p>
+                                                    </s:else>
+                                                </td>
 
+                                                <td style="text-align: center"> 
+                                                    <s:if test="estado == true">
+                                                        <s:a href="%{disponibilidad}">
+                                                            <div>
+                                                                <i class="fa fa-times fa-lg" style="color:red"></i>
+                                                            </div>
+                                                        </s:a>
+                                                    </s:if>
+                                                    <s:else>                                                        
+                                                        <p style="text-align: center">Registro pendiente</p>
+                                                    </s:else>
+                                                </td>
 
-                                                </tr>
+                                            </tr>
 
-                                            </tbody>
+                                        </tbody>
                                     </s:iterator>  
                                 </table>        
-                            </s:if>      
+                            </s:if>
+                            <s:else>
+                                <h2>No hay Docentes registrados</h2>
+                            </s:else>
                         </div>
 
-                        <div class="box-footer clearfix text-center">
-                            <ul class="pagination pagination-sm no-margin">
-                                <li><a href="#">&lt;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">&gt;</a></li>
-                            </ul>
-                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
+        <script>
+            if ('<%= request.getParameter("borrar")%>' == 'true') {
+                swal({
+                    title: "",
+                    text: "Se ha borrado la disponibilidad",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+            if ('<%= request.getParameter("borrarDocente")%>' == 'true') {
+                swal({
+                    title: "",
+                    text: "Se ha borrado el docente",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+            if ('<%= request.getParameter("editarDocente")%>' == 'true') {
+                swal({
+                    title: "",
+                    text: "Se ha actualizado el docente",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+            if ('<%= request.getParameter("self")%>' == 'true') {
+                swal({
+                    title: "",
+                    text: "No puedes cambiar tu propio permiso",
+                    type: "error",
+                    confirmButtonColor: "#c92626",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+            if ('<%= request.getParameter("change")%>' == 'false') {
+                swal({
+                    title: "",
+                    text: "No se pudo cambiar el permiso",
+                    type: "error",
+                    confirmButtonColor: "#c92626",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+            if ('<%= request.getParameter("change")%>' == 'true') {
+                swal({
+                    title: "",
+                    text: "El permiso se ha cambiado",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+        </script>
+
     </body>
 </html>

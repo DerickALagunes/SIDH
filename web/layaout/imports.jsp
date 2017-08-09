@@ -1,5 +1,5 @@
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/ut2.png" type="image/x-icon" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" >
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/material-design.css" >
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/stylesheet.css" >
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" >
@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
         
         
-        
+
 
         <style>
             .dropbtn {

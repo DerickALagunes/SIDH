@@ -12,6 +12,8 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/stylesheet.css" >
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" >
         <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
 
         <style>
             .dropbtn {
@@ -59,7 +61,6 @@
 
     </head>
     <body class="common-home">
-        <!-- swipe menu -->
         <jsp:include page="/layaout/validaSesion.jsp"/>
 
         <div id="page">
@@ -97,7 +98,7 @@
                                     </ul>
                                     <div class="box-cart">                                  
                                         <div id="cart" class="cart">
-                                            <button type="button" data-loading-text="Loading...">
+                                            <button type="button">
                                                 <span class="fa fa-user"></span>
                                                 <a class="cart-total3"  href="<s:url value='/logout.action'/>">Salir</a>
                                             </button>
@@ -111,74 +112,33 @@
                 </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div id="menu-gadget" class="menu-gadget">
-                        <div id="menu-icon">Menu</div>
-                        <ul class="menu">
-                            <li>
-                                <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                <i class="fa fa-user-secret "></i>
-                            </li>
-                            <li>
-                                <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
-                                <i class="fa fa-users"></i>
-                            </li>
-                            <li>
-                                <a href="#">Horas Libres </a>
-                            </li>
-                            <li>
-                                <a href="#">Horarios General </a>
-                            </li>
-                            <li>
-                                <a href="Formulario.html">Formularios </a>
-                                <i class="fa fa-list"></i>
-                            </li>
-                            <li>
-                                <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                <i class="fa fa-table"></i>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="header_modules"></div>
 
         <div id="container">
             <div class="container">
                 <div class="row">
-                    
+
                     <div id="column-left" class="col-sm-3 ">
                         <div class="box category">
-                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menu</h3></div>
+                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menú</h3></div>
                             <div class="box-content">
                                 <div class="box-category">
                                     <ul class="menu">
                                         <li>
-                                            <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                            <i class="fa fa-user-secret "></i>
+                                            <a href="<s:url value='/consultarPeriodos.action'/>">Periodos</a>
+                                            <i class="fa fa-calendar"></i>
                                         </li>
                                         <li>
-                                            <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
+                                            <a  href="<s:url value='/consultarUsuarios.action'/>">Docentes</a>
                                             <i class="fa fa-users"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horas Libres </a>
+                                            <a href="<s:url value='/xml.action'/>">Exportar información</a>
+                                            <i class="fa fa-download"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horarios General </a>
-                                        </li>
-                                        <li>
-                                            <a href="Formulario.html">Formularios </a>
-                                            <i class="fa fa-list"></i>
-                                        </li>
-                                        <li>
-                                            <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                            <i class="fa fa-table"></i>
+                                            <a href="<s:url value='/notificar.action'/>">Recordatorio</a>
+                                            <i class="fa fa-mail-forward"></i>
                                         </li>
 
                                     </ul>
@@ -193,13 +153,18 @@
 
                     <div id="content" class="col-sm-9">
                         <div class="fluid_container">
-                            
+                            <h3>Se enviará un correo electrónico a los usuarios que aun no registran su Disponibilidad</h3>
+                            <hr>
+                            <h4>Click en el botón para enviar</h4>
                             <center>
                                 <br/>
                                 <br/>
                                 <br/>
                                 <br/>
-                                <h3>Se ha enviado el recordatorio.</h3>
+                                <a href="<s:url value='/enviarnotificar.action'/>" data-placement="top" title="Enviar recordatorio" class="btn btn-info">
+                                    <i class="fa fa-send"></i>
+                                    Enviar
+                                </a>
                             </center>
                         </div>
                     </div>
@@ -208,5 +173,28 @@
             </div>
         </div>
     </body>
+
+    <script>
+        if ('<%= request.getParameter("error")%>' == 'false') {
+            swal({
+                title: "Enviado",
+                text: "Se ha enviado el recordatorio",
+                type: "success",
+                confirmButtonText: "Aceptar",
+                closeOnConfirm: false,
+                html: true
+            });
+        }
+        if ('<%= request.getParameter("error")%>' == 'true') {
+            swal({
+                title: "Ocurrio un error",
+                text: "Es posible que no falten docentes",
+                type: "error",
+                confirmButtonText: "Aceptar",
+                closeOnConfirm: false,
+                html: true
+            });
+        }
+    </script>
 </html>
 

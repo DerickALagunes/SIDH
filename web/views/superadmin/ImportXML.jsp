@@ -59,7 +59,6 @@
 
     </head>
     <body class="common-home">
-        <!-- swipe menu -->
         <jsp:include page="/layaout/validaSesion.jsp"/>
 
         <div id="page">
@@ -97,7 +96,7 @@
                                     </ul>
                                     <div class="box-cart">                                  
                                         <div id="cart" class="cart">
-                                            <button type="button" data-loading-text="Loading...">
+                                            <button type="button">
                                                 <span class="fa fa-user"></span>
                                                 <a class="cart-total3"  href="<s:url value='/logout.action'/>">Salir</a>
                                             </button>
@@ -111,74 +110,33 @@
                 </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div id="menu-gadget" class="menu-gadget">
-                        <div id="menu-icon">Menu</div>
-                        <ul class="menu">
-                            <li>
-                                <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                <i class="fa fa-user-secret "></i>
-                            </li>
-                            <li>
-                                <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
-                                <i class="fa fa-users"></i>
-                            </li>
-                            <li>
-                                <a href="#">Horas Libres </a>
-                            </li>
-                            <li>
-                                <a href="#">Horarios General </a>
-                            </li>
-                            <li>
-                                <a href="Formulario.html">Formularios </a>
-                                <i class="fa fa-list"></i>
-                            </li>
-                            <li>
-                                <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                <i class="fa fa-table"></i>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="header_modules"></div>
+         <div class="header_modules"></div>
 
         <div id="container">
             <div class="container">
                 <div class="row">
-                    
+
                     <div id="column-left" class="col-sm-3 ">
                         <div class="box category">
-                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menu</h3></div>
+                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menú</h3></div>
                             <div class="box-content">
                                 <div class="box-category">
                                     <ul class="menu">
                                         <li>
-                                            <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                            <i class="fa fa-user-secret "></i>
+                                            <a href="<s:url value='/consultarPeriodos.action'/>">Periodos</a>
+                                            <i class="fa fa-calendar"></i>
                                         </li>
                                         <li>
-                                            <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
+                                            <a  href="<s:url value='/consultarUsuarios.action'/>">Docentes</a>
                                             <i class="fa fa-users"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horas Libres </a>
+                                            <a href="<s:url value='/xml.action'/>">Exportar información</a>
+                                            <i class="fa fa-download"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horarios General </a>
-                                        </li>
-                                        <li>
-                                            <a href="Formulario.html">Formularios </a>
-                                            <i class="fa fa-list"></i>
-                                        </li>
-                                        <li>
-                                            <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                            <i class="fa fa-table"></i>
+                                            <a href="<s:url value='/notificar.action'/>">Recordatorio</a>
+                                            <i class="fa fa-mail-forward"></i>
                                         </li>
 
                                     </ul>
@@ -194,6 +152,8 @@
                     <div id="content" class="col-sm-9">
                         <div class="fluid_container">
                             <h3>Este documento es compatible con el programa aSc</h3>
+                            <hr>
+                            <h4>Click en el botón para descargarlo</h4>
                             <center>
                                 <br/>
                                 <br/>

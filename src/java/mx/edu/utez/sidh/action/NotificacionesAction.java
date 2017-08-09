@@ -28,5 +28,9 @@ public class NotificacionesAction{
     
         return "success";
     }
+    
+    public String inicio(){   
+        return "success";
+    }
 
 }

@@ -121,20 +121,20 @@ public class DaoUsuario {
 
                 disp.setId(rs.getInt(7));
                 disp.setDia(rs.getString("dia"));
-                disp.setH7(rs.getBoolean("h7"));
-                disp.setH8(rs.getBoolean("h8"));
-                disp.setH9(rs.getBoolean("h9"));
-                disp.setH10(rs.getBoolean("h10"));
-                disp.setH11(rs.getBoolean("h11"));
-                disp.setH12(rs.getBoolean("h12"));
-                disp.setH13(rs.getBoolean("h13"));
-                disp.setH14(rs.getBoolean("h14"));
-                disp.setH15(rs.getBoolean("h15"));
-                disp.setH16(rs.getBoolean("h16"));
-                disp.setH17(rs.getBoolean("h17"));
-                disp.setH18(rs.getBoolean("h18"));
-                disp.setH19(rs.getBoolean("h19"));
-                disp.setH20(rs.getBoolean("h20"));
+                disp.setH7(rs.getString("h7").charAt(0));
+                disp.setH8(rs.getString("h8").charAt(0));
+                disp.setH9(rs.getString("h9").charAt(0));
+                disp.setH10(rs.getString("h10").charAt(0));
+                disp.setH11(rs.getString("h11").charAt(0));
+                disp.setH12(rs.getString("h12").charAt(0));
+                disp.setH13(rs.getString("h13").charAt(0));
+                disp.setH14(rs.getString("h14").charAt(0));
+                disp.setH15(rs.getString("h15").charAt(0));
+                disp.setH16(rs.getString("h16").charAt(0));
+                disp.setH17(rs.getString("h17").charAt(0));
+                disp.setH18(rs.getString("h18").charAt(0));
+                disp.setH19(rs.getString("h19").charAt(0));
+                disp.setH20(rs.getString("h20").charAt(0));
                 disp.setNotas(rs.getString("notas"));
 
                 disponibilidades[iterador] = (disp);
@@ -157,7 +157,7 @@ public class DaoUsuario {
         DaoDisponibilidad dao = new DaoDisponibilidad();
         try {
             Connection con = getConexion();
-            PreparedStatement ps = con.prepareStatement(" SELECT  id,nombre, apellido1, apellido2, email, contrasena "
+            PreparedStatement ps = con.prepareStatement(" SELECT  id,nombre, apellido1, apellido2, email, contrasena, tipoUsuario "
                     + "FROM usuario where estado=1");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -169,6 +169,7 @@ public class DaoUsuario {
                 usuario.setEmail(rs.getString(5));
                 usuario.setContrasena(rs.getString(6));
                 usuario.setEstado(dao.UsuarioTieneDisponibilidad(rs.getInt(1)));
+                usuario.setTipoUsuario(rs.getInt(7));
                 lista.add(usuario);
             }
             rs.close();
@@ -220,20 +221,20 @@ public class DaoUsuario {
 
                 disp.setId(rs.getInt(7));
                 disp.setDia(rs.getString("dia"));
-                disp.setH7(rs.getBoolean("h7"));
-                disp.setH8(rs.getBoolean("h8"));
-                disp.setH9(rs.getBoolean("h9"));
-                disp.setH10(rs.getBoolean("h10"));
-                disp.setH11(rs.getBoolean("h11"));
-                disp.setH12(rs.getBoolean("h12"));
-                disp.setH13(rs.getBoolean("h13"));
-                disp.setH14(rs.getBoolean("h14"));
-                disp.setH15(rs.getBoolean("h15"));
-                disp.setH16(rs.getBoolean("h16"));
-                disp.setH17(rs.getBoolean("h17"));
-                disp.setH18(rs.getBoolean("h18"));
-                disp.setH19(rs.getBoolean("h19"));
-                disp.setH20(rs.getBoolean("h20"));
+                disp.setH7(rs.getString("h7").charAt(0));
+                disp.setH8(rs.getString("h8").charAt(0));
+                disp.setH9(rs.getString("h9").charAt(0));
+                disp.setH10(rs.getString("h10").charAt(0));
+                disp.setH11(rs.getString("h11").charAt(0));
+                disp.setH12(rs.getString("h12").charAt(0));
+                disp.setH13(rs.getString("h13").charAt(0));
+                disp.setH14(rs.getString("h14").charAt(0));
+                disp.setH15(rs.getString("h15").charAt(0));
+                disp.setH16(rs.getString("h16").charAt(0));
+                disp.setH17(rs.getString("h17").charAt(0));
+                disp.setH18(rs.getString("h18").charAt(0));
+                disp.setH19(rs.getString("h19").charAt(0));
+                disp.setH20(rs.getString("h20").charAt(0));
                 disp.setNotas(rs.getString("notas"));
 
                 disponibilidades[iterador] = (disp);
@@ -321,8 +322,7 @@ public class DaoUsuario {
             con.close();
 
         } catch (SQLException e) {
-            System.out.println("Error ocurrido en DaoUsuario.crearUsuario :" + e.getMessage());
-            throw e;
+            return registrado;
         }
 
         return registrado;

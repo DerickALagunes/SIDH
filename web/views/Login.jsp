@@ -20,6 +20,8 @@
         <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href=".${pageContext.request.contextPath}/css/flatly.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath}/css/app.css" rel="stylesheet" type="text/css" />
+        <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
 
         <style>
             .center-c {
@@ -73,25 +75,50 @@
                             <small class="texto-blanco">Inicio de ses&#237;on</small>
                         </h1>
 
-                            <form action="loginUsuario" method="post" >
-                                <div class="form-group form-group-lg">
-                                    <div class="col-lg-10 col-lg-offset-1">
-                                        <input type="email"    class="form-control bg-50-blanco" style="color: white;" placeholder="Correo"     required name="correo" id="correo"/>
-                                        <input type="password" class="form-control bg-50-blanco" style="color: white;" placeholder="Contraseña" required name="pass" id="password" />
-                                    </div>
+                        <form action="loginUsuario" method="post" >
+                            <div class="form-group form-group-lg">
+                                <div class="col-lg-10 col-lg-offset-1">
+                                    <input type="email"    class="form-control bg-50-blanco" style="color: white;" placeholder="Correo"     required name="correo" id="correo"/>
+                                    <input type="password" class="form-control bg-50-blanco" style="color: white;" placeholder="Contraseña" required name="pass" id="password" />
                                 </div>
-                                <br/><br/>
-                                <input type="submit" class="btn-primary btn-lg" value="Iniciar Sesion" />
-                            </form>
-                        
+                            </div>
+                            <br/><br/>
+                            <input type="submit" class="btn-primary btn-lg" value="Iniciar Sesion" />
+                        </form>
+
                         <br/>
                         <br/>
-                        <a href="/SIDH/views/Registro.jsp">Registrarse</a>
+                        <a class="btn-primary btn-sm" href="/SIDH/views/Registro.jsp">Registrarse</a>
 
                     </div>
                 </div>
             </div>
         </div>
+
+        <script>
+            if ('<%= request.getParameter("error")%>' == 'true') {
+                swal({
+                    title: "",
+                    text: "El usuario y la contraseña no coinciden",
+                    type: "error",
+                    confirmButtonColor: "#c92626",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+            if ('<%= request.getParameter("error")%>' == 'false') {
+                swal({
+                    title: "Usuario registrado",
+                    text: "Ya puedes iniciar sesión",
+                    type: "success",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+        </script>
+
 
     </body>
 </html>

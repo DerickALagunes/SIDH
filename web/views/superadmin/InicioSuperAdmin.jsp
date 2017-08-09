@@ -49,7 +49,7 @@
                                     </ul>
                                     <div class="box-cart">                                  
                                         <div id="cart" class="cart">
-                                            <button type="button" data-loading-text="Loading...">
+                                            <button type="button">
                                                 <span class="fa fa-user"></span>
                                                 <a class="cart-total3"  href="<s:url value='/logout.action'/>">Salir</a>
                                             </button>
@@ -63,46 +63,7 @@
                 </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div id="menu-gadget" class="menu-gadget">
-                        <div id="menu-icon">Menu</div>
-                        <ul class="menu">
-                            <li>
-                                <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                <i class="fa fa-user-secret "></i>
-                            </li>
-                            <li>
-                                <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
-                                <i class="fa fa-users"></i>
-                            </li>
-                            <li>
-                                <a href="#">Horas Libres </a>
-                            </li>
-                            <li>
-                                <a href="#">Horarios General </a>
-                            </li>
-                            <li>
-                                <a href="Formulario.html">Formularios </a>
-                                <i class="fa fa-list"></i>
-                            </li>
-                            <li>
-                                <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                <i class="fa fa-table"></i>
-                            </li>
-                            <li>
-                                <a href="/xml.action">Exportar info </a>
-                                <i class="fa fa-table"></i>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="header_modules"></div>
+         <div class="header_modules"></div>
 
         <div id="container">
             <div class="container">
@@ -110,39 +71,25 @@
 
                     <div id="column-left" class="col-sm-3 ">
                         <div class="box category">
-                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menu</h3></div>
+                            <div class="box-heading"><h3><i class="fa fa-home"></i>Menú</h3></div>
                             <div class="box-content">
                                 <div class="box-category">
                                     <ul class="menu">
                                         <li>
-                                            <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                            <i class="fa fa-user-secret "></i>
+                                            <a href="<s:url value='/consultarPeriodos.action'/>">Periodos</a>
+                                            <i class="fa fa-calendar"></i>
                                         </li>
                                         <li>
-                                            <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
+                                            <a  href="<s:url value='/consultarUsuarios.action'/>">Docentes</a>
                                             <i class="fa fa-users"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horas Libres </a>
+                                            <a href="<s:url value='/xml.action'/>">Exportar información</a>
+                                            <i class="fa fa-download"></i>
                                         </li>
                                         <li>
-                                            <a href="#">Horarios General </a>
-                                        </li>
-                                        <li>
-                                            <a href="Formulario.html">Formularios </a>
-                                            <i class="fa fa-list"></i>
-                                        </li>
-                                        <li>
-                                            <a href="Tablas.html">Consultar Horarios Profesores </a>
-                                            <i class="fa fa-table"></i>
-                                        </li>
-                                        <li>
-                                            <a href="<s:url value='/usuario/xml.action'/>">Exportar info </a>
-                                            <i class="fa fa-table"></i>
-                                        </li>
-                                        <li>
-                                            <a href="<s:url value='/usuario/notificar.action'/>">Recordatorio </a>
-                                            <i class="fa fa-table"></i>
+                                            <a href="<s:url value='/notificar.action'/>">Recordatorio</a>
+                                            <i class="fa fa-mail-forward"></i>
                                         </li>
 
                                     </ul>
@@ -157,20 +104,16 @@
 
                     <div id="content" class="col-sm-9">
                         <div class="fluid_container">
-                            <div class="camera_container">
-                                <div id="camera_wrap_0" class="camera_wrap" style="display: block; height: 345px;">
-                                    <div class="camera_fakehover">
-                                        <div class="camera_target">
-                                            <div class="cameraCont">
-                                                <div class="cameraSlide cameraSlide_0 cameracurrent" style="visibility: visible; display: block; z-index: 999;">
-                                                    <img src="${pageContext.request.contextPath}/images/jeff.jpg" class="imgLoaded" data-alignment="" data-portrait="" width="870" height="345" style="visibility: visible; height: 345px; margin-left: 0px; margin-top: 0px; position: absolute; width: 870px;">
-                                                    <div class="camerarelative" style="width: 870px; height: 345px;"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                           <h1>Bienvenido Administrador</h1>
+                            <hr>
+                            <br />
+                            <h3>Utilice el menú para:</h3>
+                            <ul>
+                                <li><h4>Gestionar los periodos</h4></li>
+                                <li><h4>Gestionar los usuarios docentes</h4></li>
+                                <li><h4>Descargar la información del sistema en un archivo XML compatible con aSc</h4></li>
+                                <li><h4>Mandar un correo electrónico a los docentes que aun no registrado su disponibilidad</h4></li>
+                            </ul>
                         </div>
                     </div>
 
