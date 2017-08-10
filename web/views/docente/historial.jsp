@@ -1,9 +1,8 @@
 <%-- 
-    Document   : InicioAdmin
-    Created on : 26-jul-2017, 12:51:48
-    Author     : Derick
+    Document   : historial
+    Created on : 10/08/2017, 02:40:00 AM
+    Author     : USUARIO
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
@@ -15,6 +14,9 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/stylesheet.css" >
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" >
         <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/sweetalert.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sweetalert.css">
+
 
         <style>
             .dropbtn {
@@ -61,7 +63,6 @@
         </style>
     </head>
     <body class="common-home">
-        <!-- swipe menu -->
         <jsp:include page="/layaout/validaSesionDocente.jsp"/>
 
         <div id="page">
@@ -101,7 +102,7 @@
                                         <div id="cart" class="cart">
                                             <button type="button">
                                                 <span class="fa fa-user"></span>
-                                                <a class="cart-total3"  href="<s:url value='/logout.action'/>">-Salir</a>
+                                                <a class="cart-total3"  href="<s:url value='/logout.action'/>">Salir</a>
                                             </button>
                                         </div>
                                     </div>
@@ -145,21 +146,47 @@
 
 
                     <div id="content" class="col-sm-9">
-                        <div class="fluid_container">
-                            <h1>Bienvenido Docente</h1>
-                            <hr>
-                            <br />
-                            <h3>Utilice el menú para:</h3>
-                            <ul>
-                                <li><h4>Seleccionar su disponibilidad para el siguiente periodo</h4></li>
-                                <li><h4>Ver el historial de sus disponibilidades</h4></li>
-                            </ul>
+                        <h1>Historial de Disponibilidades</h1>   
+                        <div class="box box-success">
+
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Tienes registrada tu disponibilidad en:</h3>
+                            </div>
+
+                            <div>
+                                <s:if test="listaPeriodos.size()>0"> 
+                                    <ul style="font-weight: bold">
+                                            <s:iterator value="listaPeriodos"> 
+
+                                                <li><h4><s:property value="periodo" /> <img  align=center  src='${pageContext.request.contextPath}/images/ok.png' /></h4></li>
+                                                
+
+
+                                            </s:iterator>    
+                                        </ul>  
+                                </s:if>
+                                <s:else>
+                                    <h2>No tienes nada registrado</h2>
+                                </s:else>
+                            </div>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
+        <script>
+            if ('<%= request.getParameter("error")%>' == 'true') {
+                swal({
+                    title: "Aun no hay registros",
+                    text: "Registra tu Disponibilidad",
+                    type: "error",
+                    confirmButtonColor: "#c92626",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+        </script>
     </body>
 </html>
-

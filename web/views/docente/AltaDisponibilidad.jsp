@@ -85,18 +85,17 @@
                 <div class="col-sm-3">
                     <div id="menu-gadget" class="menu-gadget">
                         <div id="menu-icon">Menú</div>
-                        <ul class="menu">
-                            <li>
-                                <a href="<s:url value='/usuario/altausuario.action'/>">Alta Docentes</a>
-                                <i class="fa fa-user-secret "></i>
-                            </li>
-                            <li>
-                                <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Consulta Docentes</a>
-                                <i class="fa fa-users"></i>
-                            </li>
+                        <<ul class="menu">
+                                        <li>
+                                            <a href="<s:url value='/docente/capturaDisponibilidad.action'/>">Disponibilidad</a>
+                                            <i class="fa fa-calendar"></i>
+                                        </li>
+                                        <li>
+                                            <a  href="<s:url value='/docente/consultarHistorial.action'/>">Historial</a>
+                                            <i class="fa fa-history"></i>
+                                        </li>
 
-
-                        </ul>
+                                    </ul>
                     </div>
                 </div>
             </div>

@@ -303,11 +303,34 @@
                     html: true
                 });
             }
-            if ('<%= request.getParameter("editarDocente")%>' == 'true') {
+            if ('<%= request.getParameter("borrarDocente")%>' == 'user') {
                 swal({
                     title: "",
-                    text: "Se ha actualizado el docente",
-                    type: "success",
+                    text: "No puedes borrar tu propio usuario",
+                    type: "error",
+                    confirmButtonColor: "#c92626",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+            if ('<%= request.getParameter("borrarDocente")%>' == 'user') {
+                swal({
+                    title: "",
+                    text: "No puedes borrar tu propio usuario",
+                    type: "error",
+                    confirmButtonColor: "#c92626",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+            if ('<%= request.getParameter("editarDocente")%>' == 'error') {
+                swal({
+                    title: "Error",
+                    text: "No se puede borrar el usuario",
+                    type: "error",
+                    confirmButtonColor: "#c92626",
                     confirmButtonText: "Aceptar",
                     closeOnConfirm: false,
                     html: true

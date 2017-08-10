@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import mx.edu.utez.sidh.bean.Disponibilidad;
+import mx.edu.utez.sidh.bean.Periodo;
 import mx.edu.utez.sidh.bean.Usuario;
 import mx.edu.utez.sidh.dao.DaoDisponibilidad;
 import mx.edu.utez.sidh.dao.DaoUsuario;
@@ -71,6 +72,15 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     }
 
     public String eliminarUsuario() {
+        
+        Map session = ActionContext.getContext().getSession();
+        int id = (Integer) session.get("idUser");
+        
+        if (id == usua.getId()) {
+            return "super";
+        }
+        
+        
         boolean eliminado = DaoUsuario.deleteUsuario(usua.getId());
         if (eliminado) {
             return SUCCESS;
@@ -280,4 +290,34 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
             return ERROR;
         }
     }
+    
+    ArrayList<Periodo> listaPeriodos = new ArrayList();
+
+    public ArrayList<Periodo> getListaPeriodos() {
+        return listaPeriodos;
+    }
+
+    public void setListaPeriodos(ArrayList<Periodo> listaPeriodos) {
+        this.listaPeriodos = listaPeriodos;
+    }
+    
+    
+    
+    public String generarHistorial() {
+        
+        Map session = ActionContext.getContext().getSession();
+        int id = (Integer) session.get("idUser");
+        
+        DaoDisponibilidad dao = new DaoDisponibilidad();
+
+        listaPeriodos = dao.getDispoDeUsuario(id);
+            
+        if (listaPeriodos.size()>0) {
+            return SUCCESS;
+        }else{
+            return ERROR;
+        }
+
+    }
+    
 }

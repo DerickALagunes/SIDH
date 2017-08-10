@@ -1,9 +1,10 @@
 package mx.edu.utez.sidh.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,18 +31,36 @@ public class PeriodosAction extends ActionSupport implements ServletRequestAware
     private Periodo peri;
     private int id;
     private String periodo;
-    private Date inicio;
-    private Date fin;
+    private String inicio;
+    private String fin;
     private Disponibilidad disponibilidad;
 
     public String altaperiodos() {
         return SUCCESS;
     }
 
-    public String registroperiodos() {
-        Timestamp timestamp = new Timestamp(inicio.getTime());
-        Timestamp timestamp2 = new Timestamp(fin.getTime());
+    public String registroperiodos() throws ParseException {
+        
         String completoPeriodo = "";
+        
+        DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+
+        java.sql.Date sqlInicio = new java.sql.Date(new Date().getTime());
+        java.sql.Date sqlFin = new java.sql.Date(new Date().getTime());
+        
+
+        
+        if (!inicio.isEmpty()) {
+            Date start = formater.parse(inicio);
+            sqlInicio = new java.sql.Date(start.getTime());
+        }
+        
+        if (!fin.isEmpty()) {
+            Date start = formater.parse(fin);
+            sqlFin = new java.sql.Date(start.getTime());
+        }
+        
+        
         if (Integer.parseInt(periodo) == 1) {
             completoPeriodo = "Enero - Abril ";
         } else if (Integer.parseInt(periodo) == 2) {
@@ -49,7 +68,10 @@ public class PeriodosAction extends ActionSupport implements ServletRequestAware
         } else {
             completoPeriodo = "Septiembre - Diciembre";
         }
-        if (DaoPeriodo.createPeriodo(completoPeriodo, timestamp, timestamp2)) {
+        
+        System.out.println(sqlInicio);
+        
+        if (DaoPeriodo.createPeriodo(completoPeriodo, sqlInicio, sqlFin)) {
             return SUCCESS;
         } else {
             return ERROR;
@@ -70,6 +92,12 @@ public class PeriodosAction extends ActionSupport implements ServletRequestAware
     }
 
     public String eliminarPeriodo() {
+        
+        if (DaoPeriodo.check()) {
+            return "ultimo";
+        }
+        
+        
         boolean perio = DaoPeriodo.deletePeriodo(peri);
         if (perio) {
             return SUCCESS;
@@ -79,28 +107,61 @@ public class PeriodosAction extends ActionSupport implements ServletRequestAware
 
         }
     }
+    
+    String inicioString;
+    String finString;
+
+    public String getInicioString() {
+        return inicioString;
+    }
+
+    public void setInicioString(String inicioString) {
+        this.inicioString = inicioString;
+    }
+
+    public String getFinString() {
+        return finString;
+    }
+
+    public void setFinString(String finString) {
+        this.finString = finString;
+    }
+    
 
     public String prepararPeriodo() {
+        
         peri = DaoPeriodo.getPeriodo(peri.getId());
-        if (peri.getInicio() == null) {
-            if (peri.getFin() == null) {
-                completa = "Periodo:" + peri.getPeriodo() + "      Fecha Inicio:" + " Sin asignar" + "           Fecha Fin: " + "  Sin Asignar";
-            } else {
-                completa = "Periodo:" + peri.getPeriodo() + "      Fecha Inicio:  " + " Sin asignar" + "         Fecha Fin: " + peri.getFin();
-            }
-        } else if (peri.getFin() == null) {
-            completa = "Periodo:" + peri.getPeriodo() + "       Fecha Inicio:  " + peri.getInicio() + "       Fecha Fin:  " + "  Sin Asignar";
-        } else {
-            completa = "Periodo:" + peri.getPeriodo() + "       Fecha Inicio:  " + peri.getInicio() + "        Fecha Fin:  " + peri.getFin();
-        }
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        
+        inicioString = df.format(peri.getInicio().getTime());
+        finString = df.format(peri.getFin().getTime());
 
         return SUCCESS;
     }
 
-    public String modificarPeriodo() {
+    public String modificarPeriodo() throws ParseException {
+        
         System.out.println("ENTE A MODIFICAr");
-        Timestamp timestamp = new Timestamp(inicio.getTime());
-        Timestamp timestamp2 = new Timestamp(fin.getTime());
+        
+        
+        DateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+
+        java.sql.Date sqlInicio = new java.sql.Date(new Date().getTime());
+        java.sql.Date sqlFin = new java.sql.Date(new Date().getTime());
+            
+        if (!inicio.isEmpty()) {
+            Date start = formater.parse(inicio);
+            sqlInicio = new java.sql.Date(start.getTime());
+        }
+        
+        if (!fin.isEmpty()) {
+            Date start = formater.parse(fin);
+            sqlFin = new java.sql.Date(start.getTime());
+        }
+
+        
         String completoPeriodo = "";
         if (Integer.parseInt(periodo) == 1) {
             completoPeriodo = "Enero - Abril ";
@@ -109,8 +170,10 @@ public class PeriodosAction extends ActionSupport implements ServletRequestAware
         } else {
             completoPeriodo = "Septiembre - Diciembre";
         }
+        
+        
 
-        boolean actualizado = DaoPeriodo.updatePeriodo(id, completoPeriodo, timestamp, timestamp2);
+        boolean actualizado = DaoPeriodo.updatePeriodo(id, completoPeriodo, sqlInicio, sqlFin);
         if (actualizado) {
             return SUCCESS;
         } else {
@@ -143,24 +206,23 @@ public class PeriodosAction extends ActionSupport implements ServletRequestAware
         this.periodo = periodo;
     }
 
-    public Date getInicio() {
+    public String getInicio() {
         return inicio;
     }
 
-    public void setInicio(String inicio) throws ParseException {
-        Date date = formatoDeFecha.parse(inicio);
-        this.inicio = date;
+    public void setInicio(String inicio) {
+        this.inicio = inicio;
     }
 
-    public Date getFin() {
+    public String getFin() {
         return fin;
     }
 
-    public void setFin(String fin) throws ParseException {
-        Date date = formatoDeFecha.parse(fin);
-        this.fin = date;
-
+    public void setFin(String fin) {
+        this.fin = fin;
     }
+
+
 
     public Disponibilidad getDisponibilidad() {
         return disponibilidad;

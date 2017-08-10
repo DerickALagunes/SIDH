@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import mx.edu.utez.sidh.bean.Periodo;
 import static mx.edu.utez.sidh.utils.Conexion.getConexion;
@@ -52,25 +51,19 @@ public class DaoPeriodo {
     
     public static ArrayList<Periodo> getPeriodosActivos() {
         ArrayList<Periodo> lista = new ArrayList();
-        System.out.println("ENTRE");
+        
         try {
             Connection con = getConexion();
             PreparedStatement ps = con.prepareStatement("Select * from periodos WHERE estado=1");
             ResultSet res = ps.executeQuery();
             while (res.next()) {
-                        System.out.println("ENTRE 2");
-
                 Periodo periodo = new Periodo();
                 periodo.setId(res.getInt(1));
                 periodo.setPeriodo(res.getString(2));
                 periodo.setInicio(res.getDate(3));
                 periodo.setFin(res.getDate(4));
-                lista.add(periodo);
-                // obj.setDepartamento(DepartamentoDao.consultarDepartamento(res.getInt(9)));           
+                lista.add(periodo);         
             }
-            
-                    System.out.println("ENTRE3");
-
             res.close();
             ps.close();
             con.close();
@@ -109,16 +102,38 @@ public class DaoPeriodo {
         return periodo;
 
     }
+   
+        public static Boolean check() {
+        boolean esUltimo = false;
+        try {
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement("Select COUNT(id) from periodos WHERE estado=1");
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                if (res.getInt(1)==1) {
+                    esUltimo=true;     
+                }  
+            }
+            res.close();
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.err.println("DaoPeriodo.getPeriodo \n" + e.getMessage());
+        }
+        return esUltimo;
+    }
 
     /**
      * Método create, recibe un objeto Periodo y lo registra en la Base de Datos
      *
      * @param periodo
+     * @param inicio
+     * @param fin
      * @return boolean
      * @author Nancy
      * @author x
      */
-     public static boolean createPeriodo(String periodo, Timestamp inicio ,  Timestamp fin) {
+     public static boolean createPeriodo(String periodo, Date inicio ,  Date fin) {
         boolean registrado = false;
         try {
             Connection con = getConexion();
@@ -126,8 +141,8 @@ public class DaoPeriodo {
                     + "VALUES(?,?,?)");
 
             ps.setString(1, periodo);
-            ps.setTimestamp(2, inicio);
-            ps.setTimestamp(3,  fin);
+            ps.setDate(2, inicio);
+            ps.setDate(3,  fin);
             ps.execute();
             registrado = true;
             ps.close();
@@ -142,22 +157,25 @@ public class DaoPeriodo {
      * Método update, recibe un objeto Periodo y lo actualiza en la Base de
      * Datos
      *
+     * @param id
      * @param periodo
+     * @param inicio
+     * @param fin
      * @return boolean
      * @author Nancy
      * @author x
      */
-     public static boolean updatePeriodo( int id, String periodo, Timestamp inicio ,  Timestamp fin) {
+     public static boolean updatePeriodo( int id, String periodo, Date inicio ,  Date fin) {
         boolean actualizado = false;
         try {
             Connection con = getConexion();
             PreparedStatement ps = con.prepareStatement("UPDATE periodos SET periodo=?, inicio=?, fin=? WHERE id=?");
             ps.setString(1, periodo);
-            ps.setTimestamp(2, inicio);
-            ps.setTimestamp(3,fin);
+            ps.setDate(2, inicio);
+            ps.setDate(3,fin);
             ps.setInt(4, id);
-            ps.execute();
-            actualizado = true;
+            
+            actualizado = ps.executeUpdate() != 0;
             ps.close();
             con.close();
         } catch (SQLException e) {

@@ -90,7 +90,7 @@
                                             <i class="fa fa-calendar"></i>
                                         </li>
                                         <li>
-                                            <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Historial</a>
+                                            <a  href="<s:url value='/docente/consultarHistorial.action'/>">Historial</a>
                                             <i class="fa fa-history"></i>
                                         </li>
 

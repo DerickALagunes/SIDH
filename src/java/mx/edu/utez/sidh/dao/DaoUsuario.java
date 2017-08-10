@@ -98,7 +98,7 @@ public class DaoUsuario {
                     + "JOIN disponibilidad as d on ud.id_disponibilidad = d.id "
                     + "JOIN disponibilidad_tiene_periodos as dp on dp.id_disponibilidad=d.id "
                     + "JOIN periodos as p on p.id = dp.id_periodo "
-                    + "where u.id=? AND p.id IN(Select MAX(id) from periodos)");
+                    + "where u.id=? AND p.id IN(Select MAX(id) from periodos where id=1)");
             ps.setInt(1, u.getId());
             ResultSet rs = ps.executeQuery();
 

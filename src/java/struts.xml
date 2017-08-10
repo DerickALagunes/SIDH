@@ -51,6 +51,8 @@
         
         <action name="eliminarUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="eliminarUsuario">
             <result name="success" type="redirect">consultarUsuarios?borrarDocente=true</result>
+            <result name="super" type="redirect">consultarUsuarios?borrarDocente=user</result>
+            <result name="error" type="redirect">consultarUsuarios?borrarDocente=error</result>
         </action>   
         
         <action name="asignarAdmin" class="mx.edu.utez.sidh.action.UsuarioAction" method="asignarAdmin">
@@ -65,7 +67,12 @@
         </action>   
         
         
-        <!--Cosas de axel-->
+        <!--Cosas de axel-->      
+        <action name="consultarHistorial" class="mx.edu.utez.sidh.action.UsuarioAction" method="generarHistorial">
+            <result name="success">/views/docente/historial.jsp</result>
+            <result name="error">/views/docente/historial.jsp?error=true</result>
+        </action>
+        
         <action name="xml" class="mx.edu.utez.sidh.action.DocumentoXml" method="generarDocumento">
             <result name="success">/views/superadmin/ImportXML.jsp</result>
         </action> 
@@ -119,7 +126,8 @@
         </action>
         
         <action name="registroperiodos" class="mx.edu.utez.sidh.action.PeriodosAction" method="registroperiodos">
-            <result name="success">/views/superadmin/AltaPeriodos.jsp</result>
+            <result name="success" type="redirect">consultarPeriodos?registro=true</result>
+            <result name="error" type="redirect">consultarPeriodos?registro=error</result>
         </action>
         
         <action name="consultarPeriodos" class="mx.edu.utez.sidh.action.PeriodosAction" method="obtenerPeriodos">
@@ -127,8 +135,9 @@
         </action>  
         
         <action name="eliminarPeriodo" class="mx.edu.utez.sidh.action.PeriodosAction" method="eliminarPeriodo">
-            <result name="success" type="redirect">consultarPeriodos</result>
-            <result name="error">/views/superadmin/InicioSuperAdmin.jsp</result>
+            <result name="success" type="redirect">consultarPeriodos?eliminar=true</result>
+            <result name="ultimo" type="redirect">consultarPeriodos?eliminar=ultimo</result>
+            <result name="error" type="redirect">consultarPeriodos?eliminar=false</result>
         </action>   
         
         <action name="prepararPeriodo" class="mx.edu.utez.sidh.action.PeriodosAction" method="prepararPeriodo">
@@ -137,8 +146,8 @@
         </action>   
 
         <action name="modificarPeriodo" class="mx.edu.utez.sidh.action.PeriodosAction" method="modificarPeriodo">
-            <result name="success">/views/superadmin/ModificarPeriodos.jsp</result>
-            <result name="error">/views/superadmin/InicioSuperAdmin.jsp</result>
+            <result name="success" type="redirect">consultarPeriodos?modificar=true</result>
+            <result name="error" type="redirect">consultarPeriodos?modificar=false</result>
         </action>
        
     </package>

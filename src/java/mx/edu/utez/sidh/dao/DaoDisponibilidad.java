@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import mx.edu.utez.sidh.bean.Disponibilidad;
+import mx.edu.utez.sidh.bean.Periodo;
 import mx.edu.utez.sidh.bean.Usuario;
 import static mx.edu.utez.sidh.utils.Conexion.getConexion;
 
@@ -110,7 +114,7 @@ public class DaoDisponibilidad {
         boolean flag = false;
         try {
             Connection con = getConexion();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Disponibilidad where id IN (SELECT dp.id FROM disponibilidad_tiene_periodos AS dp JOIN usuario_tiene_disponibilidad AS ud ON ud.id_disponibilidad=dp.id_disponibilidad WHERE dp.id_periodo IN(SELECT MAX(id) FROM periodos) and ud.id_usuario = ?)");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Disponibilidad where id IN (SELECT dp.id FROM disponibilidad_tiene_periodos AS dp JOIN usuario_tiene_disponibilidad AS ud ON ud.id_disponibilidad=dp.id_disponibilidad WHERE dp.id_periodo IN(SELECT MAX(id) FROM periodos where id=1) and ud.id_usuario = ?)");
             ps.setInt(1, idUser);
 
             if (ps.executeUpdate() >= 1) {
@@ -136,7 +140,7 @@ public class DaoDisponibilidad {
         boolean flag = false;
         try {
             Connection con = getConexion();
-            PreparedStatement ps = con.prepareStatement("Select COUNT(id) FROM Disponibilidad where id IN (SELECT dp.id FROM disponibilidad_tiene_periodos AS dp JOIN usuario_tiene_disponibilidad AS ud ON ud.id_disponibilidad=dp.id_disponibilidad WHERE dp.id_periodo IN(SELECT MAX(id) FROM periodos) and ud.id_usuario = ?)");
+            PreparedStatement ps = con.prepareStatement("Select COUNT(id) FROM Disponibilidad where id IN (SELECT dp.id FROM disponibilidad_tiene_periodos AS dp JOIN usuario_tiene_disponibilidad AS ud ON ud.id_disponibilidad=dp.id_disponibilidad WHERE dp.id_periodo IN(SELECT MAX(id) FROM periodos where estado=1) and ud.id_usuario = ?)");
             ps.setInt(1, idUser);
             ResultSet rs = ps.executeQuery();
 
@@ -153,6 +157,46 @@ public class DaoDisponibilidad {
             System.err.println("" + e.getMessage());
         }
         return flag;
+    }
+    
+    public ArrayList<Periodo> getDispoDeUsuario(int idUser){
+        ArrayList<Periodo> lista = new ArrayList();
+        
+        try {
+            
+            Connection con = getConexion();
+            PreparedStatement ps = con.prepareStatement(""
+                    + "SELECT U.id,P.id,P.periodo,P.inicio,P.fin from disponibilidad "
+                    + "D JOIN disponibilidad_tiene_periodos DP ON DP.id_disponibilidad=D.id "
+                    + "JOIN periodos P ON P.id=DP.id_periodo JOIN usuario_tiene_disponibilidad "
+                    + "UD ON UD.id_disponibilidad=D.id JOIN usuario U ON U.id=UD.id_usuario "
+                    + "WHERE U.id=? GROUP BY P.id");
+            ps.setInt(1, idUser);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                Periodo periodo = new Periodo();
+                
+                periodo.setId(rs.getInt(2));
+                periodo.setPeriodo(rs.getString(3));
+                periodo.setInicio(rs.getDate(4));
+                periodo.setFin(rs.getDate(5));
+               
+                
+                lista.add(periodo);
+                
+            }
+
+            rs.close();
+            ps.close();
+            con.close();
+            
+        } catch (SQLException e) {
+            System.err.println("" + e.getMessage());
+        }
+        
+        
+        return lista; 
     }
 
 }
