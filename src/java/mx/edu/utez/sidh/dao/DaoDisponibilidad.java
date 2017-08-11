@@ -140,7 +140,7 @@ public class DaoDisponibilidad {
         boolean flag = false;
         try {
             Connection con = getConexion();
-            PreparedStatement ps = con.prepareStatement("Select COUNT(id) FROM Disponibilidad where id IN (SELECT dp.id FROM disponibilidad_tiene_periodos AS dp JOIN usuario_tiene_disponibilidad AS ud ON ud.id_disponibilidad=dp.id_disponibilidad WHERE dp.id_periodo IN(SELECT MAX(id) FROM periodos where estado=1) and ud.id_usuario = ?)");
+            PreparedStatement ps = con.prepareStatement("Select COUNT(id) FROM disponibilidad where id IN (SELECT dp.id FROM disponibilidad_tiene_periodos AS dp JOIN usuario_tiene_disponibilidad AS ud ON ud.id_disponibilidad=dp.id_disponibilidad WHERE dp.id_periodo IN(SELECT MAX(id) FROM periodos where estado=1) and ud.id_usuario = ?)");
             ps.setInt(1, idUser);
             ResultSet rs = ps.executeQuery();
 

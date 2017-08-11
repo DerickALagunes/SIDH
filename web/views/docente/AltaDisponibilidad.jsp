@@ -64,14 +64,17 @@
                                             <a href="#"><span>${sessionScope.userName}</span></a>
                                         </li>
                                     </ul>
-                                    <div class="box-cart">                                  
-                                        <div id="cart" class="cart">
-                                            <button type="button">
-                                                <span class="fa fa-user"></span>
-                                                <a class="cart-total3"  href="<s:url value='/logout.action'/>">-Salir</a>
-                                            </button>
+
+                                    <a href="<s:url value='/logout.action'/>">
+                                        <div class="box-cart">                                  
+                                            <div id="cart" class="cart">
+                                                <button type="button">
+                                                   <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
+
                                 </div>
                             </nav>
                         </div>
@@ -117,7 +120,7 @@
                                             <i class="fa fa-calendar"></i>
                                         </li>
                                         <li>
-                                            <a  href="<s:url value='/usuario/consultarUsuarios.action'/>">Historial</a>
+                                            <a  href="<s:url value='/usuario/consultarHistorial.action'/>">Historial</a>
                                             <i class="fa fa-history"></i>
                                         </li>
 

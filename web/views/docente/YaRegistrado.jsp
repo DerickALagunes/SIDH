@@ -20,7 +20,7 @@
 
 
     </head>
-        <body class="common-home">
+    <body class="common-home">
         <!-- swipe menu -->
         <jsp:include page="/layaout/validaSesionDocente.jsp"/>
 
@@ -57,14 +57,15 @@
                                             <a href="#"><span>${sessionScope.userName}</span></a>
                                         </li>
                                     </ul>
-                                    <div class="box-cart">                                  
-                                        <div id="cart" class="cart">
-                                            <button type="button">
-                                                <span class="fa fa-user"></span>
-                                                <a class="cart-total3"  href="<s:url value='/logout.action'/>">-Salir</a>
-                                            </button>
+                                    <a href="<s:url value='/logout.action'/>">
+                                        <div class="box-cart">                                  
+                                            <div id="cart" class="cart">
+                                                <button type="button">
+                                                   <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </nav>
                         </div>
@@ -115,27 +116,27 @@
     </div>
 </div>
 <script>
-     if ('<%= request.getParameter("error")%>' == 'true') {
-         swal({
-             title: "Disponibilidad ya registrada",
-             text: "Si necesita cambiarla, favor de contactar al encargado de los horarios escolares de DATIC",
-             type: "error",
-             confirmButtonColor: "#c92626",
-             confirmButtonText: "Aceptar",
-             closeOnConfirm: false,
-             html: true
-         });
-     }
-     if ('<%= request.getParameter("error")%>' == 'false') {
-         swal({
-             title: "Disponibilidad registrada",
-             text: "Gracias por registrar tu disponibilidad",
-             type: "success",
-             confirmButtonText: "Aceptar",
-             closeOnConfirm: false,
-             html: true
-         });
-     }
+    if ('<%= request.getParameter("error")%>' == 'true') {
+        swal({
+            title: "Disponibilidad ya registrada",
+            text: "Si necesita cambiarla, favor de contactar al encargado de los horarios escolares de DATIC",
+            type: "error",
+            confirmButtonColor: "#c92626",
+            confirmButtonText: "Aceptar",
+            closeOnConfirm: false,
+            html: true
+        });
+    }
+    if ('<%= request.getParameter("error")%>' == 'false') {
+        swal({
+            title: "Disponibilidad registrada",
+            text: "Gracias por registrar tu disponibilidad",
+            type: "success",
+            confirmButtonText: "Aceptar",
+            closeOnConfirm: false,
+            html: true
+        });
+    }
 </script>
 </body>
 </html>
