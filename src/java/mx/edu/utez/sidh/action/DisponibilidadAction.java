@@ -144,7 +144,9 @@ public class DisponibilidadAction extends ActionSupport implements ServletReques
                     break;
             }
 
-            dao.createDisponibilidad(disp, usr);
+            if (!dao.createDisponibilidad(disp, usr)){
+                return ERROR;
+            }
         }
 
         return SUCCESS;

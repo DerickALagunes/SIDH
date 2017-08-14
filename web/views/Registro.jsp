@@ -29,7 +29,7 @@
                 width: 100%;
                 min-height: 100vh;
                 position: relative;
-                background-image: url("${pageContext.request.contextPath}/images/fondo.jpg");
+                background-image: url("${pageContext.request.contextPath}/images/fondoEfectivo3.png");
                 background-position: center center, center center;
                 background-size: auto, cover;
                 background-repeat: repeat, no-repeat;
@@ -50,9 +50,9 @@
             }
 
             .bg-50-blanco {
-                border: none;
-                border-bottom: 2px solid white;
-                background-color: rgba(0,0,0,.3);
+                border: black;
+                border-bottom: 2px solid #03325e;
+                background-color: white;
             }
 
             .bg-50-blanco:focus {
@@ -76,32 +76,103 @@
                             <small class="texto-blanco">Registro</small>
                         </h1>
 
-                            <form action="RegistrarUsuario" method="post" >
-                                <div class="form-group form-group-lg">
-                                    <div class="col-lg-6">
-                                        <label class="pull-left">Nombre</label>
-                                        <input type="text"     class="form-control bg-50-blanco" style="color: white;" placeholder="Nombre" required name="nombre" id="nombre"/>
-                                        <label class="pull-left">Email</label>
-                                        <input type="email"    class="form-control bg-50-blanco" style="color: white;" placeholder="Correo electrónico" required name="correo" id="correo"/>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <label class="pull-left">Apellidos</label>
-                                        <input type="text"     class="form-control bg-50-blanco" style="color: white;" placeholder="Apellidos" required name="paterno" id="paterno"/>                                        
-                                        <label class="pull-left">Contraseña</label>
-                                        <input type="password" class="form-control bg-50-blanco" style="color: white;" placeholder="Contraseña" required name="pass" id="password" />
-                                    </div>       
+                        <form action="RegistrarUsuario" method="post" onsubmit="return check()">
+                            <div class="form-group form-group-lg">
+                                <div class="col-lg-6">
+                                    <label class="pull-left">Nombre</label>
+                                    <input type="text"     class="form-control bg-50-blanco" style="color: #03325e;" placeholder="Nombre" required name="nombre" id="nombre"/>
+                                    <label class="pull-left">Email</label>
+                                    <input type="email"    class="form-control bg-50-blanco" style="color: #03325e;" placeholder="Correo electrónico" required name="correo" id="correo"/>
+                                    <label class="pull-left">Contraseña</label>
+                                    <input type="password" class="form-control bg-50-blanco" style="color: #03325e;" placeholder="Contraseña" required name="pass" id="password" />                                        
                                 </div>
-                                
-                                <input style="margin-top: 25px" type="submit" class="btn-primary btn-lg" value="Registrar" />
-                                
-                            </form>
+                                <div class="col-lg-6">
+                                    <label class="pull-left">Apellidos</label>
+                                    <input type="text"     class="form-control bg-50-blanco" style="color: #03325e;" placeholder="Apellidos" required name="paterno" id="paterno"/>                                        
+                                    <label class="pull-left">Teléfono</label>
+                                    <input type="text"    class="form-control bg-50-blanco" style="color: #03325e;" placeholder="Teléfono" required name="telefono" id="telefono"/>
+                                    <label class="pull-left">Confirma contraseña</label>
+                                    <input type="password" class="form-control bg-50-blanco" style="color: #03325e;" placeholder="Confirma contraseña" required name="pass2" id="password2" />
+                                </div>       
+                            </div>
+
+                            <input style="margin-top: 25px" type="submit" class="btn-primary btn-lg" value="Registrar"/>
+
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+                        
+                        <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script>
 
-    <script>
+            var nombre = /^[a-zA-Z ]+$/;
+            var telefono = /^[0-9 \-\+]+$/;
+
+            function check() {
+
+                if (!nombre.test($('#nombre').val())) {
+                    swal({
+                        title: "Introduce un nombre valido",
+                        text: "Solo letras",
+                        type: "error",
+                        confirmButtonColor: "#c92626",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false,
+                        html: true
+                    });
+                    return false;
+                }
+                if (!nombre.test($('#paterno').val())) {
+                    swal({
+                        title: "Introduce apellidos validos",
+                        text: "Solo letras",
+                        type: "error",
+                        confirmButtonColor: "#c92626",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false,
+                        html: true
+                    });return false;
+                }
+                if (!telefono.test($('#telefono').val())) {
+                    swal({
+                        title: "Introduce un telefono valido valido",
+                        text: "Solo números",
+                        type: "error",
+                        confirmButtonColor: "#c92626",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false,
+                        html: true
+                    });return false;
+                }
+
+                if ($('#password').val() != $('#password2').val()) {
+                    swal({
+                        title: "Las contraseñas no coinciden",
+                        text: "Intenta de nuevo",
+                        type: "error",
+                        confirmButtonColor: "#c92626",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false,
+                        html: true
+                    });return false;
+                }
+            }
+        </script>
+        <script>
             if ('<%= request.getParameter("error")%>' == 'true') {
+                swal({
+                    title: "Error",
+                    text: "No se pudo registrar el Docente",
+                    type: "error",
+                    confirmButtonColor: "#c92626",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+            if ('<%= request.getParameter("error")%>' == 'correo') {
                 swal({
                     title: "El Correo electrónico ya esta registrado",
                     text: "Ponte en contacto con el administrador para recuperar tu cuenta",
@@ -113,6 +184,6 @@
                 });
             }
         </script>
-                        
+
     </body>
 </html>

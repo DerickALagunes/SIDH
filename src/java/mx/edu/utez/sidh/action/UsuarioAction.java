@@ -28,6 +28,17 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     private Usuario usua;
     String dis;
     String notas;
+    String telefono;
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+    
+    
 
     public String getNotas() {
         return notas;
@@ -58,14 +69,6 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
         return SUCCESS;
     }
 
-//    public String createUsuario() throws SQLException {
-//        boolean insertado = DaoUsuario.createUsuario(usua);
-//        if (insertado) {
-//            return SUCCESS;
-//        } else {
-//            return ERROR;
-//        }
-//    }
     public String obtenerUsuarios() {
         listaUsuarios = DaoUsuario.getUsuarios();
         return SUCCESS;
@@ -190,6 +193,7 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
         nuevo.setApellidoMaterno("");
         nuevo.setEmail(correo);
         nuevo.setContrasena(pass);
+        nuevo.setTelefono(telefono);
         nuevo.setEstado(true);
         nuevo.setTipoUsuario(0);
 
@@ -226,12 +230,12 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
         DaoUsuario dao = new DaoUsuario();
         usuario = dao.getUsuarioConDisponibilidadActualById(getUsua());
         setUsua(usuario);
-
         String dias = "";
 
+        
         for (Disponibilidad dispo : usua.getDisponibilidad()) {
             
-            
+            System.out.println(dias);
             dias += dispo.getH7();            
             dias += dispo.getH8();
             dias += dispo.getH9();
@@ -264,6 +268,7 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
         nuevo.setApellidoMaterno(materno);
         nuevo.setEmail(correo);
         nuevo.setContrasena(pass);
+        nuevo.setTelefono(telefono);
 
         DaoUsuario dao = new DaoUsuario();
         if (dao.editarUsuario(nuevo)) {

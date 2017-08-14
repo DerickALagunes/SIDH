@@ -11,6 +11,7 @@ public class Usuario {
     private String apellidoMaterno;
     private String email;
     private String contrasena;
+    private String telefono;
     private boolean estado;    
     private int tipoUsuario;
     private Disponibilidad[] disponibilidad;
@@ -49,6 +50,16 @@ public class Usuario {
     public int getId() {
         return id;
     }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+    
+    
 
     public Disponibilidad[] getDisponibilidad() {
         return disponibilidad;

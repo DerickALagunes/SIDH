@@ -75,6 +75,7 @@ public class DaoUsuario {
                 obj.setContrasena(res.getString(6));
                 obj.setEstado(res.getBoolean(7));
                 obj.setTipoUsuario(res.getInt(8));
+                obj.setTelefono(res.getString(9));
             }
 
             res.close();
@@ -98,7 +99,7 @@ public class DaoUsuario {
                     + "JOIN disponibilidad as d on ud.id_disponibilidad = d.id "
                     + "JOIN disponibilidad_tiene_periodos as dp on dp.id_disponibilidad=d.id "
                     + "JOIN periodos as p on p.id = dp.id_periodo "
-                    + "where u.id=? AND p.id IN(Select MAX(id) from periodos where id=1)");
+                    + "where u.id=? AND p.id IN(Select MAX(id) from periodos where estado=1)");
             ps.setInt(1, u.getId());
             ResultSet rs = ps.executeQuery();
 
@@ -157,7 +158,7 @@ public class DaoUsuario {
         DaoDisponibilidad dao = new DaoDisponibilidad();
         try {
             Connection con = getConexion();
-            PreparedStatement ps = con.prepareStatement(" SELECT  id,nombre, apellido1, apellido2, email, contrasena, tipoUsuario "
+            PreparedStatement ps = con.prepareStatement(" SELECT  id,nombre, apellido1, apellido2, email, contrasena, tipoUsuario,telefono "
                     + "FROM usuario where estado=1");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -170,6 +171,7 @@ public class DaoUsuario {
                 usuario.setContrasena(rs.getString(6));
                 usuario.setEstado(dao.UsuarioTieneDisponibilidad(rs.getInt(1)));
                 usuario.setTipoUsuario(rs.getInt(7));
+                usuario.setTelefono(rs.getString(8));
                 lista.add(usuario);
             }
             rs.close();
@@ -306,8 +308,8 @@ public class DaoUsuario {
 
         try {
             Connection con = getConexion();
-            PreparedStatement ps = con.prepareStatement("INSERT INTO usuario(nombre,apellido1,apellido2,email,contrasena,estado,tipoUsuario)"
-                    + "VALUES (?,?,?,?,?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO usuario(nombre,apellido1,apellido2,email,contrasena,estado,tipoUsuario,telefono)"
+                    + "VALUES (?,?,?,?,?,?,?,?)");
             ps.setString(1, usuario.getNombre());
             ps.setString(2, usuario.getApellidoPaterno());
             ps.setString(3, usuario.getApellidoMaterno());
@@ -315,6 +317,7 @@ public class DaoUsuario {
             ps.setString(5, usuario.getContrasena());
             ps.setBoolean(6, usuario.isEstado());
             ps.setInt(7, usuario.getTipoUsuario());
+            ps.setString(8, usuario.getTelefono());
 
             registrado = (ps.executeUpdate() > 0);
 
@@ -344,13 +347,14 @@ public class DaoUsuario {
         try {
             Connection con = getConexion();
             PreparedStatement ps = con.prepareStatement("UPDATE usuario"
-                    + "  set nombre=?, apellido1=?, apellido2=?, email=?, contrasena=? where id=?");
+                    + "  set nombre=?, apellido1=?, apellido2=?, email=?, contrasena=?, telefono=? where id=?");
             ps.setString(1, usuario.getNombre());
             ps.setString(2, usuario.getApellidoPaterno());
             ps.setString(3, usuario.getApellidoMaterno());
             ps.setString(4, usuario.getEmail());
             ps.setString(5, usuario.getContrasena());
-            ps.setInt(6, usuario.getId());
+            ps.setString(6, usuario.getTelefono());
+            ps.setInt(7, usuario.getId());
 
             editar = (ps.executeUpdate() > 0);
             ps.close();

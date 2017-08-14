@@ -64,7 +64,7 @@
             .show {display:block;}
         </style>
     </head>
-       <body class="common-home">
+    <body class="common-home">
         <jsp:include page="/layaout/validaSesion.jsp"/>
 
         <div id="page">
@@ -104,7 +104,7 @@
                                         <div class="box-cart">                                  
                                             <div id="cart" class="cart">
                                                 <button type="button">
-                                                   <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
+                                                    <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
                                                 </button>
                                             </div>
                                         </div>
@@ -166,7 +166,7 @@
                                 <h3 class="box-title">Modificar Periodo</h3>
                             </div>
 
-                            <form action="modificarPeriodo" method="post" id="registrarPeriodo">
+                            <form action="modificarPeriodo" method="post" id="registrarPeriodo" onsubmit="return check()">
                                 <legend>Datos del Periodo</legend>
 
                                 <div class="col-sm-12">
@@ -184,7 +184,7 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <div class="form-group" id="dataYear">
+                                    <div class="form-group" id="inicio">
                                         <label for="inicio" class="required">Fecha de Inicio</label>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -194,7 +194,7 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <div class="form-group" id="dataYear">
+                                    <div class="form-group" id="fin">
                                         <label for="fin" class="required">Fecha de Fin</label>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -203,7 +203,7 @@
                                     </div>
                                 </div>
 
-                                        <input hidden="" type="text" name="id" value="<s:property value="peri.id"/>" />
+                                <input hidden="" type="text" name="id" value="<s:property value="peri.id"/>" />
                                 <center>
                                     <button type="submit" class="btn btn-lg btn-success">Registrar</button>
                                     <br/>
@@ -211,50 +211,99 @@
                                 </center>
 
                             </form>
+                        </div>
+
+
+
                     </div>
-
-
-
                 </div>
             </div>
-        </div>
-                                        <script>
-            function go() {
-                $('#registrarPeriodo').submit();
-            }
+            <script>
 
-            $(document).ready(function () {
+                function check() {
 
-                $.fn.datepicker.dates['es'] = {
-                    days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-                    daysShort: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sáb"],
-                    daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"],
-                    months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-                    monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
-                    today: "Hoy",
-                    clear: "Limpiar",
-                    format: "dd/mm/yyyy",
-                    titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
-                    weekStart: 1
-                };
-                $('#dataYear .input-group.date').datepicker({
-                    format: " dd/mm/yyyy",
-                    ignoreReadonly: true,
-                    todayBtn: "linked",
-                    keyboardNavigation: false,
-                    forceParse: false,
-                    calendarWeeks: false,
-                    autoclose: true,
-                    language: 'es'
-                }).on(
-                        'show', function () {
-                            var zIndexModal = $('#modal-add-certification').css('z-index');
-                            $('.datepicker').css('z-index', zIndexModal + 1);
+                    var fecha = /^[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]$/;
+
+                    if (!fecha.test($('#inicio').val())) {
+                        swal({
+                            title: "Introduce una fecha de inicio valida",
+                            text: "Formato: xx/xx/xxxx",
+                            type: "error",
+                            confirmButtonColor: "#c92626",
+                            confirmButtonText: "Aceptar",
+                            closeOnConfirm: false,
+                            html: true
                         });
-                $('#dataYear .input-group.date').keydown(false);
-            });
+                        return false;
+                    }
 
-        </script>
+                    if (!fecha.test($('#fin').val())) {
+                        swal({
+                            title: "Introduce una fecha de fin valida",
+                            text: "Formato: xx/xx/xxxx",
+                            type: "error",
+                            confirmButtonColor: "#c92626",
+                            confirmButtonText: "Aceptar",
+                            closeOnConfirm: false,
+                            html: true
+                        });
+                        return false;
+                    }
+                }
+
+                function go() {
+                    $('#registrarPeriodo').submit();
+                }
+
+                $(document).ready(function () {
+
+                    $.fn.datepicker.dates['es'] = {
+                        days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+                        daysShort: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sáb"],
+                        daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sá"],
+                        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                        monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                        today: "Hoy",
+                        clear: "Limpiar",
+                        format: "dd/mm/yyyy",
+                        titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
+                        weekStart: 1
+                    };
+
+                    $('#inicio .input-group.date').datepicker({
+                        format: " dd/mm/yyyy",
+                        ignoreReadonly: true,
+                        todayBtn: "linked",
+                        keyboardNavigation: false,
+                        forceParse: false,
+                        calendarWeeks: false,
+                        autoclose: true,
+                        language: 'es'
+                    }).on('changeDate', function (selected) {
+                        var minDate = new Date(selected.date.valueOf());
+                        $('#fin .input-group.date').datepicker('setStartDate', minDate);
+                    });
+
+
+                    $('#fin .input-group.date').datepicker({
+                        format: " dd/mm/yyyy",
+                        ignoreReadonly: true,
+                        todayBtn: "linked",
+                        keyboardNavigation: false,
+                        forceParse: false,
+                        calendarWeeks: false,
+                        autoclose: true,
+                        language: 'es'
+                    }).on('changeDate', function (selected) {
+                        var minDate = new Date(selected.date.valueOf());
+                        $('#inicio .input-group.date').datepicker('setEndDate', minDate);
+                    });
+
+
+
+                });
+
+            </script>
     </body>
 </html>
 

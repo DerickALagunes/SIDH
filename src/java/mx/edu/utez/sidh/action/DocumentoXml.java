@@ -31,13 +31,14 @@ public class DocumentoXml {
      *
      * @throws Exception
      */
-    public static String generarDocumento() throws Exception {
+    public String generarDocumento() throws Exception {
 
+        
         DaoUsuario dao = new DaoUsuario();
-        ServletContext context = ServletActionContext.getServletContext();
-        String path = context.getRealPath("../../web/exports/");
+        String path = this.getClass().getResource("/../../exports").getPath();
         
         ArrayList<Usuario> docentes = dao.getUsuariosDisponibilidades();
+        
         
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -289,13 +290,17 @@ public class DocumentoXml {
             id++;
         }
         ////////////////////////////////////////////////////////////////////////
+        
+
 
         //crear el archivvo fisico
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(document);
 
-        StreamResult streamResult = new StreamResult(new File(path+"/disp.xml"));
+
+        StreamResult streamResult = new StreamResult(new File(path+"disp.xml"));
+
 
         transformer.transform(source, streamResult);
         return "success";

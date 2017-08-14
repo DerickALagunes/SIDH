@@ -94,7 +94,7 @@
                                         <div class="box-cart">                                  
                                             <div id="cart" class="cart">
                                                 <button type="button">
-                                                   <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
+                                                    <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
                                                 </button>
                                             </div>
                                         </div>
@@ -149,7 +149,7 @@
                     <div id="content" class="col-sm-9">
                         <h1>Gestión de Docente</h1>      
 
-                        <form action="actualizarUsuario" method="post">
+                        <form action="actualizarUsuario" method="post" onsubmit="return check()">
 
                             <legend>Datos Personales</legend>
 
@@ -184,6 +184,13 @@
                             </div>
 
                             <div class="form-group required col-sm-12">
+                                <label class="col-sm-2 control-label" for="ingresa-tel">Teléfono</label>
+                                <div class="col-sm-10">
+                                    <input type="text"    placeholder="Teléfono" required name="telefono" id="telefono" value="<s:property value="usua.telefono"/>"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group required col-sm-12">
                                 <label class="col-sm-2 control-label" for="ingresa-contraseña">Contraseña</label>
                                 <div class="col-sm-10">
                                     <input type="password"  placeholder="contraseña" required name="pass" id="pass" value="<s:property value="usua.contrasena"/>"/>
@@ -204,6 +211,67 @@
 
             </div>
         </div>
+
+
+
+        <script src="${pageContext.request.contextPath}/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script>
+
+            var nombre = /^[a-zA-Z ]+$/;
+            var telefono = /^[0-9 \-\+]+$/;
+
+            function check() {
+
+                if (!nombre.test($('#nombre').val())) {
+                    swal({
+                        title: "Introduce un nombre valido",
+                        text: "Solo letras",
+                        type: "error",
+                        confirmButtonColor: "#c92626",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false,
+                        html: true
+                    });
+                    return false;
+                }
+                if (!nombre.test($('#paterno').val())) {
+                    swal({
+                        title: "Introduce un apellido paterno valido",
+                        text: "Solo letras",
+                        type: "error",
+                        confirmButtonColor: "#c92626",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false,
+                        html: true
+                    });
+                    return false;
+                }
+                if (!nombre.test($('#materno').val())) {
+                    swal({
+                        title: "Introduce un apellido materno valido",
+                        text: "Solo letras",
+                        type: "error",
+                        confirmButtonColor: "#c92626",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false,
+                        html: true
+                    });
+                    return false;
+                }
+                if (!telefono.test($('#telefono').val())) {
+                    swal({
+                        title: "Introduce un telefono valido valido",
+                        text: "Solo números",
+                        type: "error",
+                        confirmButtonColor: "#c92626",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false,
+                        html: true
+                    });
+                    return false;
+                }
+
+        </script>                            
     </body>
 </html>
 

@@ -104,7 +104,7 @@
                                         <div class="box-cart">                                  
                                             <div id="cart" class="cart">
                                                 <button type="button">
-                                                   <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
+                                                    <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
                                                 </button>
                                             </div>
                                         </div>
@@ -165,14 +165,14 @@
                                 <h3 class="box-title">Registrar nuevo Periodo</h3>
                             </div>
 
-                            <form action="registroperiodos" method="post" id="registrarPeriodo">
+                            <form action="registroperiodos" method="post" id="registrarPeriodo" onsubmit="return check()">
                                 <legend>Datos del Periodo</legend>
 
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="periodo" class="required">Periodo</label>
                                         <div class="input-group">
-                                            <select name="periodo" class="form-control" required style="width:405px;"> 
+                                            <select name="periodo" class="form-control" required style="width:405px;" id="selec"> 
                                                 <option value="">Seleccione...</option>
                                                 <option value="1">Enero- Abril</option>
                                                 <option value="2">Mayo- Agosto</option>
@@ -183,7 +183,7 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <div class="form-group" id="dataYear">
+                                    <div class="form-group inicio" id="inicio">
                                         <label for="inicio" class="required">Fecha de Inicio</label>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -193,7 +193,7 @@
                                 </div>
 
                                 <div class="col-sm-6">
-                                    <div class="form-group" id="dataYear">
+                                    <div class="form-group fin" id="fin">
                                         <label for="fin" class="required">Fecha de Fin</label>
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
@@ -220,41 +220,41 @@
                                 <h3 class="box-title">Lista de Periodos</h3>
                             </div>
                             <div>
-                            <s:if test="listaPeriodos.size() >0"> 
-                                <center>
-                                <table id="example" class="display" style="text-align: center">
-                                        <thead class="fondo-verde texto-blanco">
-                                            <tr>
-                                                <th style="width:100px;text-align: center">Nombre</th>
-                                                <th style="width:100px;text-align: center">Fecha Inicio</th>
-                                                <th style="width:100px;text-align: center">Fecha Fin</th>
-                                                <th style="width:100px;text-align: center">Modificar</th>
-                                                <th style="width:100px;text-align: center">Eliminar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <s:iterator value="listaPeriodos"> 
+                                <s:if test="listaPeriodos.size() >0"> 
+                                    <center>
+                                        <table id="example" class="table table-bordered" style="text-align: center">
+                                            <thead class="fondo-verde texto-blanco">
                                                 <tr>
-                                                    <td><s:property value="periodo" ></s:property></td>
-                                                    <td><s:property value="inicio" ></s:property></td>
-                                                    <td><s:property value="fin" ></s:property></td>
-
-
-                                                    <s:url id="editar" action="prepararPeriodo">
-                                                        <s:param name="peri.id" value="id"/>                               
-                                                    </s:url>
-
-                                                    <s:url id="eliminar" action="eliminarPeriodo" >
-                                                        <s:param name="peri.id" value="id"/>
-                                                    </s:url>
-
-                                                    <td><s:a href="%{editar}"><center><i class="fa fa-pencil fa-lg" style="color:blue"></i></center></s:a></td>
-                                                    <td><s:a href="%{eliminar}"> <center><i class="fa fa-times fa-lg" style="color:red"></i> </center></s:a> </td>
+                                                    <th style="width:100px;text-align: center">Nombre</th>
+                                                    <th style="width:100px;text-align: center">Fecha Inicio</th>
+                                                    <th style="width:100px;text-align: center">Fecha Fin</th>
+                                                    <th style="width:100px;text-align: center">Modificar</th>
+                                                    <th style="width:100px;text-align: center">Eliminar</th>
                                                 </tr>
+                                            </thead>
+                                            <tbody>
+                                                <s:iterator value="listaPeriodos"> 
+                                                    <tr>
+                                                        <td><s:property value="periodo" ></s:property></td>
+                                                        <td><s:property value="inicio" ></s:property></td>
+                                                        <td><s:property value="fin" ></s:property></td>
 
-                                                </tbody>
-                                        </s:iterator>  
-                                    </table>        
+
+                                                        <s:url id="editar" action="prepararPeriodo">
+                                                            <s:param name="peri.id" value="id"/>                               
+                                                        </s:url>
+
+                                                        <s:url id="eliminar" action="eliminarPeriodo" >
+                                                            <s:param name="peri.id" value="id"/>
+                                                        </s:url>
+
+                                                        <td><s:a href="%{editar}"><center><i class="fa fa-pencil fa-lg" style="color:blue"></i></center></s:a></td>
+                                                <td><s:a href="%{eliminar}"> <center><i class="fa fa-times fa-lg" style="color:red"></i> </center></s:a> </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                            </s:iterator>  
+                                        </table>        
                                     </center>
                                 </s:if>
                                 <s:else>
@@ -267,7 +267,40 @@
                 </div>
             </div>
         </div>
+
         <script>
+
+            function check() {
+
+                var fecha = /^[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]$/;
+
+                if (!fecha.test($('#inicio').val()) && $('#inicio').val() != ''  ) {
+                    swal({
+                        title: "Introduce una fecha de inicio valida",
+                        text: "Formato: xx/xx/xxxx",
+                        type: "error",
+                        confirmButtonColor: "#c92626",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false,
+                        html: true
+                    });
+                    return false;
+                }
+
+                if (!fecha.test($('#fin').val()) && $('#fin').val() != '') {
+                    swal({
+                        title: "Introduce una fecha de fin valida",
+                        text: "Formato: xx/xx/xxxx",
+                        type: "error",
+                        confirmButtonColor: "#c92626",
+                        confirmButtonText: "Aceptar",
+                        closeOnConfirm: false,
+                        html: true
+                    });
+                    return false;
+                }
+            }
+
             function go() {
                 $('#registrarPeriodo').submit();
             }
@@ -286,7 +319,8 @@
                     titleFormat: "MM yyyy", /* Leverages same syntax as 'format' */
                     weekStart: 1
                 };
-                $('#dataYear .input-group.date').datepicker({
+
+                $('#inicio .input-group.date').datepicker({
                     format: " dd/mm/yyyy",
                     ignoreReadonly: true,
                     todayBtn: "linked",
@@ -295,13 +329,30 @@
                     calendarWeeks: false,
                     autoclose: true,
                     language: 'es'
-                }).on(
-                        'show', function () {
-                            var zIndexModal = $('#modal-add-certification').css('z-index');
-                            $('.datepicker').css('z-index', zIndexModal + 1);
-                        });
-                $('#dataYear .input-group.date').keydown(false);
+                }).on('changeDate', function (selected) {
+                    var minDate = new Date(selected.date.valueOf());
+                    $('#fin .input-group.date').datepicker('setStartDate', minDate);
+                });
+
+
+                $('#fin .input-group.date').datepicker({
+                    format: " dd/mm/yyyy",
+                    ignoreReadonly: true,
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    calendarWeeks: false,
+                    autoclose: true,
+                    language: 'es'
+                }).on('changeDate', function (selected) {
+                    var minDate = new Date(selected.date.valueOf());
+                    $('#inicio .input-group.date').datepicker('setEndDate', minDate);
+                });
+
+
+
             });
+
 
         </script>
         <script>

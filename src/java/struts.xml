@@ -94,7 +94,7 @@
             <interceptor-ref name="defaultStack" />
             <result name="success">/views/Login.jsp?error=false</result>
             <result name="error">/views/Registro.jsp?error=true</result>
-            <result name="login">/views/Registro.jsp?error=true</result>
+            <result name="login">/views/Registro.jsp?error=correo</result>
         </action> 
         
         <action name="printDispo" class="mx.edu.utez.sidh.action.UsuarioAction" method="printDispo">
@@ -108,6 +108,7 @@
         </action> 
         <action name="actualizarUsuario" class="mx.edu.utez.sidh.action.UsuarioAction" method="actualizarUsuario">
             <result name="success" type="redirect">consultarUsuarios?editarDocente=true</result>
+            <result name="error" type="redirect">consultarUsuarios?editarDocente=error</result>
         </action> 
         
                         <!--Action de Docente-->        
@@ -118,6 +119,7 @@
         
         <action name="registrarDisponibilidad" class="mx.edu.utez.sidh.action.DisponibilidadAction" method="registroDisponibilidad">
             <result name="success">/views/docente/YaRegistrado.jsp?error=false</result>
+            <result name="error">/views/docente/AltaDisponibilidad.jsp?error=true</result>
         </action>
         
         <!--Action de Periodos-->        

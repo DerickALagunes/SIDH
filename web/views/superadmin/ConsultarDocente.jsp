@@ -105,7 +105,7 @@
                                         <div class="box-cart">                                  
                                             <div id="cart" class="cart">
                                                 <button type="button">
-                                                   <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
+                                                    <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
                                                 </button>
                                             </div>
                                         </div>
@@ -163,12 +163,13 @@
                                 <h3 class="box-title">Lista de Docentes</h3>
                             </div>
                             <s:if test="listaUsuarios.size() >0"> 
-                                <table id="example" class="display">
+                                <table id="example" class="table table-bordered">
                                     <thead class="fondo-verde texto-blanco">
                                         <tr>
                                             <th style="width:11%;text-align: center">Nombre</th>
                                             <th style="width:15%;text-align: center">Apellidos</th>
-                                            <th style="width:10%;text-align: center">Email</th>
+                                            <th style="width:10%;text-align: center">Teléfono</th>
+                                            <th style="width:10%;text-align: center">Email</th>                                            
                                             <th style="width:10%;text-align: center">Modificar Docente</th>
                                             <th style="width:10%;text-align: center">Eliminar Docente</th>                                            
                                             <th style="width:10%;text-align: center">Cambiar Permiso</th>                                            
@@ -182,6 +183,7 @@
                                             <tr>
                                                 <td><s:property value="nombre" ></s:property></td>
                                                 <td><s:property value="apellidoPaterno" ></s:property> <s:property value="apellidoMaterno" ></s:property></td>
+                                                <td><s:property value="telefono" /></td>
                                                 <td><s:property value="email" ></s:property></td>
 
                                                 <s:url id="disponibilidad" action="borrarDisp">
@@ -216,7 +218,7 @@
                                                     </s:a>
                                                 </td>
                                                 <td style="text-align: center">
-                                                    <s:a href="%{eliminar}">
+                                                    <s:a href="%{eliminar}" onclick = "return confirm('Esta seguro que desea eliminar?');">
                                                         <div>
                                                             <i class="fa fa-times fa-lg" style="color:red"></i>
                                                         </div>
@@ -234,7 +236,7 @@
                                                         </s:a>
                                                     </s:if>
                                                     <s:else>
-                                                        <s:a href="%{asignar}">
+                                                        <s:a href="%{asignar}" onclick = "return confirm('Esta seguro que desea hacer administrador?');">
                                                             <div>
                                                                 <i class="fa fa-user fa-lg" style="color:grey"></i>
                                                             </div>
@@ -257,7 +259,7 @@
 
                                                 <td style="text-align: center"> 
                                                     <s:if test="estado == true">
-                                                        <s:a href="%{disponibilidad}">
+                                                        <s:a href="%{disponibilidad}" onclick = "return confirm('Esta seguro que desea eliminar?');">
                                                             <div>
                                                                 <i class="fa fa-times fa-lg" style="color:red"></i>
                                                             </div>
@@ -329,9 +331,19 @@
             if ('<%= request.getParameter("editarDocente")%>' == 'error') {
                 swal({
                     title: "Error",
-                    text: "No se puede borrar el usuario",
+                    text: "No se puede editar el usuario",
                     type: "error",
                     confirmButtonColor: "#c92626",
+                    confirmButtonText: "Aceptar",
+                    closeOnConfirm: false,
+                    html: true
+                });
+            }
+            if ('<%= request.getParameter("editarDocente")%>' == 'true') {
+                swal({
+                    title: "",
+                    text: "Se ha cambiado la información del usuario",
+                    type: "success",
                     confirmButtonText: "Aceptar",
                     closeOnConfirm: false,
                     html: true
@@ -369,6 +381,12 @@
                     html: true
                 });
             }
+
+
+
+
+
+
         </script>
 
     </body>

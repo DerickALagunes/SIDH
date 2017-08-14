@@ -171,7 +171,6 @@ public class PeriodosAction extends ActionSupport implements ServletRequestAware
             completoPeriodo = "Septiembre - Diciembre";
         }
         
-        
 
         boolean actualizado = DaoPeriodo.updatePeriodo(id, completoPeriodo, sqlInicio, sqlFin);
         if (actualizado) {

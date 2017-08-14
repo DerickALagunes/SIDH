@@ -28,7 +28,7 @@
                 width: 100%;
                 min-height: 100vh;
                 position: relative;
-                background-image: url("${pageContext.request.contextPath}/images/fondo.jpg");
+                background-image: url("${pageContext.request.contextPath}/images/fondoEfectivo3.png");
                 background-position: center center, center center;
                 background-size: auto, cover;
                 background-repeat: repeat, no-repeat;
@@ -49,9 +49,9 @@
             }
 
             .bg-50-blanco {
-                border: none;
-                border-bottom: 2px solid white;
-                background-color: rgba(0,0,0,.3);
+                border: black;
+                border-bottom: 2px solid #03325e;
+                background-color: white;
             }
 
             .bg-50-blanco:focus {
@@ -78,16 +78,15 @@
                         <form action="loginUsuario" method="post" >
                             <div class="form-group form-group-lg">
                                 <div class="col-lg-10 col-lg-offset-1">
-                                    <input type="email"    class="form-control bg-50-blanco" style="color: white;" placeholder="Correo"     required name="correo" id="correo"/>
-                                    <input type="password" class="form-control bg-50-blanco" style="color: white;" placeholder="Contraseña" required name="pass" id="password" />
+                                    <input type="email"    class="form-control bg-50-blanco" style="color: #03325e;" placeholder="Correo"     required name="correo" id="correo"/>
+                                    <input type="password" class="form-control bg-50-blanco" style="color: #03325e;" placeholder="Contraseña" required name="pass" id="password" />
                                 </div>
                             </div>
-                            <br/><br/>
-                            <input type="submit" class="btn-primary btn-lg" value="Iniciar Sesion" />
+                            
+                            <input style="margin-top: 17px;" type="submit" class="btn-primary btn-lg" value="Iniciar Sesion" />
                         </form>
 
-                        <br/>
-                        <br/>
+                        <br />                        
                         <a class="btn-primary btn-sm" href="/SIDH/views/Registro.jsp">Registrarse</a>
 
                     </div>
