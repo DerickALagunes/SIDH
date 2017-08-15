@@ -166,7 +166,7 @@
                                 <h3 class="box-title">Modificar Periodo</h3>
                             </div>
 
-                            <form action="modificarPeriodo" method="post" id="registrarPeriodo" onsubmit="return check()">
+                            <form action="modificarPeriodo" method="post" id="registrarPeriodo" >
                                 <legend>Datos del Periodo</legend>
 
                                 <div class="col-sm-12">
@@ -220,36 +220,36 @@
             </div>
             <script>
 
-                function check() {
-
-                    var fecha = /^[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]$/;
-
-                    if (!fecha.test($('#inicio').val())) {
-                        swal({
-                            title: "Introduce una fecha de inicio valida",
-                            text: "Formato: xx/xx/xxxx",
-                            type: "error",
-                            confirmButtonColor: "#c92626",
-                            confirmButtonText: "Aceptar",
-                            closeOnConfirm: false,
-                            html: true
-                        });
-                        return false;
-                    }
-
-                    if (!fecha.test($('#fin').val())) {
-                        swal({
-                            title: "Introduce una fecha de fin valida",
-                            text: "Formato: xx/xx/xxxx",
-                            type: "error",
-                            confirmButtonColor: "#c92626",
-                            confirmButtonText: "Aceptar",
-                            closeOnConfirm: false,
-                            html: true
-                        });
-                        return false;
-                    }
-                }
+//                function check() {
+//
+//                    var fecha = /^[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]$/;
+//
+//                    if (!fecha.test($('#inicio').val())) {
+//                        swal({
+//                            title: "Introduce una fecha de inicio valida",
+//                            text: "Formato: xx/xx/xxxx",
+//                            type: "error",
+//                            confirmButtonColor: "#c92626",
+//                            confirmButtonText: "Aceptar",
+//                            closeOnConfirm: false,
+//                            html: true
+//                        });
+//                        return false;
+//                    }
+//
+//                    if (!fecha.test($('#fin').val())) {
+//                        swal({
+//                            title: "Introduce una fecha de fin valida",
+//                            text: "Formato: xx/xx/xxxx",
+//                            type: "error",
+//                            confirmButtonColor: "#c92626",
+//                            confirmButtonText: "Aceptar",
+//                            closeOnConfirm: false,
+//                            html: true
+//                        });
+//                        return false;
+//                    }
+//                }
 
                 function go() {
                     $('#registrarPeriodo').submit();

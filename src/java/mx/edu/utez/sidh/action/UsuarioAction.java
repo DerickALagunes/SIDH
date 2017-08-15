@@ -117,6 +117,7 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     public String borraDisponibilidad() {
 
         DaoDisponibilidad dao = new DaoDisponibilidad();
+        System.out.println(usua.getId());
 
         if (dao.borrarDisponibilidadDe(usua.getId())) {
             return "success";
