@@ -72,7 +72,8 @@
                         <img class="img-responsive center-block" width="320" src="${pageContext.request.contextPath}/images/utez.png" alt="Logo" />
                         <h1 ata-caption-animate="fadeInUpSmall" class="fadeInUpSmall animated texto-blanco" style="margin-top: -0px;">
                             <strong>SIDH</strong><br />
-                            <small class="texto-blanco">Inicio de ses&#237;on</small>
+                            <small class="texto-blanco">Sistema de Disponibilidad de Horarios</small><br />
+                            <small class="texto-blanco">Inicio de sesión</small>
                         </h1>
 
                         <form action="loginUsuario" method="post" >
