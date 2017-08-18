@@ -37,8 +37,6 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
-    
 
     public String getNotas() {
         return notas;
@@ -75,15 +73,14 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     }
 
     public String eliminarUsuario() {
-        
+
         Map session = ActionContext.getContext().getSession();
         int id = (Integer) session.get("idUser");
-        
+
         if (id == usua.getId()) {
             return "super";
         }
-        
-        
+
         boolean eliminado = DaoUsuario.deleteUsuario(usua.getId());
         if (eliminado) {
             return SUCCESS;
@@ -227,37 +224,41 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
      * @author Derick
      */
     public String printDispo() {
-        Usuario usuario;
-        DaoUsuario dao = new DaoUsuario();
-        usuario = dao.getUsuarioConDisponibilidadActualById(getUsua());
-        setUsua(usuario);
-        String dias = "";
+        try {
+            Usuario usuario;
+            DaoUsuario dao = new DaoUsuario();
+            usuario = dao.getUsuarioConDisponibilidadActualById(getUsua());
+            setUsua(usuario);
+            String dias = "";
 
-        
-        for (Disponibilidad dispo : usua.getDisponibilidad()) {
-            
-            System.out.println(dias);
-            dias += dispo.getH7();            
-            dias += dispo.getH8();
-            dias += dispo.getH9();
-            dias += dispo.getH10();
-            dias += dispo.getH11();
-            dias += dispo.getH12();
-            dias += dispo.getH13();
-            dias += dispo.getH14();
-            dias += dispo.getH15();
-            dias += dispo.getH16();
-            dias += dispo.getH17();
-            dias += dispo.getH18();
-            dias += dispo.getH19();
-            dias += dispo.getH20();
-            dias += ",";
+            for (Disponibilidad dispo : usua.getDisponibilidad()) {
+
+                System.out.println(dias);
+                dias += dispo.getH7();
+                dias += dispo.getH8();
+                dias += dispo.getH9();
+                dias += dispo.getH10();
+                dias += dispo.getH11();
+                dias += dispo.getH12();
+                dias += dispo.getH13();
+                dias += dispo.getH14();
+                dias += dispo.getH15();
+                dias += dispo.getH16();
+                dias += dispo.getH17();
+                dias += dispo.getH18();
+                dias += dispo.getH19();
+                dias += dispo.getH20();
+                dias += ",";
+            }
+
+            dis = dias;
+            notas = usuario.getDisponibilidad()[0].getNotas();
+
+            return SUCCESS;
+        } catch (Exception e) {
+            System.out.println("error:  " + e);
+            return ERROR;
         }
-
-        dis = dias;
-        notas = usuario.getDisponibilidad()[0].getNotas();
-
-        return SUCCESS;
     }
 
     public String actualizarUsuario() throws SQLException {
@@ -281,14 +282,14 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     }
 
     public String asignarAdmin() {
-        
+
         Map session = ActionContext.getContext().getSession();
         int id = (Integer) session.get("idUser");
-        
+
         if (id == usua.getId()) {
             return "super";
         }
-        
+
         boolean asignado = DaoUsuario.asignarAdmin(usua.getId());
         if (asignado) {
             return SUCCESS;
@@ -296,7 +297,7 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
             return ERROR;
         }
     }
-    
+
     ArrayList<Periodo> listaPeriodos = new ArrayList();
 
     public ArrayList<Periodo> getListaPeriodos() {
@@ -306,24 +307,22 @@ public class UsuarioAction extends ActionSupport implements ServletRequestAware,
     public void setListaPeriodos(ArrayList<Periodo> listaPeriodos) {
         this.listaPeriodos = listaPeriodos;
     }
-    
-    
-    
+
     public String generarHistorial() {
-        
+
         Map session = ActionContext.getContext().getSession();
         int id = (Integer) session.get("idUser");
-        
+
         DaoDisponibilidad dao = new DaoDisponibilidad();
 
         listaPeriodos = dao.getDispoDeUsuario(id);
-            
-        if (listaPeriodos.size()>0) {
+
+        if (listaPeriodos.size() > 0) {
             return SUCCESS;
-        }else{
+        } else {
             return ERROR;
         }
 
     }
-    
+
 }
