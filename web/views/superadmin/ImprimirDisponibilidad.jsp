@@ -62,8 +62,10 @@
                             </div>
                         </div>
                         <div class="col-sm-5 col-xs-6">
-                            <h1>SIDH</h1>
-                            <h3>Sistema de Disponibilidad de Horarios</h3>
+                            <center>
+                                <h1>SIDH</h1>
+                                <h3>Sistema de Disponibilidad de Horarios</h3>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -183,8 +185,7 @@
                                 <h4 style="margin-top: 25px;"><u>Por favor lea las indicaciones:</u></h4>
                                 <p style="font-size: medium">Marque con una “<img  align=center  src='${pageContext.request.contextPath}/images/ok.png' />” las horas disponibles o
                                     con una  “<img  align=center  src='${pageContext.request.contextPath}/images/no.png' />” las horas que sería
-                                    preferible no utilizar (pero que en dado caso también dispone). Los espacios en blanco serán considerados como
-                                    <b>NO disponibles en su horario.</b>
+                                    preferible no utilizar (pero que en dado caso también dispone).
                                 </p>
                                 <br />
                                 <br />
@@ -210,8 +211,8 @@
                                                 <td class="martes" id="Mh7" val="1"></td>
                                                 <td class="miercoles" id="Xh7" val="1"></td>
                                                 <td class="jueves" id="Jh7" val="1"></td>
-                                                <td style="border-right: 1.5pt solid black;" class="viernes" id="Vh7" val="1"></td>
-                                                <td class="sabado" hidden="" id="Sh7" val="0"></td>
+                                                <td class="viernes" id="Vh7" val="1"></td>
+                                                <td class="sabado" style="border-right: 1.5pt solid black;" id="Sh7" val="0"></td>
                                             </tr>
                                             <tr style="border-left: 1.5pt solid black;border-right: 1.5pt solid black;">
                                                 <td><b>08:00 - 09:00</b></td>

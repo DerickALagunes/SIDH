@@ -29,8 +29,10 @@
                             </div>
                         </div>
                         <div class="col-sm-5 col-xs-6">
-                            <h1>SIDH</h1>
-                            <h3>Sistema de Disponibilidad de Horarios</h3>
+                            <center>
+                                <h1>SIDH</h1>
+                                <h3>Sistema de Disponibilidad de Horarios</h3>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -52,7 +54,7 @@
                                         <div class="box-cart">                                  
                                             <div id="cart" class="cart">
                                                 <button type="button">
-                                                   <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
+                                                    <p class="cart-total3"><span class="fa fa-user">-Salir</span></p>                                                    
                                                 </button>
                                             </div>
                                         </div>
@@ -115,7 +117,7 @@
                                 <li><h4>Gestionar los periodos</h4></li>
                                 <li><h4>Gestionar los usuarios docentes</h4></li>
                                 <li><h4>Descargar la información del sistema en un archivo XML compatible con aSc</h4></li>
-                                <li><h4>Mandar un correo electrónico a los docentes que aun no registrado su disponibilidad</h4></li>
+                                <li><h4>Mandar un correo electrónico a los docentes que aún no registrado su disponibilidad</h4></li>
                             </ul>
                         </div>
                     </div>

@@ -79,8 +79,10 @@
                             </div>
                         </div>
                         <div class="col-sm-5 col-xs-6">
-                            <h1>SIDH</h1>
-                            <h3>Sistema de Disponibilidad de Horarios</h3>
+                            <center>
+                                <h1>SIDH</h1>
+                                <h3>Sistema de Disponibilidad de Horarios</h3>
+                            </center>
                         </div>
                     </div>
                 </div>
