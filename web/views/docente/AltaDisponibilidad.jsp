@@ -145,7 +145,7 @@
                                 <h4>Por favor lea las indicaciones:</h4>
                                 <p style="font-size: medium">Marque con una “<img  align=center  src='${pageContext.request.contextPath}/images/ok.png' />” las horas disponibles o
                                     con una  “<img  align=center  src='${pageContext.request.contextPath}/images/no.png' />” las horas que sería
-                                    preferible no utilizar (pero que en dado caso también dispone).
+                                    preferible no utilizar.
                                 </p>
                                 <br />
                                 <br />

@@ -184,8 +184,7 @@
                             <div class="col-xs-12">
                                 <h4 style="margin-top: 25px;"><u>Por favor lea las indicaciones:</u></h4>
                                 <p style="font-size: medium">Marque con una “<img  align=center  src='${pageContext.request.contextPath}/images/ok.png' />” las horas disponibles o
-                                    con una  “<img  align=center  src='${pageContext.request.contextPath}/images/no.png' />” las horas que sería
-                                    preferible no utilizar (pero que en dado caso también dispone).
+                                    con una  “<img  align=center  src='${pageContext.request.contextPath}/images/no.png' />” las horas no esta disponible.
                                 </p>
                                 <br />
                                 <br />
